@@ -1,0 +1,25 @@
+{
+  "name": "what-to-watch",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A new generation online cinema with the ability to select films by genre, study their detailed descriptions and view a list of similar films.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:embyth/what-to-watch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/embyth/what-to-watch/issues"
+  },
+  "license": "MIT",
+  "scripts": {
+    "eslint": "eslint src/**/*.js",
+    "test": "npm run eslint"
+  },
+  "devDependencies": {
+    "eslint": "5.13.0",
+    "eslint-config-htmlacademy": "0.5.2"
+  },
+  "engines": {
+    "node": "10"
+  }
+}
