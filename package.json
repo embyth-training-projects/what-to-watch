@@ -1,5 +1,6 @@
 {
   "name": "what-to-watch",
+  "homepage": "https://what-to-watch-embyth.netlify.app/",
   "version": "1.0.0",
   "private": true,
   "description": "A new generation online cinema with the ability to select films by genre, study their detailed descriptions and view a list of similar films.",
