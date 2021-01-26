@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const MainPage = (props) => {
-  const {movieCard: {title, genre, releaseDate}} = props;
+  const {movieCard: {title, genre, releaseDate}, onTitleClick} = props;
 
   return (
     <React.Fragment>
@@ -36,7 +36,7 @@ const MainPage = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title}</h2>
+              <h2 className="movie-card__title" onClick={onTitleClick}>{title}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{genre}</span>
                 <span className="movie-card__year">{releaseDate}</span>
@@ -314,6 +314,7 @@ MainPage.propTypes = {
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired,
   }).isRequired,
+  onTitleClick: PropTypes.func.isRequired,
 };
 
 export default MainPage;

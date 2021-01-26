@@ -3,11 +3,18 @@ import PropTypes from "prop-types";
 
 import MainPage from "../main-page/main-page";
 
+const titleClickHandler = (evt) => {
+  evt.preventDefault();
+};
+
 const App = (props) => {
   const {movieCard} = props;
 
   return (
-    <MainPage movieCard={movieCard} />
+    <MainPage
+      movieCard={movieCard}
+      onTitleClick={titleClickHandler}
+    />
   );
 };
 

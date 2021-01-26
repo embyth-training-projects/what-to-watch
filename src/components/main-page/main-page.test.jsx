@@ -14,6 +14,7 @@ it(`Should MainPage render correctly`, () => {
     .create(
         <MainPage
           movieCard={movieCardMock}
+          onTitleClick={() => {}}
         />
     )
     .toJSON();
