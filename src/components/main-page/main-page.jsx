@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import MoviesList from "../movies-list/movies-list";
+
 const MainPage = (props) => {
   const {movieCards, onTitleClick, promoMovie} = props;
   const {title, genre, releaseDate} = promoMovie;
@@ -99,20 +101,7 @@ const MainPage = (props) => {
             </li>
           </ul>
 
-          <div className="catalog__movies-list">
-
-            {movieCards.map(({title: movieTitle, image: movieImage}) => (
-              <article key={movieImage} className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src={movieImage} alt={movieTitle} width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title" onClick={onTitleClick}>
-                  <a className="small-movie-card__link" href="movie-page.html">{movieTitle}</a>
-                </h3>
-              </article>
-            ))}
-
-          </div>
+          <MoviesList movies={movieCards} onTitleClick={onTitleClick} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
