@@ -13,6 +13,7 @@ it(`Should render correctly movie card`, () => {
     .create(<MovieCard
       movie={movie}
       onTitleClick={() => {}}
+      onCardMouseOver={() => {}}
     />)
     .toJSON();
 
