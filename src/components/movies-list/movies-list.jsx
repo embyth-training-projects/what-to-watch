@@ -1,24 +1,34 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
 import MovieCard from "../movie-card/movie-card";
 
-const MoviesList = ({movies, onTitleClick}) => {
-  const handleCardMouseOver = () => {};
+export default class MoviesList extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div className="catalog__movies-list">
-      {movies.map((movie, index) => (
-        <MovieCard
-          key={movie.title + index}
-          movie={movie}
-          onTitleClick={onTitleClick}
-          onCardMouseOver={handleCardMouseOver}
-        />
-      ))}
-    </div>
-  );
-};
+    this.state = {
+      currentMovie: null,
+    };
+  }
+
+  render() {
+    const {movies, onTitleClick} = this.props;
+
+    return (
+      <div className="catalog__movies-list">
+        {movies.map((movie, index) => (
+          <MovieCard
+            key={movie.title + index}
+            movie={movie}
+            onTitleClick={onTitleClick}
+            onCardMouseOver={() => this.setState({currentMovie: movie})}
+          />
+        ))}
+      </div>
+    );
+  }
+}
 
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({
@@ -27,5 +37,3 @@ MoviesList.propTypes = {
   })).isRequired,
   onTitleClick: PropTypes.func.isRequired,
 };
-
-export default MoviesList;
