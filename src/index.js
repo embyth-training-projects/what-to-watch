@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 
 import App from "./components/app/app";
 
-import {movies, promoMovie} from "./mock/movies";
+import {movies} from "./mock/movies";
 
 ReactDOM.render(
-    <App promoMovie={promoMovie} movieCards={movies} />,
+    <App promoMovie={movies[0]} movieCards={movies} />,
     document.querySelector(`#root`)
 );

@@ -17,9 +17,9 @@ export default class MoviesList extends PureComponent {
 
     return (
       <div className="catalog__movies-list">
-        {movies.map((movie, index) => (
+        {movies.map((movie) => (
           <MovieCard
-            key={movie.title + index}
+            key={movie.id}
             movie={movie}
             onTitleClick={onTitleClick}
             onCardMouseOver={() => this.setState({currentMovie: movie})}
@@ -33,7 +33,16 @@ export default class MoviesList extends PureComponent {
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    background: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    rating: PropTypes.string.isRequired,
+    ratingDescription: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   })).isRequired,
   onTitleClick: PropTypes.func.isRequired,
 };
