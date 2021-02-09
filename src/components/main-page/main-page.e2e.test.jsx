@@ -1,30 +1,50 @@
 import React from "react";
-import {shallow, configure} from "enzyme";
+import {mount, configure} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import MainPage from "./main-page";
 
-const movieCardMock = {
+const promoMovieMock = {
   title: `The Grand Budapest Hotel`,
   genre: `Drama`,
-  releaseDate: 2014,
+  releaseDate: `2014`,
 };
+
+const movieCardsMock = [
+  {
+    title: `movie-1`,
+    image: `image-1`,
+  },
+  {
+    title: `movie-2`,
+    image: `image-2`,
+  },
+  {
+    title: `movie-3`,
+    image: `image-3`,
+  },
+  {
+    title: `movie-4`,
+    image: `image-4`,
+  },
+];
 
 configure({adapter: new Adapter()});
 
 it(`Should title be clicked`, () => {
   const titleClickHandler = jest.fn();
 
-  const mainPageComponent = shallow(
+  const mainPageComponent = mount(
       <MainPage
-        movieCard={movieCardMock}
+        promoMovie={promoMovieMock}
+        movieCards={movieCardsMock}
         onTitleClick={titleClickHandler}
       />
   );
 
-  const movieTitle = mainPageComponent.find(`.movie-card__title`);
+  const movieTitles = mainPageComponent.find(`.small-movie-card__title`);
 
-  movieTitle.simulate(`click`);
+  movieTitles.forEach((title) => title.simulate(`click`));
 
-  expect(titleClickHandler).toHaveBeenCalledTimes(1);
+  expect(titleClickHandler.mock.calls.length).toBe(movieCardsMock.length);
 });

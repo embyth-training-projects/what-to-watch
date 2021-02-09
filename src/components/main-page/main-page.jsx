@@ -37,7 +37,7 @@ const MainPage = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title" onClick={onTitleClick}>{title}</h2>
+              <h2 className="movie-card__title">{title}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{genre}</span>
                 <span className="movie-card__year">{releaseDate}</span>
@@ -106,7 +106,7 @@ const MainPage = (props) => {
                 <div className="small-movie-card__image">
                   <img src={movieImage} alt={movieTitle} width="280" height="175" />
                 </div>
-                <h3 className="small-movie-card__title">
+                <h3 className="small-movie-card__title" onClick={onTitleClick}>
                   <a className="small-movie-card__link" href="movie-page.html">{movieTitle}</a>
                 </h3>
               </article>
