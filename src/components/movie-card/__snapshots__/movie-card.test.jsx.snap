@@ -3,6 +3,7 @@
 exports[`Should render correctly movie card 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onClick={[Function]}
   onMouseOver={[Function]}
 >
   <div
@@ -17,7 +18,6 @@ exports[`Should render correctly movie card 1`] = `
   </div>
   <h3
     className="small-movie-card__title"
-    onClick={[Function]}
   >
     <a
       className="small-movie-card__link"

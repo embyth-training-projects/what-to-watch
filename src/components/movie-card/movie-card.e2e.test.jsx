@@ -21,21 +21,41 @@ const movie = {
 
 configure({adapter: new Adapter()});
 
-it(`Movie Card be hovered`, () => {
-  const onCardMouseOver = jest.fn((args) => args);
+describe(`Movie Card end-2-end tests`, () => {
+  it(`Movie Card be hovered`, () => {
+    const onCardMouseOver = jest.fn((args) => args);
 
-  const mainComponent = shallow(
-      <MovieCard
-        movie={movie}
-        onTitleClick={() => {}}
-        onCardMouseOver={onCardMouseOver}
-      />
-  );
+    const mainComponent = shallow(
+        <MovieCard
+          movie={movie}
+          onCardClick={() => {}}
+          onCardMouseOver={onCardMouseOver}
+        />
+    );
 
-  const movieCards = mainComponent.find(`.small-movie-card`);
+    const movieCards = mainComponent.find(`.small-movie-card`);
 
-  movieCards.forEach((card) => card.simulate(`mouseover`, movie));
+    movieCards.forEach((card) => card.simulate(`mouseover`, movie));
 
-  expect(onCardMouseOver).toHaveBeenCalledTimes(1);
-  expect(onCardMouseOver.mock.calls[0][0]).toMatchObject(movie);
+    expect(onCardMouseOver).toHaveBeenCalledTimes(1);
+    expect(onCardMouseOver.mock.calls[0][0]).toMatchObject(movie);
+  });
+
+  it(`Movie Card be clicked`, () => {
+    const onCardClick = jest.fn();
+
+    const mainComponent = shallow(
+        <MovieCard
+          movie={movie}
+          onCardClick={onCardClick}
+          onCardMouseOver={() => {}}
+        />
+    );
+
+    const movieCards = mainComponent.find(`.small-movie-card`);
+
+    movieCards.forEach((card) => card.simulate(`click`, {preventDefault: onCardClick}));
+
+    expect(onCardClick).toHaveBeenCalledTimes(2);
+  });
 });

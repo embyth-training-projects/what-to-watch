@@ -22,7 +22,7 @@ it(`Should render correctly movie card`, () => {
   const tree = renderer
     .create(<MovieCard
       movie={movie}
-      onTitleClick={() => {}}
+      onCardClick={() => {}}
       onCardMouseOver={() => {}}
     />)
     .toJSON();

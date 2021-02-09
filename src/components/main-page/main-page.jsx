@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import MoviesList from "../movies-list/movies-list";
 
 const MainPage = (props) => {
-  const {movieCards, onTitleClick, promoMovie} = props;
+  const {movieCards, onCardClick, promoMovie} = props;
   const {title, genre, date} = promoMovie;
 
   return (
@@ -101,7 +101,7 @@ const MainPage = (props) => {
             </li>
           </ul>
 
-          <MoviesList movies={movieCards} onTitleClick={onTitleClick} />
+          <MoviesList movies={movieCards} onCardClick={onCardClick} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -137,6 +137,7 @@ MainPage.propTypes = {
     description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     rating: PropTypes.string.isRequired,
     ratingDescription: PropTypes.string.isRequired,
+    votes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   })).isRequired,
@@ -150,10 +151,11 @@ MainPage.propTypes = {
     description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     rating: PropTypes.string.isRequired,
     ratingDescription: PropTypes.string.isRequired,
+    votes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   }).isRequired,
-  onTitleClick: PropTypes.func.isRequired,
+  onCardClick: PropTypes.func.isRequired,
 };
 
 export default MainPage;

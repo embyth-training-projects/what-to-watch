@@ -80,20 +80,20 @@ const movieCardsMock = [
 
 configure({adapter: new Adapter()});
 
-it(`Should title be clicked`, () => {
-  const titleClickHandler = jest.fn();
+it(`Should movie card be clicked`, () => {
+  const cardClickHandler = jest.fn();
 
   const mainPageComponent = mount(
       <MainPage
         promoMovie={promoMovieMock}
         movieCards={movieCardsMock}
-        onTitleClick={titleClickHandler}
+        onCardClick={cardClickHandler}
       />
   );
 
-  const movieTitles = mainPageComponent.find(`.small-movie-card__title`);
+  const movieCards = mainPageComponent.find(`.small-movie-card`);
 
-  movieTitles.forEach((title) => title.simulate(`click`));
+  movieCards.forEach((card) => card.simulate(`click`));
 
-  expect(titleClickHandler.mock.calls.length).toBe(movieCardsMock.length);
+  expect(cardClickHandler.mock.calls.length).toBe(movieCardsMock.length);
 });

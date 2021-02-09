@@ -1,23 +1,71 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 import MainPage from "../main-page/main-page";
+import MoviePage from "../movie-page/movie-page";
 
-const titleClickHandler = (evt) => {
-  evt.preventDefault();
-};
+export default class App extends PureComponent {
+  constructor(props) {
+    super(props);
 
-const App = (props) => {
-  const {movieCards, promoMovie} = props;
+    this.state = {
+      currentPage: `main`,
+      currentMovie: this.props.promoMovie,
+    };
 
-  return (
-    <MainPage
-      promoMovie={promoMovie}
-      movieCards={movieCards}
-      onTitleClick={titleClickHandler}
-    />
-  );
-};
+    this.handleCardClick = this.handleCardClick.bind(this);
+  }
+
+  handleCardClick(movie) {
+    this.setState({
+      currentPage: `film`,
+      currentMovie: movie,
+    });
+  }
+
+  _renderApp() {
+    const {promoMovie, movieCards} = this.props;
+    const {currentPage, currentMovie} = this.state;
+
+    if (currentPage === `main`) {
+      return (
+        <MainPage
+          promoMovie={promoMovie}
+          movieCards={movieCards}
+          onCardClick={this.handleCardClick}
+        />
+      );
+    }
+
+    if (currentPage === `film`) {
+      return (
+        <MoviePage
+          movie={currentMovie}
+        />
+      );
+    }
+
+    return null;
+  }
+
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            {this._renderApp()}
+          </Route>
+          <Route exact path="/film">
+            <MoviePage
+              movie={this.state.currentMovie}
+            />
+          </Route>
+        </Switch>
+      </Router>
+    );
+  }
+}
 
 App.propTypes = {
   movieCards: PropTypes.arrayOf(PropTypes.shape({
@@ -30,6 +78,7 @@ App.propTypes = {
     description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     rating: PropTypes.string.isRequired,
     ratingDescription: PropTypes.string.isRequired,
+    votes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   })).isRequired,
@@ -43,9 +92,8 @@ App.propTypes = {
     description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     rating: PropTypes.string.isRequired,
     ratingDescription: PropTypes.string.isRequired,
+    votes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   }).isRequired,
 };
-
-export default App;

@@ -83,7 +83,7 @@ it(`Should MainPage render correctly`, () => {
         <MainPage
           promoMovie={promoMovieMock}
           movieCards={movieCardsMock}
-          onTitleClick={() => {}}
+          onCardClick={() => {}}
         />
     )
     .toJSON();
