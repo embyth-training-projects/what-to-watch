@@ -8,21 +8,26 @@ const titleClickHandler = (evt) => {
 };
 
 const App = (props) => {
-  const {movieCard} = props;
+  const {movieCards, promoMovie} = props;
 
   return (
     <MainPage
-      movieCard={movieCard}
+      promoMovie={promoMovie}
+      movieCards={movieCards}
       onTitleClick={titleClickHandler}
     />
   );
 };
 
 App.propTypes = {
-  movieCard: PropTypes.shape({
+  movieCards: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+  })).isRequired,
+  promoMovie: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
+    releaseDate: PropTypes.string.isRequired,
   }).isRequired,
 };
 
