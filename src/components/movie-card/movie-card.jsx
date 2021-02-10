@@ -1,23 +1,50 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
-const MovieCard = ({movie, onCardClick, onCardMouseOver}) => (
-  <article
-    className="small-movie-card catalog__movies-card"
-    onMouseOver={onCardMouseOver}
-    onClick={(evt) => {
-      evt.preventDefault();
-      onCardClick(movie);
-    }}
-  >
-    <div className="small-movie-card__image">
-      <img src={movie.poster} alt={movie.title} width="280" height="175" />
-    </div>
-    <h3 className="small-movie-card__title">
-      <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
-    </h3>
-  </article>
-);
+import VideoPlayer from "../video-player/video-player";
+
+export default class MovieCard extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this._movie = props.movie;
+
+    this.state = {
+      isPlaying: false,
+    };
+
+    this._handleCardClick = this._handleCardClick.bind(this);
+  }
+
+  _handleCardClick(evt) {
+    evt.preventDefault();
+
+    this.props.onCardClick(this._movie);
+  }
+
+  render() {
+    return (
+      <article
+        className="small-movie-card catalog__movies-card"
+        onMouseOver={() => this.props.onCardMouseOver()}
+        onMouseEnter={() => this.setState({isPlaying: true})}
+        onMouseOut={() => this.setState({isPlaying: false})}
+        onClick={this._handleCardClick}
+      >
+        <div className="small-movie-card__image">
+          <VideoPlayer
+            isPlaying={this.state.isPlaying}
+            source={this._movie.preview}
+            poster={this._movie.poster}
+          />
+        </div>
+        <h3 className="small-movie-card__title">
+          <a className="small-movie-card__link" href="movie-page.html">{this._movie.title}</a>
+        </h3>
+      </article>
+    );
+  }
+}
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
@@ -38,5 +65,3 @@ MovieCard.propTypes = {
   onCardClick: PropTypes.func.isRequired,
   onCardMouseOver: PropTypes.func.isRequired,
 };
-
-export default MovieCard;
