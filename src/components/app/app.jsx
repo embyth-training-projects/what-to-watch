@@ -81,6 +81,7 @@ App.propTypes = {
     votes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    preview: PropTypes.string.isRequired,
   })).isRequired,
   promoMovie: PropTypes.shape({
     title: PropTypes.string.isRequired,
@@ -95,5 +96,6 @@ App.propTypes = {
     votes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    preview: PropTypes.string.isRequired,
   }).isRequired,
 };

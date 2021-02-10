@@ -11,7 +11,8 @@ export const movies = [
     ratingDescription: `Very good`,
     votes: 240,
     director: `Wes Andreson`,
-    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/7/72/Landwasserviadukt%2C_aerial_video.webm`,
   },
   {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -25,7 +26,8 @@ export const movies = [
     ratingDescription: `Normal`,
     votes: 500,
     director: `David Yates`,
-    starring: [`Johnny Depp`, `Eddie Redmayne`, `Katherine Waterston`, `Dan Fogler`]
+    starring: [`Johnny Depp`, `Eddie Redmayne`, `Katherine Waterston`, `Dan Fogler`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/a/a8/Solis_Viaduct%2C_Schinschlucht_and_Solis_dam%2C_aerial_video.webm`,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -39,7 +41,8 @@ export const movies = [
     ratingDescription: `Good`,
     votes: 800,
     director: `Bryan Singer`,
-    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`]
+    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/3/35/Snoqualmie_Depot_-_Historic_Place_in_King_County%2C_Washington.webm`,
   },
   {
     title: `Aviator`,
@@ -53,7 +56,8 @@ export const movies = [
     ratingDescription: `Normal`,
     votes: 1650,
     director: `Martin Scorsese`,
-    starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Kate Beckinsale`]
+    starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Kate Beckinsale`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/9/9b/St._Lambertus_%28Immerather_Dom%29_2016.webm`,
   },
   {
     title: `Shutter Island`,
@@ -67,7 +71,8 @@ export const movies = [
     ratingDescription: `Good`,
     votes: 900,
     director: `Martin Scorsese`,
-    starring: [`Leonardo DiCaprio`, `Emily Mortimer`, `Mark Ruffalo`]
+    starring: [`Leonardo DiCaprio`, `Emily Mortimer`, `Mark Ruffalo`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/4/4d/Baha%27i_Temple_--_Wilmette_%2C_IL_--_Drone_Video_%28DJI_Spark%29.webm`,
   },
   {
     title: `Pulp Fiction`,
@@ -81,7 +86,8 @@ export const movies = [
     ratingDescription: `Very good`,
     votes: 2500,
     director: `Quentin Tarantino`,
-    starring: [`John Travolta`, `Uma Thurman`, `Samuel L. Jackson`, `Bruce Willis`]
+    starring: [`John Travolta`, `Uma Thurman`, `Samuel L. Jackson`, `Bruce Willis`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/9/95/Aerial_View_of_The_Vessel_at_Hudson_Yards%2C_New_York_City.webm`,
   },
   {
     title: `No Country for Old Men`,
@@ -95,7 +101,8 @@ export const movies = [
     ratingDescription: `Good`,
     votes: 870,
     director: `Ethan Coen, Joel Coen`,
-    starring: [`Tommy Lee Jones`, `Javier Bardem`, `Josh Brolin`]
+    starring: [`Tommy Lee Jones`, `Javier Bardem`, `Josh Brolin`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
   },
   {
     title: `Snatch`,
@@ -109,7 +116,8 @@ export const movies = [
     ratingDescription: `Good`,
     votes: 1500,
     director: `Guy Ritchie`,
-    starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`]
+    starring: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/d/d0/Un_Hiver_%C3%A0_Paris_-_Vimeo.webm`,
   },
   {
     title: `Johnny English`,
@@ -123,6 +131,6 @@ export const movies = [
     ratingDescription: `Normal`,
     votes: 300,
     director: `David Kerr`,
-    starring: [`Rowan Atkinson`, `Ben Miller`, `Olga Kurylenko`]
-  }
-];
+    starring: [`Rowan Atkinson`, `Ben Miller`, `Olga Kurylenko`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/d/da/Geroldsauer_Wasserfall_2020-03-13.webm`,
+  }];

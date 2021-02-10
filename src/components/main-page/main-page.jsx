@@ -140,6 +140,7 @@ MainPage.propTypes = {
     votes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    preview: PropTypes.string.isRequired,
   })).isRequired,
   promoMovie: PropTypes.shape({
     title: PropTypes.string.isRequired,
@@ -154,6 +155,7 @@ MainPage.propTypes = {
     votes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    preview: PropTypes.string.isRequired,
   }).isRequired,
   onCardClick: PropTypes.func.isRequired,
 };

@@ -44,6 +44,7 @@ MoviesList.propTypes = {
     votes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    preview: PropTypes.string.isRequired,
   })).isRequired,
   onCardClick: PropTypes.func.isRequired,
 };
