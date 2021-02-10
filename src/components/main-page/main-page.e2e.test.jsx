@@ -86,13 +86,13 @@ const movieCardsMock = [
 configure({adapter: new Adapter()});
 
 it(`Should movie card be clicked`, () => {
-  const cardClickHandler = jest.fn();
+  const movieCardClickHandler = jest.fn();
 
   const mainPageComponent = mount(
       <MainPage
         promoMovie={promoMovieMock}
         movieCards={movieCardsMock}
-        onCardClick={cardClickHandler}
+        onMovieCardClick={movieCardClickHandler}
       />
   );
 
@@ -100,5 +100,5 @@ it(`Should movie card be clicked`, () => {
 
   movieCards.forEach((card) => card.simulate(`click`));
 
-  expect(cardClickHandler.mock.calls.length).toBe(movieCardsMock.length);
+  expect(movieCardClickHandler.mock.calls.length).toBe(movieCardsMock.length);
 });

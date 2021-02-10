@@ -11,15 +11,15 @@ export default class MoviesList extends PureComponent {
       currentMovie: null,
     };
 
-    this._handleCardMouseOver = this._handleCardMouseOver.bind(this);
+    this._handleMovieCardMouseOver = this._handleMovieCardMouseOver.bind(this);
   }
 
-  _handleCardMouseOver(movie) {
+  _handleMovieCardMouseOver(movie) {
     this.setState({currentMovie: movie});
   }
 
   render() {
-    const {movies, onCardClick} = this.props;
+    const {movies, onMovieCardClick} = this.props;
 
     return (
       <div className="catalog__movies-list">
@@ -27,8 +27,8 @@ export default class MoviesList extends PureComponent {
           <MovieCard
             key={movie.id}
             movie={movie}
-            onCardClick={onCardClick}
-            onCardMouseOver={this._handleCardMouseOver}
+            onMovieCardClick={onMovieCardClick}
+            onMovieCardMouseOver={this._handleMovieCardMouseOver}
           />
         ))}
       </div>
@@ -52,5 +52,5 @@ MoviesList.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     preview: PropTypes.string.isRequired,
   })).isRequired,
-  onCardClick: PropTypes.func.isRequired,
+  onMovieCardClick: PropTypes.func.isRequired,
 };

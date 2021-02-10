@@ -70,7 +70,7 @@ it(`Should render correctly movies list`, () => {
   const tree = renderer
     .create(<MoviesList
       movies={movies}
-      onCardClick={() => {}}
+      onMovieCardClick={() => {}}
     />, {
       createNodeMock: () => {
         return {};

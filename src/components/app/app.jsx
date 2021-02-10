@@ -14,10 +14,10 @@ export default class App extends PureComponent {
       currentMovie: this.props.promoMovie,
     };
 
-    this.handleCardClick = this.handleCardClick.bind(this);
+    this._handleMovieCardClick = this._handleMovieCardClick.bind(this);
   }
 
-  handleCardClick(movie) {
+  _handleMovieCardClick(movie) {
     this.setState({
       currentPage: `film`,
       currentMovie: movie,
@@ -33,7 +33,7 @@ export default class App extends PureComponent {
         <MainPage
           promoMovie={promoMovie}
           movieCards={movieCards}
-          onCardClick={this.handleCardClick}
+          onMovieCardClick={this._handleMovieCardClick}
         />
       );
     }

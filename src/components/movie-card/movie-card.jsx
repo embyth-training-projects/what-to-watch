@@ -13,23 +13,23 @@ export default class MovieCard extends PureComponent {
       isPlaying: false,
     };
 
-    this._handleCardClick = this._handleCardClick.bind(this);
+    this._handleMovieCardClick = this._handleMovieCardClick.bind(this);
   }
 
-  _handleCardClick(evt) {
+  _handleMovieCardClick(evt) {
     evt.preventDefault();
 
-    this.props.onCardClick(this._movie);
+    this.props.onMovieCardClick(this._movie);
   }
 
   render() {
     return (
       <article
         className="small-movie-card catalog__movies-card"
-        onMouseOver={() => this.props.onCardMouseOver(this._movie)}
+        onMouseOver={() => this.props.onMovieCardMouseOver(this._movie)}
         onMouseEnter={() => this.setState({isPlaying: true})}
         onMouseOut={() => this.setState({isPlaying: false})}
-        onClick={this._handleCardClick}
+        onClick={this._handleMovieCardClick}
       >
         <div className="small-movie-card__image">
           <VideoPlayer
@@ -63,6 +63,6 @@ MovieCard.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     preview: PropTypes.string.isRequired,
   }).isRequired,
-  onCardClick: PropTypes.func.isRequired,
-  onCardMouseOver: PropTypes.func.isRequired,
+  onMovieCardClick: PropTypes.func.isRequired,
+  onMovieCardMouseOver: PropTypes.func.isRequired,
 };

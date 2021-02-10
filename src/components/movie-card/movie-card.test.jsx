@@ -23,8 +23,8 @@ it(`Should render correctly movie card`, () => {
   const tree = renderer
     .create(<MovieCard
       movie={movie}
-      onCardClick={() => {}}
-      onCardMouseOver={() => {}}
+      onMovieCardClick={() => {}}
+      onMovieCardMouseOver={() => {}}
     />, {
       createNodeMock: () => {
         return {};

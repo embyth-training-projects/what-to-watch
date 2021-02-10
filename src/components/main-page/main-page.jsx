@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import MoviesList from "../movies-list/movies-list";
 
 const MainPage = (props) => {
-  const {movieCards, onCardClick, promoMovie} = props;
+  const {movieCards, onMovieCardClick, promoMovie} = props;
   const {title, genre, date} = promoMovie;
 
   return (
@@ -101,7 +101,7 @@ const MainPage = (props) => {
             </li>
           </ul>
 
-          <MoviesList movies={movieCards} onCardClick={onCardClick} />
+          <MoviesList movies={movieCards} onMovieCardClick={onMovieCardClick} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -157,7 +157,7 @@ MainPage.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     preview: PropTypes.string.isRequired,
   }).isRequired,
-  onCardClick: PropTypes.func.isRequired,
+  onMovieCardClick: PropTypes.func.isRequired,
 };
 
 export default MainPage;

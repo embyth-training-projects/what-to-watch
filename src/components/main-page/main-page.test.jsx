@@ -88,7 +88,7 @@ it(`Should MainPage render correctly`, () => {
         <MainPage
           promoMovie={promoMovieMock}
           movieCards={movieCardsMock}
-          onCardClick={() => {}}
+          onMovieCardClick={() => {}}
         />, {
           createNodeMock: () => {
             return {};
