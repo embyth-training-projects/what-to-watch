@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render correctly VideoPlayer 1`] = `
+<video
+  height="175"
+  width="280"
+>
+  Sorry, your browser doesn't support embedded videos.
+</video>
+`;

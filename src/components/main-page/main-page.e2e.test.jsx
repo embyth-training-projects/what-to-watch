@@ -85,20 +85,8 @@ const movieCardsMock = [
 
 configure({adapter: new Adapter()});
 
-const mockVideoElement = () => {
-  Object.defineProperty(global.window.HTMLMediaElement.prototype, `play`, {
-    configurable: true,
-
-    get() {
-      setTimeout(() => (this.onloadeddata && this.onloadeddata()));
-      return () => {};
-    }
-  });
-};
-
 it(`Should movie card be clicked`, () => {
   const cardClickHandler = jest.fn();
-  mockVideoElement();
 
   const mainPageComponent = mount(
       <MainPage
