@@ -9,15 +9,15 @@ export default class VideoPlayer extends PureComponent {
 
     this._videoRef = createRef();
     this._playTimeout = null;
-    this._isPlaying = props.isPlaying;
   }
 
   componentDidMount() {
-    const {source, poster} = this.props;
+    const {source, poster, muted} = this.props;
     const video = this._videoRef.current;
 
     video.src = source;
     video.poster = poster;
+    video.muted = muted;
   }
 
   componentDidUpdate() {
@@ -39,6 +39,7 @@ export default class VideoPlayer extends PureComponent {
     video.src = ``;
     video.poster = ``;
     video.onplay = null;
+    video.muted = null;
 
     clearTimeout(this._playTimeout);
   }
@@ -49,9 +50,6 @@ export default class VideoPlayer extends PureComponent {
         width="280"
         height="175"
         ref={this._videoRef}
-        onMouseOver={(evt) => evt.target.play()}
-        onMouseOut={(evt) => evt.target.pause()}
-        muted
       >
         {ERROR_MESSAGE}
       </video>
@@ -63,4 +61,5 @@ VideoPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   source: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
+  muted: PropTypes.bool.isRequired,
 };

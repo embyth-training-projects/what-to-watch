@@ -7,17 +7,19 @@ exports[`Should render correctly movies list 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseOut={[Function]}
     onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Fantastic Beasts: The Crimes of Grindelwald"
+      <video
         height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
         width="280"
-      />
+      >
+        Sorry, your browser doesn't support embedded videos.
+      </video>
     </div>
     <h3
       className="small-movie-card__title"
@@ -33,17 +35,19 @@ exports[`Should render correctly movies list 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseOut={[Function]}
     onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Bohemian Rhapsody"
+      <video
         height="175"
-        src="img/bohemian-rhapsody.jpg"
         width="280"
-      />
+      >
+        Sorry, your browser doesn't support embedded videos.
+      </video>
     </div>
     <h3
       className="small-movie-card__title"
@@ -59,17 +63,19 @@ exports[`Should render correctly movies list 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseOut={[Function]}
     onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Aviator"
+      <video
         height="175"
-        src="img/aviator.jpg"
         width="280"
-      />
+      >
+        Sorry, your browser doesn't support embedded videos.
+      </video>
     </div>
     <h3
       className="small-movie-card__title"
@@ -85,17 +91,19 @@ exports[`Should render correctly movies list 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseOut={[Function]}
     onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Shutter Island"
+      <video
         height="175"
-        src="img/shutter-island.jpg"
         width="280"
-      />
+      >
+        Sorry, your browser doesn't support embedded videos.
+      </video>
     </div>
     <h3
       className="small-movie-card__title"

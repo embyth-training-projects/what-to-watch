@@ -26,13 +26,14 @@ export default class MovieCard extends PureComponent {
     return (
       <article
         className="small-movie-card catalog__movies-card"
-        onMouseOver={() => this.props.onCardMouseOver()}
+        onMouseOver={() => this.props.onCardMouseOver(this._movie)}
         onMouseEnter={() => this.setState({isPlaying: true})}
         onMouseOut={() => this.setState({isPlaying: false})}
         onClick={this._handleCardClick}
       >
         <div className="small-movie-card__image">
           <VideoPlayer
+            muted
             isPlaying={this.state.isPlaying}
             source={this._movie.preview}
             poster={this._movie.poster}

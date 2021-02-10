@@ -15,7 +15,8 @@ const movie = {
   ratingDescription: `Very good`,
   votes: 240,
   director: `Wes Andreson`,
-  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+  preview: `https://upload.wikimedia.org/wikipedia/commons/7/72/Landwasserviadukt%2C_aerial_video.webm`,
 };
 
 it(`Should render correctly movie card`, () => {
@@ -24,7 +25,11 @@ it(`Should render correctly movie card`, () => {
       movie={movie}
       onCardClick={() => {}}
       onCardMouseOver={() => {}}
-    />)
+    />, {
+      createNodeMock: () => {
+        return {};
+      }
+    })
     .toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -10,6 +10,12 @@ export default class MoviesList extends PureComponent {
     this.state = {
       currentMovie: null,
     };
+
+    this._handleCardMouseOver = this._handleCardMouseOver.bind(this);
+  }
+
+  _handleCardMouseOver(movie) {
+    this.setState({currentMovie: movie});
   }
 
   render() {
@@ -22,7 +28,7 @@ export default class MoviesList extends PureComponent {
             key={movie.id}
             movie={movie}
             onCardClick={onCardClick}
-            onCardMouseOver={() => this.setState({currentMovie: movie})}
+            onCardMouseOver={this._handleCardMouseOver}
           />
         ))}
       </div>

@@ -16,7 +16,8 @@ const promoMovieMock = {
   ratingDescription: `Very good`,
   votes: 240,
   director: `Wes Andreson`,
-  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+  preview: `https://upload.wikimedia.org/wikipedia/commons/7/72/Landwasserviadukt%2C_aerial_video.webm`,
 };
 
 const movieCardsMock = [
@@ -32,7 +33,8 @@ const movieCardsMock = [
     ratingDescription: `Normal`,
     votes: 500,
     director: `David Yates`,
-    starring: [`Johnny Depp`, `Eddie Redmayne`, `Katherine Waterston`, `Dan Fogler`]
+    starring: [`Johnny Depp`, `Eddie Redmayne`, `Katherine Waterston`, `Dan Fogler`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/a/a8/Solis_Viaduct%2C_Schinschlucht_and_Solis_dam%2C_aerial_video.webm`,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -46,7 +48,8 @@ const movieCardsMock = [
     ratingDescription: `Good`,
     votes: 800,
     director: `Bryan Singer`,
-    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`]
+    starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/3/35/Snoqualmie_Depot_-_Historic_Place_in_King_County%2C_Washington.webm`,
   },
   {
     title: `Aviator`,
@@ -60,7 +63,8 @@ const movieCardsMock = [
     ratingDescription: `Normal`,
     votes: 1650,
     director: `Martin Scorsese`,
-    starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Kate Beckinsale`]
+    starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Kate Beckinsale`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/9/9b/St._Lambertus_%28Immerather_Dom%29_2016.webm`,
   },
   {
     title: `Shutter Island`,
@@ -74,14 +78,27 @@ const movieCardsMock = [
     ratingDescription: `Good`,
     votes: 900,
     director: `Martin Scorsese`,
-    starring: [`Leonardo DiCaprio`, `Emily Mortimer`, `Mark Ruffalo`]
+    starring: [`Leonardo DiCaprio`, `Emily Mortimer`, `Mark Ruffalo`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/4/4d/Baha%27i_Temple_--_Wilmette_%2C_IL_--_Drone_Video_%28DJI_Spark%29.webm`,
   },
 ];
 
 configure({adapter: new Adapter()});
 
+const mockVideoElement = () => {
+  Object.defineProperty(global.window.HTMLMediaElement.prototype, `play`, {
+    configurable: true,
+
+    get() {
+      setTimeout(() => (this.onloadeddata && this.onloadeddata()));
+      return () => {};
+    }
+  });
+};
+
 it(`Should movie card be clicked`, () => {
   const cardClickHandler = jest.fn();
+  mockVideoElement();
 
   const mainPageComponent = mount(
       <MainPage

@@ -16,7 +16,8 @@ const movie = {
   ratingDescription: `Very good`,
   votes: 240,
   director: `Wes Andreson`,
-  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+  preview: `https://upload.wikimedia.org/wikipedia/commons/7/72/Landwasserviadukt%2C_aerial_video.webm`,
 };
 
 configure({adapter: new Adapter()});
@@ -38,7 +39,7 @@ describe(`Movie Card end-2-end tests`, () => {
     movieCards.forEach((card) => card.simulate(`mouseover`, movie));
 
     expect(onCardMouseOver).toHaveBeenCalledTimes(1);
-    expect(onCardMouseOver.mock.calls[0][0]).toMatchObject(movie);
+    expect(onCardMouseOver).toHaveBeenCalledWith(movie);
   });
 
   it(`Movie Card be clicked`, () => {
@@ -52,9 +53,9 @@ describe(`Movie Card end-2-end tests`, () => {
         />
     );
 
-    const movieCards = mainComponent.find(`.small-movie-card`);
+    const movieCard = mainComponent.find(`.small-movie-card`);
 
-    movieCards.forEach((card) => card.simulate(`click`, {preventDefault: onCardClick}));
+    movieCard.simulate(`click`, {preventDefault: onCardClick});
 
     expect(onCardClick).toHaveBeenCalledTimes(2);
   });

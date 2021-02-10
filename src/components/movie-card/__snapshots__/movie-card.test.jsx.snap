@@ -4,17 +4,19 @@ exports[`Should render correctly movie card 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseOut={[Function]}
   onMouseOver={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
-    <img
-      alt="The Grand Budapest Hotel"
+    <video
       height="175"
-      src="img/the-grand-budapest-hotel-poster.jpg"
       width="280"
-    />
+    >
+      Sorry, your browser doesn't support embedded videos.
+    </video>
   </div>
   <h3
     className="small-movie-card__title"
