@@ -42,6 +42,8 @@ export default class App extends PureComponent {
       return (
         <MoviePage
           movie={currentMovie}
+          movies={movieCards}
+          onMovieCardClick={this._handleMovieCardClick}
         />
       );
     }
@@ -59,6 +61,8 @@ export default class App extends PureComponent {
           <Route exact path="/film">
             <MoviePage
               movie={this.state.currentMovie}
+              movies={this.props.movieCards}
+              onMovieCardClick={this._handleMovieCardClick}
             />
           </Route>
         </Switch>
