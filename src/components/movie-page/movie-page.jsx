@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import MoviesLikeThis from "../movies-like-this/movies-like-this";
 import Footer from "../footer/footer";
 
+import CustomPropTypes from "../../utils/custom-prop-types";
+
 const MoviePage = ({movie, movies, onMovieCardClick}) => (
   <React.Fragment>
     <section className="movie-card movie-card--full">
@@ -113,36 +115,8 @@ const MoviePage = ({movie, movies, onMovieCardClick}) => (
 );
 
 MoviePage.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    rating: PropTypes.string.isRequired,
-    ratingDescription: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    preview: PropTypes.string.isRequired,
-  })).isRequired,
-  movie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    rating: PropTypes.string.isRequired,
-    ratingDescription: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    preview: PropTypes.string.isRequired,
-  }).isRequired,
+  movies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
+  movie: CustomPropTypes.MOVIE,
   onMovieCardClick: PropTypes.func.isRequired,
 };
 

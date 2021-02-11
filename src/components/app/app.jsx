@@ -5,6 +5,8 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import MainPage from "../main-page/main-page";
 import MoviePage from "../movie-page/movie-page";
 
+import CustomPropTypes from "../../utils/custom-prop-types";
+
 export default class App extends PureComponent {
   constructor(props) {
     super(props);
@@ -72,34 +74,6 @@ export default class App extends PureComponent {
 }
 
 App.propTypes = {
-  movieCards: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    rating: PropTypes.string.isRequired,
-    ratingDescription: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    preview: PropTypes.string.isRequired,
-  })).isRequired,
-  promoMovie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    rating: PropTypes.string.isRequired,
-    ratingDescription: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    preview: PropTypes.string.isRequired,
-  }).isRequired,
+  movieCards: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
+  promoMovie: CustomPropTypes.MOVIE,
 };
