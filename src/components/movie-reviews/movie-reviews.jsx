@@ -1,37 +1,37 @@
 import React from "react";
-import PropTypes from "prop-types";
+
+import ReviewItem from "../review-item/review-item";
 
 import CustomPropTypes from "../../utils/custom-prop-types";
 
-const getMachineReadableDate = (date) => {
-  return new Date(date).toISOString().slice(0, 10);
+const getLeftColumnReviews = (reviews) => {
+  const sliceIndex = Math.ceil(reviews.length / 2);
+  return reviews.slice(0, sliceIndex);
 };
 
-const MovieReviews = ({reviews}) => (
+const getRightColumnReviews = (reviews) => {
+  const sliceIndex = Math.ceil(reviews.length / 2);
+  return reviews.slice(sliceIndex, reviews.length);
+};
+
+const MovieReviews = ({movieReviews}) => (
   <div className="movie-card__reviews movie-card__row">
     <div className="movie-card__reviews-col">
-
-      {reviews[0].reviews.map((review) => (
-        <div key={review.id} className="review">
-          <blockquote className="review__quote">
-            <p className="review__text">{review.content}</p>
-
-            <footer className="review__details">
-              <cite className="review__author">{review.author}</cite>
-              <time className="review__date" dateTime={getMachineReadableDate(review.date)}>{review.date}</time>
-            </footer>
-          </blockquote>
-
-          <div className="review__rating">{review.rating}</div>
-        </div>
+      {getLeftColumnReviews(movieReviews.reviews).map((review) => (
+        <ReviewItem key={review.id} review={review} />
       ))}
+    </div>
 
+    <div className="movie-card__reviews-col">
+      {getRightColumnReviews(movieReviews.reviews).map((review) => (
+        <ReviewItem key={review.id} review={review} />
+      ))}
     </div>
   </div>
 );
 
 MovieReviews.propTypes = {
-  reviews: PropTypes.arrayOf(CustomPropTypes.REVIEW).isRequired,
+  movieReviews: CustomPropTypes.REVIEW,
 };
 
 export default MovieReviews;

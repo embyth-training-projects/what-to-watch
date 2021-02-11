@@ -8,7 +8,7 @@ import CustomPropTypes from "../../utils/custom-prop-types";
 const MAX_SIMILAR_MOVIES_AMOUNT = 4;
 
 export const getFilteredMovies = (movies, currentMovie) => {
-  return movies.filter((movie) => movie.genre === currentMovie.genre && movie !== currentMovie);
+  return movies.filter((movie) => movie.genre === currentMovie.genre && movie.title !== currentMovie.title);
 };
 
 const MoviesLikeThis = ({movies, currentMovie, onMovieCardClick}) => {

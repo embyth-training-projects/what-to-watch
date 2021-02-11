@@ -7,12 +7,17 @@ import MoviePage from "../movie-page/movie-page";
 
 import CustomPropTypes from "../../utils/custom-prop-types";
 
+const PageType = {
+  MAIN: `main`,
+  MOVIE: `movie`,
+};
+
 export default class App extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentPage: `main`,
+      currentPage: PageType.MAIN,
       currentMovie: this.props.promoMovie,
     };
 
@@ -21,16 +26,22 @@ export default class App extends PureComponent {
 
   _handleMovieCardClick(movie) {
     this.setState({
-      currentPage: `film`,
+      currentPage: PageType.MOVIE,
       currentMovie: movie,
     });
+  }
+
+  _getCurrentMovieReviews(allReviews, currentMovie) {
+    return allReviews.filter((reviews) => reviews.movie === currentMovie.title)[0];
   }
 
   _renderApp() {
     const {promoMovie, movieCards, moviesReviews} = this.props;
     const {currentPage, currentMovie} = this.state;
 
-    if (currentPage === `main`) {
+    const currentMovieReviews = this._getCurrentMovieReviews(moviesReviews, currentMovie);
+
+    if (currentPage === PageType.MAIN) {
       return (
         <MainPage
           promoMovie={promoMovie}
@@ -40,12 +51,12 @@ export default class App extends PureComponent {
       );
     }
 
-    if (currentPage === `film`) {
+    if (currentPage === PageType.MOVIE) {
       return (
         <MoviePage
           movie={currentMovie}
           movies={movieCards}
-          reviews={moviesReviews}
+          reviews={currentMovieReviews}
           onMovieCardClick={this._handleMovieCardClick}
         />
       );
@@ -65,7 +76,7 @@ export default class App extends PureComponent {
             <MoviePage
               movie={this.state.currentMovie}
               movies={this.props.movieCards}
-              reviews={this.props.moviesReviews}
+              reviews={this._getCurrentMovieReviews(this.props.moviesReviews, this.state.currentMovie)}
               onMovieCardClick={this._handleMovieCardClick}
             />
           </Route>
