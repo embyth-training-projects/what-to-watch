@@ -21,6 +21,7 @@ describe(`Function getFilteredMovies works correctly`, () => {
       director: `Martin Scorsese`,
       starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Kate Beckinsale`],
       preview: `https://upload.wikimedia.org/wikipedia/commons/9/9b/St._Lambertus_%28Immerather_Dom%29_2016.webm`,
+      runTime: `2h 50m`,
     }]);
   });
 

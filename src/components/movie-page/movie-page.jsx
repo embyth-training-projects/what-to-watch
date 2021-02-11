@@ -9,12 +9,7 @@ import MoviesLikeThis from "../movies-like-this/movies-like-this";
 import Footer from "../footer/footer";
 
 import CustomPropTypes from "../../utils/custom-prop-types";
-
-const NavTabs = {
-  OVERVIEW: `Overview`,
-  DETAILS: `Details`,
-  REVIEWS: `Reviews`,
-};
+import {NavTabs} from "../../utils/const";
 
 export default class MoviePage extends PureComponent {
   constructor(props) {
@@ -49,7 +44,9 @@ export default class MoviePage extends PureComponent {
           movieReviews={reviews}
         />;
       default:
-        return null;
+        return <MovieOverview
+          movie={movie}
+        />;
     }
   }
 
