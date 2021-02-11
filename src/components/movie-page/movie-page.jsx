@@ -1,12 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import MovieNav from "../movie-nav/movie-nav";
+import MovieOverview from "../movie-overview/movie-overview";
+import MovieReviews from "../movie-reviews/movie-reviews";
 import MoviesLikeThis from "../movies-like-this/movies-like-this";
 import Footer from "../footer/footer";
 
 import CustomPropTypes from "../../utils/custom-prop-types";
 
-const MoviePage = ({movie, movies, onMovieCardClick}) => (
+const MoviePage = ({movie, movies, reviews, onMovieCardClick}) => (
   <React.Fragment>
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
@@ -66,37 +69,15 @@ const MoviePage = ({movie, movies, onMovieCardClick}) => (
           </div>
 
           <div className="movie-card__desc">
-            <nav className="movie-nav movie-card__nav">
-              <ul className="movie-nav__list">
-                <li className="movie-nav__item movie-nav__item--active">
-                  <a href="#" className="movie-nav__link">Overview</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Details</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Reviews</a>
-                </li>
-              </ul>
-            </nav>
+            <MovieNav />
 
-            <div className="movie-rating">
-              <div className="movie-rating__score">{movie.rating}</div>
-              <p className="movie-rating__meta">
-                <span className="movie-rating__level">{movie.ratingDescription}</span>
-                <span className="movie-rating__count">{movie.votes} ratings</span>
-              </p>
-            </div>
+            <MovieOverview
+              movie={movie}
+            />
 
-            <div className="movie-card__text">
-              {movie.description.map((description, index) => (
-                <p key={movie.id + index}>{description}</p>
-              ))}
-
-              <p className="movie-card__director"><strong>Director: {movie.director}</strong></p>
-
-              <p className="movie-card__starring"><strong>Starring: {movie.starring.join(`, `)} and other</strong></p>
-            </div>
+            <MovieReviews
+              reviews={reviews}
+            />
           </div>
         </div>
       </div>
@@ -118,6 +99,7 @@ MoviePage.propTypes = {
   movies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
   movie: CustomPropTypes.MOVIE,
   onMovieCardClick: PropTypes.func.isRequired,
+  reviews: PropTypes.arrayOf(CustomPropTypes.REVIEW).isRequired,
 };
 
 export default MoviePage;

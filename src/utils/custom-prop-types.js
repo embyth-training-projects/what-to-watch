@@ -15,6 +15,20 @@ const CustomPropTypes = {
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     preview: PropTypes.string.isRequired,
+    runTime: PropTypes.string.isRequired,
+  }).isRequired,
+
+  REVIEW: PropTypes.shape({
+    movie: PropTypes.string.isRequired,
+    reviews: PropTypes.arrayOf(
+        PropTypes.shape({
+          author: PropTypes.string.isRequired,
+          rating: PropTypes.string.isRequired,
+          date: PropTypes.string.isRequired,
+          content: PropTypes.string.isRequired,
+          id: PropTypes.number.isRequired,
+        }).isRequired
+    ).isRequired,
   }).isRequired,
 };
 

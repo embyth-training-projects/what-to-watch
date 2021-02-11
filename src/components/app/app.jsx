@@ -27,7 +27,7 @@ export default class App extends PureComponent {
   }
 
   _renderApp() {
-    const {promoMovie, movieCards} = this.props;
+    const {promoMovie, movieCards, moviesReviews} = this.props;
     const {currentPage, currentMovie} = this.state;
 
     if (currentPage === `main`) {
@@ -45,6 +45,7 @@ export default class App extends PureComponent {
         <MoviePage
           movie={currentMovie}
           movies={movieCards}
+          reviews={moviesReviews}
           onMovieCardClick={this._handleMovieCardClick}
         />
       );
@@ -64,6 +65,7 @@ export default class App extends PureComponent {
             <MoviePage
               movie={this.state.currentMovie}
               movies={this.props.movieCards}
+              reviews={this.props.moviesReviews}
               onMovieCardClick={this._handleMovieCardClick}
             />
           </Route>
@@ -76,4 +78,5 @@ export default class App extends PureComponent {
 App.propTypes = {
   movieCards: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
   promoMovie: CustomPropTypes.MOVIE,
+  moviesReviews: PropTypes.arrayOf(CustomPropTypes.REVIEW).isRequired,
 };

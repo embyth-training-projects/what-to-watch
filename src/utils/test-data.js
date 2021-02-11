@@ -10,8 +10,9 @@ export const movieItemMock = {
   ratingDescription: `Very good`,
   votes: 240,
   director: `Wes Andreson`,
-  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`, `Tony Revoloru`, `Tilda Swinton`, `Tom Wilkinson`, `Owen Wilkinson`, `Adrien Brody`, `Ralph Fiennes`, `Jeff Goldblum`],
   preview: `https://upload.wikimedia.org/wikipedia/commons/7/72/Landwasserviadukt%2C_aerial_video.webm`,
+  runTime: `1h 39m`,
 };
 
 export const moviesMock = [
@@ -28,7 +29,8 @@ export const moviesMock = [
     votes: 500,
     director: `David Yates`,
     starring: [`Johnny Depp`, `Eddie Redmayne`, `Katherine Waterston`, `Dan Fogler`],
-    preview: `https://upload.wikimedia.org/wikipedia/commons/a/a8/Solis_Viaduct%2C_Schinschlucht_and_Solis_dam%2C_aerial_video.webm`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    runTime: `2h 13m`,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -43,7 +45,8 @@ export const moviesMock = [
     votes: 800,
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`],
-    preview: `https://upload.wikimedia.org/wikipedia/commons/3/35/Snoqualmie_Depot_-_Historic_Place_in_King_County%2C_Washington.webm`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/f/fa/Tornado_time_lapse.webm`,
+    runTime: `2h 14m`,
   },
   {
     title: `Aviator`,
@@ -59,6 +62,7 @@ export const moviesMock = [
     director: `Martin Scorsese`,
     starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Kate Beckinsale`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/9/9b/St._Lambertus_%28Immerather_Dom%29_2016.webm`,
+    runTime: `2h 50m`,
   },
   {
     title: `Shutter Island`,
@@ -74,5 +78,61 @@ export const moviesMock = [
     director: `Martin Scorsese`,
     starring: [`Leonardo DiCaprio`, `Emily Mortimer`, `Mark Ruffalo`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/4/4d/Baha%27i_Temple_--_Wilmette_%2C_IL_--_Drone_Video_%28DJI_Spark%29.webm`,
+    runTime: `2h 19m`,
+  },
+];
+
+export const reviewsMock = [
+  {
+    movie: `The Grand Budapest Hotel`,
+    reviews: [
+      {
+        author: `Kate Muir`,
+        rating: `8,9`,
+        date: `December 24, 2019`,
+        content: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        id: 345234523,
+      },
+      {
+        author: `Bill Goodykoontz`,
+        rating: `8,0`,
+        date: `November 18, 2015`,
+        content: `Anderson's films are too precious for some, but for those of us willing to lose ourselves in them, they're a delight. "The Grand Budapest Hotel" is no different, except that he has added a hint of gravitas to the mix, improving the recipe.`,
+        id: 22345234,
+      },
+      {
+        author: `Amanda Greever`,
+        rating: `8,0`,
+        date: `November 18, 2015`,
+        content: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+        id: 4563456345,
+      },
+    ]
+  },
+  {
+    movie: `Snatch`,
+    reviews: [
+      {
+        author: `Kate Muir`,
+        rating: `8,9`,
+        date: `December 24, 2019`,
+        content: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        id: 345234523,
+      },
+      {
+        author: `Bill Goodykoontz`,
+        rating: `8,0`,
+        date: `November 18, 2015`,
+        content: `Anderson's films are too precious for some, but for those of us willing to lose ourselves in them, they're a delight. "The Grand Budapest Hotel" is no different, except that he has added a hint of gravitas to the mix, improving the recipe.`,
+        id: 22345234,
+      },
+      {
+        author: `Amanda Greever`,
+        rating: `8,0`,
+        date: `November 18, 2015`,
+        content: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+        id: 4563456345,
+      },
+    ]
   },
 ];
