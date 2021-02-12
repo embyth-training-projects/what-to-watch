@@ -30,10 +30,10 @@ export const getRightColumnReviews = (reviews) => {
   return reviews.slice(sliceIndex, reviews.length);
 };
 
-export const filterMoviesByGenre = (allMovies, activeGenre) => {
-  if (activeGenre === ALL_GENRES) {
+export const filterMoviesByGenre = (allMovies, currentGenre) => {
+  if (currentGenre === ALL_GENRES) {
     return allMovies;
   }
 
-  return allMovies.filter((movie) => movie.genre === activeGenre);
+  return allMovies.filter((movie) => movie.genre === currentGenre);
 };

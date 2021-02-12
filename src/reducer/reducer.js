@@ -1,14 +1,16 @@
 import {movies} from "../mock/movies";
 import {allMoviesReviews} from "../mock/reviews";
-import {extend, filterMoviesByGenre} from "../helpers/utils";
-import {ALL_GENRES} from "../helpers/const";
+import {extend, filterMoviesByGenre, getMoviesGenres} from "../helpers/utils";
+import {Pages, ALL_GENRES} from "../helpers/const";
 
 export const initialState = {
   currentMovie: movies[0],
+  currentGenre: ALL_GENRES,
+  currentPage: Pages.MAIN,
   movies,
   moviesReviews: allMoviesReviews,
-  activeGenre: ALL_GENRES,
   moviesByGenre: movies,
+  genres: getMoviesGenres(movies),
 };
 
 export const ActionType = {
@@ -17,8 +19,8 @@ export const ActionType = {
 };
 
 export const ActionCreator = {
-  getMoviesByGenre: (activeGenre) => {
-    const moviesByGenre = filterMoviesByGenre(movies, activeGenre);
+  getMoviesByGenre: (currentGenre) => {
+    const moviesByGenre = filterMoviesByGenre(movies, currentGenre);
 
     return {
       type: ActionType.GET_MOVIES_BY_GENRE,
@@ -26,10 +28,10 @@ export const ActionCreator = {
     };
   },
 
-  getActiveGenre: (activeGenre) => {
+  getcurrentGenre: (currentGenre) => {
     return {
       type: ActionType.GET_ACTIVE_GENRE,
-      payload: activeGenre,
+      payload: currentGenre,
     };
   },
 };
@@ -43,7 +45,7 @@ export const reducer = (state = initialState, action) => {
 
     case ActionType.GET_ACTIVE_GENRE:
       return extend(state, {
-        activeGenre: action.payload,
+        currentGenre: action.payload,
       });
 
     default:

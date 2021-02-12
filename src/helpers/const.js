@@ -12,3 +12,5 @@ export const Pages = {
 export const ALL_GENRES = `All genres`;
 
 export const MOVIES_SHOWN = 8;
+
+export const MAX_SHOWN_GENRES = 10;

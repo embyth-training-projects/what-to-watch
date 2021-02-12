@@ -1,9 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const Footer = () => (
+const PageFooter = ({isMainPage}) => (
   <footer className="page-footer">
     <div className="logo">
-      <a className="logo__link logo__link--light">
+      <a href={!isMainPage ? `main.html` : ``} className="logo__link logo__link--light">
         <span className="logo__letter logo__letter--1">W</span>
         <span className="logo__letter logo__letter--2">T</span>
         <span className="logo__letter logo__letter--3">W</span>
@@ -16,4 +17,8 @@ const Footer = () => (
   </footer>
 );
 
-export default Footer;
+PageFooter.propTypes = {
+  isMainPage: PropTypes.bool.isRequired,
+};
+
+export default PageFooter;
