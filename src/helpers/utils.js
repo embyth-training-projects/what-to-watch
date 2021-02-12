@@ -29,3 +29,11 @@ export const getRightColumnReviews = (reviews) => {
   const sliceIndex = Math.ceil(reviews.length / 2);
   return reviews.slice(sliceIndex, reviews.length);
 };
+
+export const filterMoviesByGenre = (allMovies, activeGenre) => {
+  if (activeGenre === ALL_GENRES) {
+    return allMovies;
+  }
+
+  return allMovies.filter((movie) => movie.genre === activeGenre);
+};

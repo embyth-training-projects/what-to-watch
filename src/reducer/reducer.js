@@ -1,22 +1,14 @@
-import {movies} from "./mock/movies";
-import {allMoviesReviews} from "./mock/reviews";
-import {extend} from "./helpers/utils";
-import {ALL_GENRES} from "./helpers/const";
+import {movies} from "../mock/movies";
+import {allMoviesReviews} from "../mock/reviews";
+import {extend, filterMoviesByGenre} from "../helpers/utils";
+import {ALL_GENRES} from "../helpers/const";
 
-const initialState = {
+export const initialState = {
   currentMovie: movies[0],
   movies,
   moviesReviews: allMoviesReviews,
   activeGenre: ALL_GENRES,
   moviesByGenre: movies,
-};
-
-const filterMoviesByGenre = (allMovies, activeGenre) => {
-  if (activeGenre === ALL_GENRES) {
-    return allMovies;
-  }
-
-  return allMovies.filter((movie) => movie.genre === activeGenre);
 };
 
 export const ActionType = {
