@@ -5,7 +5,7 @@ export const extend = (state, newStateValue) => {
 };
 
 export const getMoviesGenres = (movies) => {
-  return [ALL_GENRES].concat(...new Set(movies.map((movie) => movie.genre)));
+  return [ALL_GENRES, ...new Set(movies.map((movie) => movie.genre))];
 };
 
 export const getMovieReviews = (allReviews, currentMovie) => {
