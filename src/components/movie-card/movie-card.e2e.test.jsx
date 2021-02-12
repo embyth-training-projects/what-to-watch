@@ -4,7 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 
 import MovieCard from "./movie-card";
 
-import {movieItemMock} from "../../utils/test-data";
+import {movieItemMock} from "../../helpers/test-data";
 
 configure({adapter: new Adapter()});
 

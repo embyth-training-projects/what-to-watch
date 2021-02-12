@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 
 import MoviesLikeThis, {getFilteredMovies} from "./movies-like-this";
 
-import {movieItemMock, moviesMock} from "../../utils/test-data";
+import {movieItemMock, moviesMock} from "../../helpers/test-data";
 
 describe(`Function getFilteredMovies works correctly`, () => {
   it(`Should return movies array with similar genre`, () => {

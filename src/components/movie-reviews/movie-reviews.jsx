@@ -2,7 +2,7 @@ import React from "react";
 
 import ReviewItem from "../review-item/review-item";
 
-import CustomPropTypes from "../../utils/custom-prop-types";
+import CustomPropTypes from "../../helpers/custom-prop-types";
 
 const getLeftColumnReviews = (reviews) => {
   const sliceIndex = Math.ceil(reviews.length / 2);

@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 
 import MovieCard from "./movie-card";
 
-import {movieItemMock} from "../../utils/test-data";
+import {movieItemMock} from "../../helpers/test-data";
 
 it(`Should render correctly movie card`, () => {
   const tree = renderer

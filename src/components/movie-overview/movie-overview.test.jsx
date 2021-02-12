@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 
 import MovieOverview from "./movie-overview";
-import {movieItemMock} from "../../utils/test-data";
+import {movieItemMock} from "../../helpers/test-data";
 
 it(`MovieOverview should render correctly`, () => {
   const tree = renderer

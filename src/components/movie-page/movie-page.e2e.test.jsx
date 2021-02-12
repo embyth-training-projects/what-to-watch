@@ -7,8 +7,8 @@ import MovieOverview from "../movie-overview/movie-overview";
 import MovieDetails from "../movie-details/movie-details";
 import MovieReviews from "../movie-reviews/movie-reviews";
 
-import {NavTabs} from "../../utils/const";
-import {movieItemMock, moviesMock, reviewItemMock} from "../../utils/test-data";
+import {NavTabs} from "../../helpers/const";
+import {movieItemMock, moviesMock, reviewItemMock} from "../../helpers/test-data";
 
 configure({adapter: new Adapter()});
 

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import MoviesList from "../movies-list/movies-list";
 
-import CustomPropTypes from "../../utils/custom-prop-types";
+import CustomPropTypes from "../../helpers/custom-prop-types";
 
 const MAX_SIMILAR_MOVIES_AMOUNT = 4;
 

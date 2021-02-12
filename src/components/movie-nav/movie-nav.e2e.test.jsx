@@ -3,7 +3,7 @@ import {configure, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import MovieNav from "./movie-nav";
-import {NavTabs} from "../../utils/const";
+import {NavTabs} from "../../helpers/const";
 
 configure({adapter: new Adapter()});
 

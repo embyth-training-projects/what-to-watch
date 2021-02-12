@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 
 import MoviesList from "./movies-list";
 
-import {moviesMock} from "../../utils/test-data";
+import {moviesMock} from "../../helpers/test-data";
 
 it(`Should render correctly movies list`, () => {
   const tree = renderer

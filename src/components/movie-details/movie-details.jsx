@@ -1,6 +1,6 @@
 import React from "react";
 
-import CustomPropTypes from "../../utils/custom-prop-types";
+import CustomPropTypes from "../../helpers/custom-prop-types";
 
 const getActorsList = (actors) => {
   return actors.map((actor) => (

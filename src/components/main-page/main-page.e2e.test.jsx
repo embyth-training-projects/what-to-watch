@@ -4,7 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 
 import MainPage from "./main-page";
 
-import {movieItemMock, moviesMock} from "../../utils/test-data";
+import {movieItemMock, moviesMock} from "../../helpers/test-data";
 
 configure({adapter: new Adapter()});
 

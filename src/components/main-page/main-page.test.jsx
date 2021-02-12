@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 
 import MainPage from "./main-page";
 
-import {movieItemMock, moviesMock} from "../../utils/test-data";
+import {movieItemMock, moviesMock} from "../../helpers/test-data";
 
 it(`Should MainPage render correctly`, () => {
   const tree = renderer

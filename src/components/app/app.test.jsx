@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 
 import App from "./app";
 
-import {movieItemMock, moviesMock, reviewsMock} from "../../utils/test-data";
+import {movieItemMock, moviesMock, reviewsMock} from "../../helpers/test-data";
 
 it(`Should App render correctly`, () => {
   const tree = renderer

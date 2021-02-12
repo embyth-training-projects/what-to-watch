@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import MoviesList from "../movies-list/movies-list";
 import Footer from "../footer/footer";
 
-import CustomPropTypes from "../../utils/custom-prop-types";
+import CustomPropTypes from "../../helpers/custom-prop-types";
 
 const MainPage = (props) => {
   const {movieCards, onMovieCardClick, promoMovie} = props;

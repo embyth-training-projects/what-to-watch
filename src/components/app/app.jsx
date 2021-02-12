@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import MainPage from "../main-page/main-page";
 import MoviePage from "../movie-page/movie-page";
 
-import CustomPropTypes from "../../utils/custom-prop-types";
+import CustomPropTypes from "../../helpers/custom-prop-types";
 
 const PageType = {
   MAIN: `main`,

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import VideoPlayer from "../video-player/video-player";
 
-import CustomPropTypes from "../../utils/custom-prop-types";
+import CustomPropTypes from "../../helpers/custom-prop-types";
 
 export default class MovieCard extends PureComponent {
   constructor(props) {
