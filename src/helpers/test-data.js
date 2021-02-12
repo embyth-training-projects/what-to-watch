@@ -163,3 +163,5 @@ export const reviewsMock = [
     ]
   },
 ];
+
+export const genres = [`All genres`, `Drama`, `Thriller`, `Comedy`];

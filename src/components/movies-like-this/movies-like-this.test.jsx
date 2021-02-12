@@ -1,13 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import MoviesLikeThis, {getFilteredMovies} from "./movies-like-this";
+import MoviesLikeThis from "./movies-like-this";
 
 import {movieItemMock, moviesMock} from "../../helpers/test-data";
+import {getMoreLikeThisMovies} from "../../helpers/utils";
 
 describe(`Function getFilteredMovies works correctly`, () => {
   it(`Should return movies array with similar genre`, () => {
-    expect(getFilteredMovies(moviesMock, movieItemMock)).toEqual([{
+    expect(getMoreLikeThisMovies(moviesMock, movieItemMock)).toEqual([{
       title: `Aviator`,
       genre: `Drama`,
       date: `2004`,
@@ -26,7 +27,7 @@ describe(`Function getFilteredMovies works correctly`, () => {
   });
 
   it(`Should return empty array when no similar movies`, () => {
-    expect(getFilteredMovies(moviesMock, moviesMock[0])).toEqual([]);
+    expect(getMoreLikeThisMovies(moviesMock, moviesMock[0])).toEqual([]);
   });
 });
 
