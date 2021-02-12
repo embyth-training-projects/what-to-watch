@@ -1,10 +1,15 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 
 import MoviesLikeThis from "./movies-like-this";
 
 import {movieItemMock, moviesMock} from "../../helpers/test-data";
 import {getMoreLikeThisMovies} from "../../helpers/utils";
+import {ALL_GENRES} from "../../helpers/const";
+
+const mockStore = configureStore([]);
 
 describe(`Function getFilteredMovies works correctly`, () => {
   it(`Should return movies array with similar genre`, () => {
@@ -32,16 +37,24 @@ describe(`Function getFilteredMovies works correctly`, () => {
 });
 
 it(`MoviesLikeThis should render correctly`, () => {
+  const store = mockStore({
+    currentGenre: ALL_GENRES,
+    moviesByGenre: moviesMock,
+  });
+
   const tree = renderer
-    .create(<MoviesLikeThis
-      movies={moviesMock}
-      currentMovie={movieItemMock}
-      onMovieCardClick={() => {}}
-    />, {
-      createNodeMock: () => {
-        return {};
-      }
-    })
+    .create(
+        <Provider store={store}>
+          <MoviesLikeThis
+            movies={moviesMock}
+            currentMovie={movieItemMock}
+            onMovieCardClick={() => {}}
+          />
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        })
     .toJSON();
 
   expect(tree).toMatchSnapshot();

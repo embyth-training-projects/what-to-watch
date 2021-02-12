@@ -10,26 +10,26 @@ describe(`Reducer tests`, () => {
 
   it(`Reducer should return all films when 'All genres' chosen`, () => {
     expect(reducer({
-      activeGenre: ALL_GENRES,
+      currentGenre: ALL_GENRES,
       moviesByGenre: moviesMock,
     }, {
       type: ActionType.GET_MOVIES_BY_GENRE,
       payload: filterMoviesByGenre(moviesMock, ALL_GENRES),
     })).toEqual({
-      activeGenre: ALL_GENRES,
+      currentGenre: ALL_GENRES,
       moviesByGenre: moviesMock,
     });
   });
 
   it(`Reducer should return right films when specific genre is chosen`, () => {
     expect(reducer({
-      activeGenre: `Drama`,
+      currentGenre: `Drama`,
       moviesByGenre: moviesMock,
     }, {
       type: ActionType.GET_MOVIES_BY_GENRE,
       payload: filterMoviesByGenre(moviesMock, `Drama`),
     })).toEqual({
-      activeGenre: `Drama`,
+      currentGenre: `Drama`,
       moviesByGenre: [
         {
           title: `Aviator`,
@@ -53,12 +53,12 @@ describe(`Reducer tests`, () => {
 
   it(`Reducer should return right active genre`, () => {
     expect(reducer({
-      activeGenre: ALL_GENRES,
+      currentGenre: ALL_GENRES,
     }, {
       type: ActionType.GET_ACTIVE_GENRE,
       payload: `Drama`,
     })).toEqual({
-      activeGenre: `Drama`,
+      currentGenre: `Drama`,
     });
   });
 });

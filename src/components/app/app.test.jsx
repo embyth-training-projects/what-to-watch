@@ -5,7 +5,7 @@ import configureStore from "redux-mock-store";
 
 import App from "./app";
 
-import {movieItemMock, moviesMock, reviewsMock} from "../../helpers/test-data";
+import {movieItemMock, moviesMock, reviewsMock, genres} from "../../helpers/test-data";
 import {ALL_GENRES} from "../../helpers/const";
 
 const mockStore = configureStore([]);
@@ -15,8 +15,9 @@ it(`Should App render correctly`, () => {
     currentMovie: movieItemMock,
     movies: moviesMock,
     moviesReviews: reviewsMock,
-    activeGenre: ALL_GENRES,
+    currentGenre: ALL_GENRES,
     moviesByGenre: moviesMock,
+    genres,
   });
 
   const tree = renderer

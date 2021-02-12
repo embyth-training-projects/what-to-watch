@@ -1,14 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MoviesLikeThis should render correctly 1`] = `
+exports[`Catalog should render correctly 1`] = `
 <section
-  className="catalog catalog--like-this"
+  className="catalog"
 >
   <h2
-    className="catalog__title"
+    className="catalog__title visually-hidden"
   >
-    More like this
+    Catalog
   </h2>
+  <ul
+    className="catalog__genres-list"
+  >
+    <li
+      className="catalog__genres-item catalog__genres-item--active"
+    >
+      <a
+        className="catalog__genres-link"
+        href="#"
+        onClick={[Function]}
+      >
+        All genres
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+    >
+      <a
+        className="catalog__genres-link"
+        href="#"
+        onClick={[Function]}
+      >
+        Drama
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+    >
+      <a
+        className="catalog__genres-link"
+        href="#"
+        onClick={[Function]}
+      >
+        Thriller
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+    >
+      <a
+        className="catalog__genres-link"
+        href="#"
+        onClick={[Function]}
+      >
+        Comedy
+      </a>
+    </li>
+  </ul>
   <div
     className="catalog__movies-list"
   >

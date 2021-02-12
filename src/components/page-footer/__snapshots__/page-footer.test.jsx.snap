@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PageHeader should render correctly 1`] = `
-<header
-  className="page-header movie-card__head"
+exports[`Footer should render correctly 1`] = `
+<footer
+  className="page-footer"
 >
   <div
     className="logo"
   >
     <a
-      className="logo__link"
+      className="logo__link logo__link--light"
       href=""
     >
       <span
@@ -29,18 +29,11 @@ exports[`PageHeader should render correctly 1`] = `
     </a>
   </div>
   <div
-    className="user-block"
+    className="copyright"
   >
-    <div
-      className="user-block__avatar"
-    >
-      <img
-        alt="User avatar"
-        height="63"
-        src="img/avatar.jpg"
-        width="63"
-      />
-    </div>
+    <p>
+      © 2019 What to watch Ltd.
+    </p>
   </div>
-</header>
+</footer>
 `;

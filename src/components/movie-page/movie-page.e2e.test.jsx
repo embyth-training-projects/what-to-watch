@@ -1,5 +1,5 @@
 import React from "react";
-import {configure, mount, shallow} from "enzyme";
+import {configure, shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import MoviePage from "./movie-page";
@@ -16,6 +16,7 @@ describe(`MoviePage end-2-end tests`, () => {
   it(`Should render right screen on different states`, () => {
     const moviePageComponent = shallow(
         <MoviePage
+          isMainPage={false}
           movies={moviesMock}
           movie={movieItemMock}
           reviews={reviewItemMock}
@@ -39,8 +40,9 @@ describe(`MoviePage end-2-end tests`, () => {
   it(`Should render right screen on current tab click`, () => {
     const tabs = Object.values(NavTabs);
 
-    const moviePageComponent = mount(
+    const moviePageComponent = shallow(
         <MoviePage
+          isMainPage={false}
           movies={moviesMock}
           movie={movieItemMock}
           reviews={reviewItemMock}

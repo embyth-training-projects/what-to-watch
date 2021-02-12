@@ -6,7 +6,7 @@ import configureStore from "redux-mock-store";
 
 import MainPage from "./main-page";
 
-import {movieItemMock, moviesMock} from "../../helpers/test-data";
+import {movieItemMock, moviesMock, genres} from "../../helpers/test-data";
 import {ALL_GENRES, MOVIES_SHOWN} from "../../helpers/const";
 import {movies as allGenresMovies} from "../../mock/movies";
 
@@ -21,13 +21,15 @@ describe(`MainPage end-2-end tests`, () => {
     const store = mockStore({
       currentMovie: movieItemMock,
       movies: moviesMock,
-      activeGenre: ALL_GENRES,
+      currentGenre: ALL_GENRES,
       moviesByGenre: moviesMock,
+      genres,
     });
 
     const mainPageComponent = mount(
         <Provider store={store}>
           <MainPage
+            isMainPage={true}
             onMovieCardClick={movieCardClickHandler}
           />
         </Provider>
@@ -47,13 +49,15 @@ describe(`MainPage end-2-end tests`, () => {
     const store = mockStore({
       currentMovie: movieItemMock,
       movies: moviesMock,
-      activeGenre: ALL_GENRES,
+      currentGenre: ALL_GENRES,
       moviesByGenre: moviesShown,
+      genres,
     });
 
     const mainPageComponent = mount(
         <Provider store={store}>
           <MainPage
+            isMainPage={true}
             onMovieCardClick={movieCardClickHandler}
           />
         </Provider>
@@ -70,13 +74,15 @@ describe(`MainPage end-2-end tests`, () => {
     const store = mockStore({
       currentMovie: movieItemMock,
       movies: moviesMock,
-      activeGenre: ALL_GENRES,
+      currentGenre: ALL_GENRES,
       moviesByGenre: moviesShown,
+      genres,
     });
 
     const mainPageComponent = mount(
         <Provider store={store}>
           <MainPage
+            isMainPage={true}
             onMovieCardClick={movieCardClickHandler}
           />
         </Provider>

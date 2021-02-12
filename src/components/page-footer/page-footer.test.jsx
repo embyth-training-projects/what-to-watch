@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import PageHeader from "./page-header";
+import PageFooter from "./page-footer";
 
-it(`PageHeader should render correctly`, () => {
+it(`Footer should render correctly`, () => {
   const tree = renderer
-    .create(<PageHeader
+    .create(<PageFooter
       isMainPage={true}
     />)
     .toJSON();
