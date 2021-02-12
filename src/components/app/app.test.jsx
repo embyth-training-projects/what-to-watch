@@ -18,15 +18,15 @@ it(`Should App render correctly`, () => {
     currentGenre: ALL_GENRES,
     moviesByGenre: moviesMock,
     genres,
+    currentPage: `main`,
+    isMainPage: true,
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <App
-            currentMovie={movieItemMock}
-            movies={moviesMock}
-            moviesReviews={reviewsMock}
+            onMovieCardClick={() => {}}
           />
         </Provider>, {
           createNodeMock: () => {
