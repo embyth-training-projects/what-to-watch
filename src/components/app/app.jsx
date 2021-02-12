@@ -6,18 +6,14 @@ import MainPage from "../main-page/main-page";
 import MoviePage from "../movie-page/movie-page";
 
 import CustomPropTypes from "../../helpers/custom-prop-types";
-
-const PageType = {
-  MAIN: `main`,
-  MOVIE: `movie`,
-};
+import {Pages} from "../../helpers/const";
 
 export default class App extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentPage: PageType.MAIN,
+      currentPage: Pages.MAIN,
       currentMovie: this.props.promoMovie,
     };
 
@@ -26,7 +22,7 @@ export default class App extends PureComponent {
 
   _handleMovieCardClick(movie) {
     this.setState({
-      currentPage: PageType.MOVIE,
+      currentPage: Pages.MOVIE,
       currentMovie: movie,
     });
   }
@@ -41,7 +37,7 @@ export default class App extends PureComponent {
 
     const currentMovieReviews = this._getCurrentMovieReviews(moviesReviews, currentMovie);
 
-    if (currentPage === PageType.MAIN) {
+    if (currentPage === Pages.MAIN) {
       return (
         <MainPage
           promoMovie={promoMovie}
@@ -51,7 +47,7 @@ export default class App extends PureComponent {
       );
     }
 
-    if (currentPage === PageType.MOVIE) {
+    if (currentPage === Pages.MOVIE) {
       return (
         <MoviePage
           movie={currentMovie}

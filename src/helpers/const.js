@@ -3,3 +3,8 @@ export const NavTabs = {
   DETAILS: `Details`,
   REVIEWS: `Reviews`,
 };
+
+export const Pages = {
+  MAIN: `main`,
+  MOVIE: `movie`,
+};
