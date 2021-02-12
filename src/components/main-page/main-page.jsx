@@ -10,8 +10,7 @@ import Footer from "../footer/footer";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
 import {getMoviesGenres} from "../../helpers/utils";
-
-const MOVIES_SHOWN = 8;
+import {MOVIES_SHOWN} from "../../helpers/const";
 
 class MainPage extends PureComponent {
   constructor(props) {
@@ -120,12 +119,7 @@ class MainPage extends PureComponent {
               onMovieCardClick={onMovieCardClick}
             />
 
-            {moviesByGenre.length > moviesShown.length
-              ? <ShowMoreButton
-                onShowMoreButtonClick={this._handleShowMoreButtonClick}
-              />
-              : null
-            }
+            {moviesByGenre.length > moviesShown.length && <ShowMoreButton onShowMoreButtonClick={this._handleShowMoreButtonClick} />}
 
           </section>
 

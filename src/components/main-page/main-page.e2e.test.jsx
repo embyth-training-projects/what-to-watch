@@ -7,35 +7,87 @@ import configureStore from "redux-mock-store";
 import MainPage from "./main-page";
 
 import {movieItemMock, moviesMock} from "../../helpers/test-data";
-import {ALL_GENRES} from "../../helpers/const";
+import {ALL_GENRES, MOVIES_SHOWN} from "../../helpers/const";
+import {movies as allGenresMovies} from "../../mock/movies";
 
 configure({adapter: new Adapter()});
 
 const mockStore = configureStore([]);
 
-it(`Should movie card be clicked`, () => {
-  const movieCardClickHandler = jest.fn();
+describe(`MainPage end-2-end tests`, () => {
+  it(`Should movie card be clicked`, () => {
+    const movieCardClickHandler = jest.fn();
 
-  const store = mockStore({
-    currentMovie: movieItemMock,
-    movies: moviesMock,
-    activeGenre: ALL_GENRES,
-    moviesByGenre: moviesMock,
+    const store = mockStore({
+      currentMovie: movieItemMock,
+      movies: moviesMock,
+      activeGenre: ALL_GENRES,
+      moviesByGenre: moviesMock,
+    });
+
+    const mainPageComponent = mount(
+        <Provider store={store}>
+          <MainPage
+            onMovieCardClick={movieCardClickHandler}
+          />
+        </Provider>
+    );
+
+    const movieCards = mainPageComponent.find(`.small-movie-card`);
+
+    movieCards.forEach((card) => card.simulate(`click`));
+
+    expect(movieCardClickHandler.mock.calls.length).toBe(moviesMock.length);
   });
 
-  const mainPageComponent = mount(
-      <Provider store={store}>
-        <MainPage
-          currentMovie={movieItemMock}
-          movies={moviesMock}
-          onMovieCardClick={movieCardClickHandler}
-        />
-      </Provider>
-  );
+  it(`Should show movies without ShowMoreButton`, () => {
+    const movieCardClickHandler = () => {};
+    const moviesShown = allGenresMovies.slice(0, 2);
 
-  const movieCards = mainPageComponent.find(`.small-movie-card`);
+    const store = mockStore({
+      currentMovie: movieItemMock,
+      movies: moviesMock,
+      activeGenre: ALL_GENRES,
+      moviesByGenre: moviesShown,
+    });
 
-  movieCards.forEach((card) => card.simulate(`click`));
+    const mainPageComponent = mount(
+        <Provider store={store}>
+          <MainPage
+            onMovieCardClick={movieCardClickHandler}
+          />
+        </Provider>
+    );
 
-  expect(movieCardClickHandler.mock.calls.length).toBe(moviesMock.length);
+    expect(mainPageComponent.find(`.catalog__button`).length).toBe(0);
+    expect(mainPageComponent.find(`.small-movie-card`).length).toBe(moviesShown.length);
+  });
+
+  it(`Should show movies with ShowMoreButton`, () => {
+    const movieCardClickHandler = () => {};
+    const moviesShown = allGenresMovies;
+
+    const store = mockStore({
+      currentMovie: movieItemMock,
+      movies: moviesMock,
+      activeGenre: ALL_GENRES,
+      moviesByGenre: moviesShown,
+    });
+
+    const mainPageComponent = mount(
+        <Provider store={store}>
+          <MainPage
+            onMovieCardClick={movieCardClickHandler}
+          />
+        </Provider>
+    );
+
+    expect(mainPageComponent.find(`.catalog__button`).length).toBe(1);
+    expect(mainPageComponent.find(`.small-movie-card`).length).toBe(MOVIES_SHOWN);
+
+    mainPageComponent.find(`.catalog__button`).simulate(`click`);
+
+    expect(mainPageComponent.find(`.catalog__button`).length).toBe(0);
+    expect(mainPageComponent.find(`.small-movie-card`).length).toBe(allGenresMovies.length);
+  });
 });
