@@ -8,7 +8,7 @@ import MovieReviews from "../movie-reviews/movie-reviews";
 import MoviesLikeThis from "../movies-like-this/movies-like-this";
 import Footer from "../footer/footer";
 
-import CustomPropTypes from "../../helpers/custom-prop-types";
+import {CustomPropTypes} from "../../helpers/custom-prop-types";
 import {NavTabs} from "../../helpers/const";
 
 export default class MoviePage extends PureComponent {

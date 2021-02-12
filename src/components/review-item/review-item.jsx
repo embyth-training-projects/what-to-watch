@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const getMachineReadableDate = (date) => {
-  return new Date(date).toISOString().slice(0, 10);
-};
+import {getMachineReadableDate} from "../../helpers/utils";
 
 const ReviewItem = ({review}) => (
   <div className="review">

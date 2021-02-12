@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import MovieCard from "../movie-card/movie-card";
 
-import CustomPropTypes from "../../helpers/custom-prop-types";
+import {CustomPropTypes} from "../../helpers/custom-prop-types";
 
 export default class MoviesList extends PureComponent {
   constructor(props) {

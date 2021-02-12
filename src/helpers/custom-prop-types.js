@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const CustomPropTypes = {
+export const CustomPropTypes = {
   MOVIE: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
@@ -31,5 +31,3 @@ const CustomPropTypes = {
     ).isRequired,
   }).isRequired,
 };
-
-export default CustomPropTypes;

@@ -1,20 +1,22 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {connect} from "react-redux";
 
 import MainPage from "../main-page/main-page";
 import MoviePage from "../movie-page/movie-page";
 
-import CustomPropTypes from "../../helpers/custom-prop-types";
+import {CustomPropTypes} from "../../helpers/custom-prop-types";
+import {getMovieReviews} from "../../helpers/utils";
 import {Pages} from "../../helpers/const";
 
-export default class App extends PureComponent {
+class App extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
       currentPage: Pages.MAIN,
-      currentMovie: this.props.promoMovie,
+      currentMovie: props.currentMovie,
     };
 
     this._handleMovieCardClick = this._handleMovieCardClick.bind(this);
@@ -27,21 +29,15 @@ export default class App extends PureComponent {
     });
   }
 
-  _getCurrentMovieReviews(allReviews, currentMovie) {
-    return allReviews.filter((reviews) => reviews.movie === currentMovie.title)[0];
-  }
-
   _renderApp() {
-    const {promoMovie, movieCards, moviesReviews} = this.props;
+    const {movies, moviesReviews} = this.props;
     const {currentPage, currentMovie} = this.state;
 
-    const currentMovieReviews = this._getCurrentMovieReviews(moviesReviews, currentMovie);
+    const currentMovieReviews = getMovieReviews(moviesReviews, currentMovie);
 
     if (currentPage === Pages.MAIN) {
       return (
         <MainPage
-          promoMovie={promoMovie}
-          movieCards={movieCards}
           onMovieCardClick={this._handleMovieCardClick}
         />
       );
@@ -51,7 +47,7 @@ export default class App extends PureComponent {
       return (
         <MoviePage
           movie={currentMovie}
-          movies={movieCards}
+          movies={movies}
           reviews={currentMovieReviews}
           onMovieCardClick={this._handleMovieCardClick}
         />
@@ -71,8 +67,8 @@ export default class App extends PureComponent {
           <Route exact path="/film">
             <MoviePage
               movie={this.state.currentMovie}
-              movies={this.props.movieCards}
-              reviews={this._getCurrentMovieReviews(this.props.moviesReviews, this.state.currentMovie)}
+              movies={this.props.movies}
+              reviews={getMovieReviews(this.props.moviesReviews, this.state.currentMovie)}
               onMovieCardClick={this._handleMovieCardClick}
             />
           </Route>
@@ -83,7 +79,16 @@ export default class App extends PureComponent {
 }
 
 App.propTypes = {
-  movieCards: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
-  promoMovie: CustomPropTypes.MOVIE,
+  movies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
+  currentMovie: CustomPropTypes.MOVIE,
   moviesReviews: PropTypes.arrayOf(CustomPropTypes.REVIEW).isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+  currentMovie: state.currentMovie,
+  moviesReviews: state.moviesReviews,
+});
+
+export {App};
+export default connect(mapStateToProps)(App);
