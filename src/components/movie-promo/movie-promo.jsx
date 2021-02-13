@@ -1,12 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 import PageHeader from "../page-header/page-header";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
 
-const MoviePromo = ({currentMovie, isMainPage}) => (
+const MoviePromo = ({currentMovie}) => (
   <section className="movie-card">
     <div className="movie-card__bg">
       <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
@@ -14,7 +13,7 @@ const MoviePromo = ({currentMovie, isMainPage}) => (
 
     <h1 className="visually-hidden">WTW</h1>
 
-    <PageHeader isMainPage={isMainPage} />
+    <PageHeader />
 
     <div className="movie-card__wrap">
       <div className="movie-card__info">
@@ -51,7 +50,6 @@ const MoviePromo = ({currentMovie, isMainPage}) => (
 
 MoviePromo.propTypes = {
   currentMovie: CustomPropTypes.MOVIE,
-  isMainPage: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({

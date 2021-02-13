@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+
+import {Pages} from "../../helpers/const";
 
 const PageHeader = ({isMainPage}) => (
   <header className="page-header movie-card__head">
@@ -23,4 +26,8 @@ PageHeader.propTypes = {
   isMainPage: PropTypes.bool.isRequired,
 };
 
-export default PageHeader;
+const mapStateToProps = (state) => ({
+  isMainPage: state.currentPage === Pages.MAIN,
+});
+
+export default connect(mapStateToProps)(PageHeader);

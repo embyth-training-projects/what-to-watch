@@ -1,26 +1,20 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import MoviePromo from "../movie-promo/movie-promo";
 import Catalog from "../catalog/catalog";
 import PageFooter from "../page-footer/page-footer";
 
-const MainPage = ({isMainPage, onMovieCardClick}) => (
+const MainPage = () => (
   <React.Fragment>
 
-    <MoviePromo isMainPage={isMainPage} />
+    <MoviePromo />
 
     <div className="page-content">
-      <Catalog onMovieCardClick={onMovieCardClick} />
-      <PageFooter isMainPage={isMainPage} />
+      <Catalog />
+      <PageFooter />
     </div>
 
   </React.Fragment>
 );
-
-MainPage.propTypes = {
-  onMovieCardClick: PropTypes.func.isRequired,
-  isMainPage: PropTypes.bool.isRequired,
-};
 
 export default MainPage;

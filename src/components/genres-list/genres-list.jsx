@@ -4,11 +4,12 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/reducer";
 
 import {MAX_SHOWN_GENRES} from "../../helpers/const";
+import {getMoviesGenres} from "../../helpers/utils";
 
 const GenresList = ({genres, currentGenre, onGenreClick}) => (
   <ul className="catalog__genres-list">
-    {genres.slice(0, MAX_SHOWN_GENRES).map((genre, index) => (
-      <li key={genre + index} className={`catalog__genres-item ${genre === currentGenre ? `catalog__genres-item--active` : ``}`}>
+    {genres.map((genre, index) => (
+      <li key={`${genre}-${index}`} className={`catalog__genres-item ${genre === currentGenre ? `catalog__genres-item--active` : ``}`}>
         <a
           href="#"
           className="catalog__genres-link"
@@ -30,14 +31,13 @@ GenresList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  genres: state.genres,
+  genres: getMoviesGenres(state.movies).slice(0, MAX_SHOWN_GENRES),
   currentGenre: state.currentGenre,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreClick(genre) {
-    dispatch(ActionCreator.getMoviesByGenre(genre));
-    dispatch(ActionCreator.getcurrentGenre(genre));
+    dispatch(ActionCreator.setCurrentGenre(genre));
   }
 });
 

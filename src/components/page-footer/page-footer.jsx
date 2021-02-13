@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+
+import {Pages} from "../../helpers/const";
 
 const PageFooter = ({isMainPage}) => (
   <footer className="page-footer">
@@ -12,7 +15,7 @@ const PageFooter = ({isMainPage}) => (
     </div>
 
     <div className="copyright">
-      <p>© 2019 What to watch Ltd.</p>
+      <p>© 2020 What to watch Ltd.</p>
     </div>
   </footer>
 );
@@ -21,4 +24,8 @@ PageFooter.propTypes = {
   isMainPage: PropTypes.bool.isRequired,
 };
 
-export default PageFooter;
+const mapStateToProps = (state) => ({
+  isMainPage: state.currentPage === Pages.MAIN,
+});
+
+export default connect(mapStateToProps)(PageFooter);

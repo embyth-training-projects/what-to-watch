@@ -1,11 +1,14 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+
+import {ActionCreator} from "../../reducer/reducer";
 
 import VideoPlayer from "../video-player/video-player";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
 
-export default class MovieCard extends PureComponent {
+class MovieCard extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -28,7 +31,6 @@ export default class MovieCard extends PureComponent {
     return (
       <article
         className="small-movie-card catalog__movies-card"
-        onMouseOver={() => this.props.onMovieCardMouseOver(this._movie)}
         onMouseEnter={() => this.setState({isPlaying: true})}
         onMouseOut={() => this.setState({isPlaying: false})}
         onClick={this._handleMovieCardClick}
@@ -52,5 +54,13 @@ export default class MovieCard extends PureComponent {
 MovieCard.propTypes = {
   movie: CustomPropTypes.MOVIE,
   onMovieCardClick: PropTypes.func.isRequired,
-  onMovieCardMouseOver: PropTypes.func.isRequired,
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  onMovieCardClick(movie) {
+    dispatch(ActionCreator.goToMoviePage(movie));
+  }
+});
+
+export {MovieCard};
+export default connect(null, mapDispatchToProps)(MovieCard);
