@@ -2,9 +2,9 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {ActionCreator} from "../../reducer/reducer";
-
 import VideoPlayer from "../video-player/video-player";
+
+import {ActionCreator} from "../../reducer/reducer";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
 
@@ -12,39 +12,36 @@ class MovieCard extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._movie = props.movie;
-
-    this.state = {
-      isPlaying: false,
-    };
-
     this._handleMovieCardClick = this._handleMovieCardClick.bind(this);
   }
 
   _handleMovieCardClick(evt) {
-    evt.preventDefault();
+    const {movie, onMovieCardClick} = this.props;
 
-    this.props.onMovieCardClick(this._movie);
+    evt.preventDefault();
+    onMovieCardClick(movie);
   }
 
   render() {
+    const {movie, isPlaying, onMovieCardMouseEnter, onMovieCardMouseOut} = this.props;
+
     return (
       <article
         className="small-movie-card catalog__movies-card"
-        onMouseEnter={() => this.setState({isPlaying: true})}
-        onMouseOut={() => this.setState({isPlaying: false})}
+        onMouseEnter={() => onMovieCardMouseEnter()}
+        onMouseOut={() => onMovieCardMouseOut()}
         onClick={this._handleMovieCardClick}
       >
         <div className="small-movie-card__image">
           <VideoPlayer
             muted
-            isPlaying={this.state.isPlaying}
-            source={this._movie.preview}
-            poster={this._movie.poster}
+            isPlaying={isPlaying}
+            source={movie.preview}
+            poster={movie.poster}
           />
         </div>
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html">{this._movie.title}</a>
+          <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
         </h3>
       </article>
     );
@@ -53,7 +50,10 @@ class MovieCard extends PureComponent {
 
 MovieCard.propTypes = {
   movie: CustomPropTypes.MOVIE,
+  isPlaying: PropTypes.bool.isRequired,
   onMovieCardClick: PropTypes.func.isRequired,
+  onMovieCardMouseEnter: PropTypes.func.isRequired,
+  onMovieCardMouseOut: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

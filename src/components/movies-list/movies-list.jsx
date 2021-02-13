@@ -5,9 +5,13 @@ import {connect} from "react-redux";
 import MovieCard from "../movie-card/movie-card";
 import ShowMoreButton from "../show-more-button/show-more-button";
 
+import withVideoPlayer from "../../hocs/with-video-player/with-video-player";
+
 import {filterMoviesByGenre} from "../../helpers/utils";
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
 import {MOVIES_SHOWN, MOVIES_LIKE_THIS_SHOWN, Pages} from "../../helpers/const";
+
+const MovieCardWrapped = withVideoPlayer(MovieCard);
 
 class MoviesList extends PureComponent {
   constructor(props) {
@@ -50,7 +54,7 @@ class MoviesList extends PureComponent {
       <React.Fragment>
         <div className="catalog__movies-list">
           {moviesShown.map((movie) => (
-            <MovieCard
+            <MovieCardWrapped
               key={movie.id}
               movie={movie}
             />
