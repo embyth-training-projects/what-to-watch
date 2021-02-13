@@ -1,4 +1,5 @@
 import React, {PureComponent} from "react";
+import PropTypes from "prop-types";
 
 import MovieNav from "../movie-nav/movie-nav";
 import MovieDetails from "../movie-details/movie-details";
@@ -9,25 +10,10 @@ import {CustomPropTypes} from "../../helpers/custom-prop-types";
 import {NavTabs} from "../../helpers/const";
 
 class MoviePageInfo extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentTab: NavTabs.OVERVIEW,
-    };
-
-    this._handleTabClick = this._handleTabClick.bind(this);
-  }
-
-  _handleTabClick(activeTab) {
-    this.setState({currentTab: activeTab});
-  }
-
   _renderActiveTab() {
-    const {currentMovie} = this.props;
-    const {currentTab} = this.state;
+    const {currentMovie, currentActiveItem} = this.props;
 
-    switch (currentTab) {
+    switch (currentActiveItem) {
       case NavTabs.OVERVIEW:
         return <MovieOverview
           movie={currentMovie}
@@ -46,7 +32,7 @@ class MoviePageInfo extends PureComponent {
   }
 
   render() {
-    const {currentMovie} = this.props;
+    const {currentMovie, currentActiveItem, onItemClick} = this.props;
 
     return (
       <div className="movie-card__wrap movie-card__translate-top">
@@ -58,8 +44,8 @@ class MoviePageInfo extends PureComponent {
           <div className="movie-card__desc">
             <MovieNav
               navTabs={NavTabs}
-              currentActiveTab={this.state.currentTab}
-              onTabClick={this._handleTabClick}
+              currentActiveItem={currentActiveItem}
+              onItemClick={onItemClick}
             />
 
             {this._renderActiveTab()}
@@ -72,6 +58,8 @@ class MoviePageInfo extends PureComponent {
 
 MoviePageInfo.propTypes = {
   currentMovie: CustomPropTypes.MOVIE,
+  currentActiveItem: PropTypes.string.isRequired,
+  onItemClick: PropTypes.func.isRequired,
 };
 
 export default MoviePageInfo;
