@@ -7,7 +7,7 @@ import ShowMoreButton from "../show-more-button/show-more-button";
 
 import {filterMoviesByGenre} from "../../helpers/utils";
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
-import {MOVIES_SHOWN} from "../../helpers/const";
+import {MOVIES_SHOWN, MOVIES_LIKE_THIS_SHOWN, Pages} from "../../helpers/const";
 
 class MoviesList extends PureComponent {
   constructor(props) {
@@ -33,7 +33,9 @@ class MoviesList extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.currentGenre !== this.props.currentGenre) {
+    const {currentGenre, movies} = this.props;
+
+    if (prevProps.currentGenre !== currentGenre || prevProps.movies !== movies) {
       this.setState({
         moviesShown: this.props.movies.slice(0, MOVIES_SHOWN),
       });
@@ -65,10 +67,21 @@ MoviesList.propTypes = {
   movies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  currentGenre: state.currentGenre,
-  movies: filterMoviesByGenre(state.movies, state.currentGenre),
-});
+const mapStateToProps = (state) => {
+  if (state.currentPage !== Pages.MAIN) {
+    return {
+      currentGenre: state.currentGenre,
+      movies: filterMoviesByGenre(state.movies, state.currentGenre)
+        .filter((movie) => movie.title !== state.currentMovie.title)
+        .slice(0, MOVIES_LIKE_THIS_SHOWN),
+    };
+  }
+
+  return {
+    currentGenre: state.currentGenre,
+    movies: filterMoviesByGenre(state.movies, state.currentGenre),
+  };
+};
 
 export {MoviesList};
 export default connect(mapStateToProps)(MoviesList);

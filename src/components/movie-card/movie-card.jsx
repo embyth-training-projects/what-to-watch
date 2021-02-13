@@ -58,6 +58,7 @@ MovieCard.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onMovieCardClick(movie) {
+    dispatch(ActionCreator.setCurrentGenre(movie.genre));
     dispatch(ActionCreator.goToMoviePage(movie));
   }
 });

@@ -1,9 +1,10 @@
 import React from "react";
+import {connect} from "react-redux";
 
 import ReviewItem from "../review-item/review-item";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
-import {getLeftColumnReviews, getRightColumnReviews} from "../../helpers/utils";
+import {getLeftColumnReviews, getRightColumnReviews, getMovieReviews} from "../../helpers/utils";
 
 const MovieReviews = ({movieReviews}) => (
   <div className="movie-card__reviews movie-card__row">
@@ -25,4 +26,8 @@ MovieReviews.propTypes = {
   movieReviews: CustomPropTypes.REVIEW,
 };
 
-export default MovieReviews;
+const mapStateToProps = (state) => ({
+  movieReviews: getMovieReviews(state.moviesReviews, state.currentMovie),
+});
+
+export default connect(mapStateToProps)(MovieReviews);
