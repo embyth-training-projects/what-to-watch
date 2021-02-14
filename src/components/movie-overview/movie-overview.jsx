@@ -1,13 +1,14 @@
 import React from "react";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
+import {getRatingLevel, getFormatRating} from "../../helpers/utils";
 
 const MovieOverview = ({movie}) => (
   <React.Fragment>
     <div className="movie-rating">
-      <div className="movie-rating__score">{movie.rating}</div>
+      <div className="movie-rating__score">{getFormatRating(movie.rating)}</div>
       <p className="movie-rating__meta">
-        <span className="movie-rating__level">{movie.ratingDescription}</span>
+        <span className="movie-rating__level">{getRatingLevel(movie.rating)}</span>
         <span className="movie-rating__count">{movie.votes} ratings</span>
       </p>
     </div>
