@@ -9,7 +9,6 @@ exports[`Should render correctly movies list 1`] = `
     onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseOut={[Function]}
-    onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
@@ -37,7 +36,6 @@ exports[`Should render correctly movies list 1`] = `
     onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseOut={[Function]}
-    onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
@@ -65,7 +63,6 @@ exports[`Should render correctly movies list 1`] = `
     onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseOut={[Function]}
-    onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
@@ -93,7 +90,6 @@ exports[`Should render correctly movies list 1`] = `
     onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseOut={[Function]}
-    onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"

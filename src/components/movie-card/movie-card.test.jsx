@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import MovieCard from "./movie-card";
+import {MovieCard} from "./movie-card";
 
 import {movieItemMock} from "../../helpers/test-data";
 
@@ -9,8 +9,10 @@ it(`Should render correctly movie card`, () => {
   const tree = renderer
     .create(<MovieCard
       movie={movieItemMock}
+      isPlaying={true}
       onMovieCardClick={() => {}}
-      onMovieCardMouseOver={() => {}}
+      onMovieCardMouseEnter={() => {}}
+      onMovieCardMouseOut={() => {}}
     />, {
       createNodeMock: () => {
         return {};

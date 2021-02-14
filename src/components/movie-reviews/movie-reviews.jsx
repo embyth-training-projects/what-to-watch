@@ -6,16 +6,16 @@ import ReviewItem from "../review-item/review-item";
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
 import {getLeftColumnReviews, getRightColumnReviews, getMovieReviews} from "../../helpers/utils";
 
-const MovieReviews = ({movieReviews}) => (
+const MovieReviews = ({moviesReviews}) => (
   <div className="movie-card__reviews movie-card__row">
     <div className="movie-card__reviews-col">
-      {getLeftColumnReviews(movieReviews.reviews).map((review) => (
+      {getLeftColumnReviews(moviesReviews.reviews).map((review) => (
         <ReviewItem key={review.id} review={review} />
       ))}
     </div>
 
     <div className="movie-card__reviews-col">
-      {getRightColumnReviews(movieReviews.reviews).map((review) => (
+      {getRightColumnReviews(moviesReviews.reviews).map((review) => (
         <ReviewItem key={review.id} review={review} />
       ))}
     </div>
@@ -23,11 +23,12 @@ const MovieReviews = ({movieReviews}) => (
 );
 
 MovieReviews.propTypes = {
-  movieReviews: CustomPropTypes.REVIEW,
+  moviesReviews: CustomPropTypes.REVIEW,
 };
 
 const mapStateToProps = (state) => ({
-  movieReviews: getMovieReviews(state.moviesReviews, state.currentMovie),
+  moviesReviews: getMovieReviews(state.moviesReviews, state.currentMovie),
 });
 
+export {MovieReviews};
 export default connect(mapStateToProps)(MovieReviews);

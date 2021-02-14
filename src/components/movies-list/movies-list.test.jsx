@@ -13,7 +13,7 @@ const mockStore = configureStore([]);
 it(`Should render correctly movies list`, () => {
   const store = mockStore({
     currentGenre: ALL_GENRES,
-    moviesByGenre: moviesMock,
+    movies: moviesMock,
   });
 
   const tree = renderer
@@ -21,7 +21,12 @@ it(`Should render correctly movies list`, () => {
         <Provider store={store}>
           <MoviesList
             movies={moviesMock}
+            moviesByGenre={moviesMock}
             onMovieCardClick={() => {}}
+            onMovieCardMouseEnter={() => {}}
+            onMovieCardMouseOut={() => {}}
+            render={() => {}}
+            isPlaying={true}
           />
         </Provider>, {
           createNodeMock: () => {

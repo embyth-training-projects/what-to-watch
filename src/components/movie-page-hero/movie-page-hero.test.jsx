@@ -3,26 +3,21 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 
-import Catalog from "./catalog";
-import {movieItemMock, moviesMock} from "../../helpers/test-data";
-import {ALL_GENRES} from "../../helpers/const";
+import MoviePageHero from "./movie-page-hero";
+import {movieItemMock} from "../../helpers/test-data";
 
 const mockStore = configureStore([]);
 
-it(`Catalog should render correctly`, () => {
+it(`MoviePageHero should render correctly`, () => {
   const store = mockStore({
     currentMovie: movieItemMock,
-    movies: moviesMock,
-    currentGenre: ALL_GENRES,
-    moviesByGenre: moviesMock,
-    currentPage: `main`,
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Catalog
-            onMovieCardClick={() => {}}
+          <MoviePageHero
+            currentMovie={movieItemMock}
           />
         </Provider>, {
           createNodeMock: () => {

@@ -30,4 +30,5 @@ const mapStateToProps = (state) => ({
   isMainPage: state.currentPage === Pages.MAIN,
 });
 
+export {PageHeader};
 export default connect(mapStateToProps)(PageHeader);

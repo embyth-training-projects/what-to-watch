@@ -11,22 +11,22 @@ const tabs = Object.values(NavTabs);
 
 describe(`MovieNav end-2-end tests`, () => {
   it(`Should pass the right argument of current tab when clicked`, () => {
-    const onTabClick = jest.fn((args) => args);
+    const onItemClick = jest.fn((args) => args);
 
     const movieNavComponent = shallow(
         <MovieNav
           navTabs={NavTabs}
-          currentActiveTab={NavTabs.OVERVIEW}
-          onTabClick={onTabClick}
+          currentActiveItem={NavTabs.OVERVIEW}
+          onItemClick={onItemClick}
         />
     );
 
     const movieNavTabs = movieNavComponent.find(`.movie-nav__link`);
 
     movieNavTabs.forEach((tab, index) => {
-      tab.simulate(`click`, {preventDefault: onTabClick});
+      tab.simulate(`click`, {preventDefault: onItemClick});
 
-      expect(onTabClick).toHaveBeenCalledWith(tabs[index]);
+      expect(onItemClick).toHaveBeenCalledWith(tabs[index]);
     });
   });
 });

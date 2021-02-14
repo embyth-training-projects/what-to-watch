@@ -8,8 +8,8 @@ it(`MovieNav should render correctly`, () => {
   const tree = renderer
     .create(<MovieNav
       navTabs={NavTabs}
-      currentActiveTab={NavTabs.OVERVIEW}
-      onTabClick={() => {}}
+      currentActiveItem={NavTabs.OVERVIEW}
+      onItemClick={() => {}}
     />)
     .toJSON();
 

@@ -1,6 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Footer should render correctly 1`] = `
+exports[`PageFooter test Should render correctly on inner page 1`] = `
+<footer
+  className="page-footer"
+>
+  <div
+    className="logo"
+  >
+    <a
+      className="logo__link logo__link--light"
+      href="main.html"
+    >
+      <span
+        className="logo__letter logo__letter--1"
+      >
+        W
+      </span>
+      <span
+        className="logo__letter logo__letter--2"
+      >
+        T
+      </span>
+      <span
+        className="logo__letter logo__letter--3"
+      >
+        W
+      </span>
+    </a>
+  </div>
+  <div
+    className="copyright"
+  >
+    <p>
+      © 2020 What to watch Ltd.
+    </p>
+  </div>
+</footer>
+`;
+
+exports[`PageFooter test Should render correctly on main page 1`] = `
 <footer
   className="page-footer"
 >
@@ -32,7 +70,7 @@ exports[`Footer should render correctly 1`] = `
     className="copyright"
   >
     <p>
-      © 2019 What to watch Ltd.
+      © 2020 What to watch Ltd.
     </p>
   </div>
 </footer>
