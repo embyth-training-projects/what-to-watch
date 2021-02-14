@@ -16,6 +16,7 @@ export const CustomPropTypes = {
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     preview: PropTypes.string.isRequired,
     runTime: PropTypes.string.isRequired,
+    videoLink: PropTypes.string.isRequired,
   }).isRequired,
 
   REVIEW: PropTypes.shape({

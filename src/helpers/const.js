@@ -7,6 +7,12 @@ export const NavTabs = {
 export const Pages = {
   MAIN: `main`,
   MOVIE: `movie`,
+  VIDEO: `video`,
+};
+
+export const CardVideoPlayerParams = {
+  WIDTH: `280`,
+  HEIGHT: `175`,
 };
 
 export const ALL_GENRES = `All genres`;

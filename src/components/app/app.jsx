@@ -5,12 +5,19 @@ import {connect} from "react-redux";
 
 import MainPage from "../main-page/main-page";
 import MoviePage from "../movie-page/movie-page";
+import MoviePlayer from "../movie-player/movie-player";
 
 import {Pages} from "../../helpers/const";
 
 class App extends PureComponent {
   _renderApp() {
-    const {currentPage} = this.props;
+    const {currentPage, isMoviePlayerActive} = this.props;
+
+    if (isMoviePlayerActive) {
+      return (
+        <MoviePlayer />
+      );
+    }
 
     switch (currentPage) {
       case Pages.MAIN:
@@ -40,6 +47,9 @@ class App extends PureComponent {
           <Route exact path="/movie">
             <MoviePage />
           </Route>
+          <Route exact path="/watch">
+            <MoviePlayer />
+          </Route>
         </Switch>
       </Router>
     );
@@ -48,10 +58,12 @@ class App extends PureComponent {
 
 App.propTypes = {
   currentPage: PropTypes.string.isRequired,
+  isMoviePlayerActive: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currentPage: state.currentPage,
+  isMoviePlayerActive: state.isMoviePlayerActive,
 });
 
 export {App};

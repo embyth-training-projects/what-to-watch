@@ -9,11 +9,14 @@ export const initialState = {
   currentPage: Pages.MAIN,
   movies,
   moviesReviews: allMoviesReviews,
+  isMoviePlayerActive: false,
 };
 
 export const ActionType = {
   SET_ACTIVE_GENRE: `SET_ACTIVE_GENRE`,
   GO_TO_MOVIE_PAGE: `GO_TO_MOVIE_PAGE`,
+  WATCH_MOVIE: `WATCH_MOVIE`,
+  STOP_WATCHING_MOVIE: `STOP_WATCHING_MOVIE`,
 };
 
 export const ActionCreator = {
@@ -30,6 +33,20 @@ export const ActionCreator = {
       payload: chosenMovie,
     };
   },
+
+  watchMovie: () => {
+    return {
+      type: ActionType.WATCH_MOVIE,
+      payload: true,
+    };
+  },
+
+  stopWatchingMovie: () => {
+    return {
+      type: ActionType.STOP_WATCHING_MOVIE,
+      payload: false,
+    };
+  },
 };
 
 export const reducer = (state = initialState, action) => {
@@ -43,6 +60,16 @@ export const reducer = (state = initialState, action) => {
       return extend(state, {
         currentMovie: action.payload,
         currentPage: Pages.MOVIE,
+      });
+
+    case ActionType.WATCH_MOVIE:
+      return extend(state, {
+        isMoviePlayerActive: action.payload,
+      });
+
+    case ActionType.STOP_WATCHING_MOVIE:
+      return extend(state, {
+        isMoviePlayerActive: action.payload,
       });
 
     default:

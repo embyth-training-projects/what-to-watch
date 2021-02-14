@@ -1,6 +1,8 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 
+import {CardVideoPlayerParams} from "../../helpers/const";
+
 const ERROR_MESSAGE = `Sorry, your browser doesn't support embedded videos.`;
 
 export default class VideoPlayer extends PureComponent {
@@ -47,8 +49,8 @@ export default class VideoPlayer extends PureComponent {
   render() {
     return (
       <video
-        width="280"
-        height="175"
+        width={CardVideoPlayerParams.WIDTH}
+        height={CardVideoPlayerParams.HEIGHT}
         ref={this._videoRef}
       >
         {ERROR_MESSAGE}
