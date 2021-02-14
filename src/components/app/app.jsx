@@ -7,7 +7,11 @@ import MainPage from "../main-page/main-page";
 import MoviePage from "../movie-page/movie-page";
 import MoviePlayer from "../movie-player/movie-player";
 
+import withVideoControls from "../../hocs/with-video-controls/with-video-controls";
+
 import {Pages} from "../../helpers/const";
+
+const MoviePlayerWrapped = withVideoControls(MoviePlayer);
 
 class App extends PureComponent {
   _renderApp() {
@@ -15,7 +19,7 @@ class App extends PureComponent {
 
     if (isMoviePlayerActive) {
       return (
-        <MoviePlayer />
+        <MoviePlayerWrapped />
       );
     }
 
@@ -48,7 +52,7 @@ class App extends PureComponent {
             <MoviePage />
           </Route>
           <Route exact path="/watch">
-            <MoviePlayer />
+            <MoviePlayerWrapped />
           </Route>
         </Switch>
       </Router>

@@ -1,16 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-
-import {ActionCreator} from "../../reducer/reducer";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
 
-const MoviePlayer = ({currentMovie, onExitClick}) => (
+const MoviePlayer = ({currentMovie, renderVideoPlayer, isPlaying, onExitButtonClick, onPlayButtonClick, onPauseButtonClick}) => (
   <div className="player">
-    <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+    {renderVideoPlayer()}
 
-    <button type="button" className="player__exit" onClick={onExitClick}>Exit</button>
+    <button type="button" className="player__exit" onClick={onExitButtonClick}>Exit</button>
 
     <div className="player__controls">
       <div className="player__controls-row">
@@ -22,12 +19,22 @@ const MoviePlayer = ({currentMovie, onExitClick}) => (
       </div>
 
       <div className="player__controls-row">
-        <button type="button" className="player__play">
-          <svg viewBox="0 0 19 19" width="19" height="19">
-            <use xlinkHref="#play-s"></use>
-          </svg>
-          <span>Play</span>
-        </button>
+
+        {isPlaying
+          ? <button type="button" className="player__play" onClick={onPauseButtonClick}>
+            <svg viewBox="0 0 19 19" width="19" height="19">
+              <use xlinkHref="#pause"></use>
+            </svg>
+            <span>Pause</span>
+          </button>
+          : <button type="button" className="player__play" onClick={onPlayButtonClick}>
+            <svg viewBox="0 0 19 19" width="19" height="19">
+              <use xlinkHref="#play-s"></use>
+            </svg>
+            <span>Play</span>
+          </button>
+        }
+
         <div className="player__name">{currentMovie.title}</div>
 
         <button type="button" className="player__full-screen">
@@ -43,17 +50,11 @@ const MoviePlayer = ({currentMovie, onExitClick}) => (
 
 MoviePlayer.propTypes = {
   currentMovie: CustomPropTypes.MOVIE,
-  onExitClick: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  renderVideoPlayer: PropTypes.func.isRequired,
+  onExitButtonClick: PropTypes.func.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired,
+  onPauseButtonClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  currentMovie: state.currentMovie,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onExitClick() {
-    dispatch(ActionCreator.stopWatchingMovie());
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(MoviePlayer);
+export default MoviePlayer;
