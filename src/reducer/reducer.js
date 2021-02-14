@@ -30,7 +30,10 @@ export const ActionCreator = {
   goToMoviePage: (chosenMovie) => {
     return {
       type: ActionType.GO_TO_MOVIE_PAGE,
-      payload: chosenMovie,
+      payload: {
+        currentMovie: chosenMovie,
+        currentPage: Pages.MOVIE,
+      },
     };
   },
 
@@ -58,8 +61,8 @@ export const reducer = (state = initialState, action) => {
 
     case ActionType.GO_TO_MOVIE_PAGE:
       return extend(state, {
-        currentMovie: action.payload,
-        currentPage: Pages.MOVIE,
+        currentMovie: action.payload.currentMovie,
+        currentPage: action.payload.currentPage,
       });
 
     case ActionType.WATCH_MOVIE:

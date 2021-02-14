@@ -20,6 +20,7 @@ it(`Should App render correctly`, () => {
     genres,
     currentPage: `main`,
     isMainPage: true,
+    isMoviePlayerActive: false,
   });
 
   const tree = renderer

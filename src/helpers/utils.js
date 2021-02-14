@@ -61,6 +61,10 @@ export const getReviewFormatDate = (date) => {
   return moment(date).format(`MMMM D, YYYY`);
 };
 
+export const convertDateToISO = (date) => {
+  return moment(date).toISOString();
+};
+
 export const getFormatRating = (rating) => {
   return (rating % 1 !== 0) ? rating.toString().split(`.`).join(`,`) : `${rating.toString()},0`;
 };

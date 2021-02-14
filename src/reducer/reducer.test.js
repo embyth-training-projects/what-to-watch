@@ -24,7 +24,10 @@ describe(`Reducer tests`, () => {
       currentPage: `main`,
     }, {
       type: ActionType.GO_TO_MOVIE_PAGE,
-      payload: moviesMock,
+      payload: {
+        currentMovie: moviesMock,
+        currentPage: `movie`,
+      },
     })).toEqual({
       currentMovie: moviesMock,
       currentPage: `movie`,

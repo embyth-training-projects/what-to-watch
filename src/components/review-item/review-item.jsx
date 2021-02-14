@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {getReviewFormatDate, getFormatRating} from "../../helpers/utils";
+import {getReviewFormatDate, getFormatRating, convertDateToISO} from "../../helpers/utils";
 
 const ReviewItem = ({review}) => (
   <div className="review">
@@ -10,7 +10,7 @@ const ReviewItem = ({review}) => (
 
       <footer className="review__details">
         <cite className="review__author">{review.author}</cite>
-        <time className="review__date" dateTime={review.date}>{getReviewFormatDate(review.date)}</time>
+        <time className="review__date" dateTime={convertDateToISO(review.date)}>{getReviewFormatDate(review.date)}</time>
       </footer>
     </blockquote>
 

@@ -28,9 +28,9 @@ exports[`MovieReviews should render correctly 1`] = `
           </cite>
           <time
             className="review__date"
-            dateTime="2019-12-23"
+            dateTime="2019-05-08T14:13:56.569Z"
           >
-            December 24, 2019
+            May 8, 2019
           </time>
         </footer>
       </blockquote>
@@ -61,9 +61,9 @@ exports[`MovieReviews should render correctly 1`] = `
           </cite>
           <time
             className="review__date"
-            dateTime="2015-11-17"
+            dateTime="2019-05-08T14:13:56.569Z"
           >
-            November 18, 2015
+            May 8, 2019
           </time>
         </footer>
       </blockquote>
@@ -98,9 +98,9 @@ exports[`MovieReviews should render correctly 1`] = `
           </cite>
           <time
             className="review__date"
-            dateTime="2015-11-17"
+            dateTime="2019-06-08T14:13:56.569Z"
           >
-            November 18, 2015
+            June 8, 2019
           </time>
         </footer>
       </blockquote>

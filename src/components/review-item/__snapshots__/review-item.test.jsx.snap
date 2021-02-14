@@ -22,9 +22,9 @@ exports[`ReviewItem should render correctly 1`] = `
       </cite>
       <time
         className="review__date"
-        dateTime="2015-11-17"
+        dateTime="2019-06-08T14:13:56.569Z"
       >
-        November 18, 2015
+        June 8, 2019
       </time>
     </footer>
   </blockquote>

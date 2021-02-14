@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 
-import {MoviePromo} from "./movie-promo";
+import MoviePromo from "./movie-promo";
 import {movieItemMock} from "../../helpers/test-data";
 
 const mockStore = configureStore([]);
@@ -19,6 +19,7 @@ it(`MoviePromo should render correctly`, () => {
         <Provider store={store}>
           <MoviePromo
             currentMovie={movieItemMock}
+            onPlayButtonClick={() => {}}
           />
         </Provider>, {
           createNodeMock: () => {
