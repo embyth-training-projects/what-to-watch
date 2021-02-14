@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
 
-const MoviePlayer = ({currentMovie, renderVideoPlayer, isPlaying, onExitButtonClick, onPlayButtonClick, onPauseButtonClick}) => (
+const MoviePlayer = ({currentMovie, renderVideoPlayer, renderPlayPauseButton, onExitButtonClick, onFullScreenButtonClick, videoPlaybackStatus}) => (
   <div className="player">
     {renderVideoPlayer()}
 
@@ -12,32 +12,19 @@ const MoviePlayer = ({currentMovie, renderVideoPlayer, isPlaying, onExitButtonCl
     <div className="player__controls">
       <div className="player__controls-row">
         <div className="player__time">
-          <progress className="player__progress" value="30" max="100"></progress>
-          <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
+          <progress className="player__progress" value={videoPlaybackStatus.currentTime} max={videoPlaybackStatus.duration}></progress>
+          <div className="player__toggler" style={{left: `${videoPlaybackStatus.position}%`}}>Toggler</div>
         </div>
-        <div className="player__time-value">1:30:29</div>
+        <div className="player__time-value">{videoPlaybackStatus.timeLeft}</div>
       </div>
 
       <div className="player__controls-row">
 
-        {isPlaying
-          ? <button type="button" className="player__play" onClick={onPauseButtonClick}>
-            <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#pause"></use>
-            </svg>
-            <span>Pause</span>
-          </button>
-          : <button type="button" className="player__play" onClick={onPlayButtonClick}>
-            <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
-            </svg>
-            <span>Play</span>
-          </button>
-        }
+        {renderPlayPauseButton()}
 
         <div className="player__name">{currentMovie.title}</div>
 
-        <button type="button" className="player__full-screen">
+        <button type="button" className="player__full-screen" onClick={onFullScreenButtonClick}>
           <svg viewBox="0 0 27 27" width="27" height="27">
             <use xlinkHref="#full-screen"></use>
           </svg>
@@ -50,11 +37,16 @@ const MoviePlayer = ({currentMovie, renderVideoPlayer, isPlaying, onExitButtonCl
 
 MoviePlayer.propTypes = {
   currentMovie: CustomPropTypes.MOVIE,
-  isPlaying: PropTypes.bool.isRequired,
   renderVideoPlayer: PropTypes.func.isRequired,
+  renderPlayPauseButton: PropTypes.func.isRequired,
   onExitButtonClick: PropTypes.func.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
-  onPauseButtonClick: PropTypes.func.isRequired,
+  onFullScreenButtonClick: PropTypes.func.isRequired,
+  videoPlaybackStatus: PropTypes.shape({
+    timeLeft: PropTypes.string.isRequired,
+    currentTime: PropTypes.number.isRequired,
+    duration: PropTypes.number.isRequired,
+    position: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default MoviePlayer;

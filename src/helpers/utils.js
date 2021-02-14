@@ -65,6 +65,12 @@ export const convertDateToISO = (date) => {
   return moment(date).toISOString();
 };
 
+export const getTimeLeft = (totalTime, currentTime) => {
+  const duration = moment.duration(totalTime, `seconds`).subtract(moment.duration(currentTime, `seconds`));
+
+  return moment.utc(duration.asMilliseconds()).format(`H:mm:ss`);
+};
+
 export const getFormatRating = (rating) => {
   return (rating % 1 !== 0) ? rating.toString().split(`.`).join(`,`) : `${rating.toString()},0`;
 };
