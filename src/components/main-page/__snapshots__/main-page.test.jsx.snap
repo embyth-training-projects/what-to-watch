@@ -173,6 +173,28 @@ Array [
             href="#"
             onClick={[Function]}
           >
+            Kids & Family
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            Documentary
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
             Drama
           </a>
         </li>
@@ -187,17 +209,6 @@ Array [
             Thriller
           </a>
         </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Comedy
-          </a>
-        </li>
       </ul>
       <div
         className="catalog__movies-list"
@@ -207,7 +218,6 @@ Array [
           onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseOut={[Function]}
-          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -235,7 +245,6 @@ Array [
           onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseOut={[Function]}
-          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -263,7 +272,6 @@ Array [
           onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseOut={[Function]}
-          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -291,7 +299,6 @@ Array [
           onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseOut={[Function]}
-          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -347,7 +354,7 @@ Array [
         className="copyright"
       >
         <p>
-          © 2019 What to watch Ltd.
+          © 2020 What to watch Ltd.
         </p>
       </div>
     </footer>

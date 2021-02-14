@@ -14,10 +14,16 @@ it(`withActiveItem is rendered correctly`, () => {
   const MockComponentWrapped = withActiveItem(MockComponent);
 
   const tree = renderer
-    .create(<MockComponentWrapped
-      currentMovie={movieItemMock}
-      defaultActiveItem={`Overview`}
-    />)
+    .create(
+        <MockComponentWrapped
+          currentMovie={movieItemMock}
+          defaultActiveItem={`Overview`}
+        />, {
+          createNodeMock() {
+            return {};
+          }
+        }
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

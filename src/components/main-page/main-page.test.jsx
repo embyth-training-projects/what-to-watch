@@ -5,7 +5,7 @@ import configureStore from "redux-mock-store";
 
 import MainPage from "./main-page";
 
-import {movieItemMock, moviesMock, genres} from "../../helpers/test-data";
+import {movieItemMock, moviesMock} from "../../helpers/test-data";
 import {ALL_GENRES} from "../../helpers/const";
 
 const mockStore = configureStore([]);
@@ -16,16 +16,13 @@ it(`Should MainPage render correctly`, () => {
     movies: moviesMock,
     currentGenre: ALL_GENRES,
     moviesByGenre: moviesMock,
-    genres,
+    currentPage: `main`,
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
-          <MainPage
-            isMainPage={true}
-            onMovieCardClick={() => {}}
-          />
+          <MainPage />
         </Provider>, {
           createNodeMock: () => {
             return {};
