@@ -6,11 +6,13 @@ import {NavTabs} from "../../helpers/const";
 
 it(`MovieNav should render correctly`, () => {
   const tree = renderer
-    .create(<MovieNav
-      navTabs={NavTabs}
-      currentActiveItem={NavTabs.OVERVIEW}
-      onItemClick={() => {}}
-    />)
+    .create(
+        <MovieNav
+          navTabs={NavTabs}
+          currentActiveItem={NavTabs.OVERVIEW}
+          onItemClick={() => {}}
+        />
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

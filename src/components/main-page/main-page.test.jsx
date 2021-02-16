@@ -5,18 +5,22 @@ import configureStore from "redux-mock-store";
 
 import MainPage from "./main-page";
 
+import NameSpace from "../../store/name-space";
 import {movieItemMock, moviesMock} from "../../helpers/test-data";
-import {ALL_GENRES} from "../../helpers/const";
+import {ALL_GENRES, Pages} from "../../helpers/const";
 
 const mockStore = configureStore([]);
 
 it(`Should MainPage render correctly`, () => {
   const store = mockStore({
-    currentMovie: movieItemMock,
-    movies: moviesMock,
-    currentGenre: ALL_GENRES,
-    moviesByGenre: moviesMock,
-    currentPage: `main`,
+    [NameSpace.APP]: {
+      currentPage: Pages.MAIN,
+      currentGenre: ALL_GENRES,
+    },
+    [NameSpace.DATA]: {
+      moviePromo: movieItemMock,
+      movies: moviesMock,
+    },
   });
 
   const tree = renderer

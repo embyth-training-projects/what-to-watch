@@ -6,9 +6,11 @@ import {movieItemMock} from "../../helpers/test-data";
 
 it(`MovieDetails should render correctly`, () => {
   const tree = renderer
-    .create(<MovieDetails
-      movie={movieItemMock}
-    />)
+    .create(
+        <MovieDetails
+          movie={movieItemMock}
+        />
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

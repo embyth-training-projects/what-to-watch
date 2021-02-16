@@ -5,30 +5,30 @@ import configureStore from "redux-mock-store";
 
 import App from "./app";
 
-import {movieItemMock, moviesMock, reviewsMock, genres} from "../../helpers/test-data";
-import {ALL_GENRES} from "../../helpers/const";
+import NameSpace from "../../store/name-space";
+
+import {movieItemMock, moviesMock} from "../../helpers/test-data";
+import {Pages} from "../../helpers/const";
 
 const mockStore = configureStore([]);
 
 it(`Should App render correctly`, () => {
   const store = mockStore({
-    currentMovie: movieItemMock,
-    movies: moviesMock,
-    moviesReviews: reviewsMock,
-    currentGenre: ALL_GENRES,
-    moviesByGenre: moviesMock,
-    genres,
-    currentPage: `main`,
-    isMainPage: true,
-    isMoviePlayerActive: false,
+    [NameSpace.APP]: {
+      currentPage: Pages.MAIN,
+      currentGenre: `All genres`,
+      isMoviePlayerActive: false,
+    },
+    [NameSpace.DATA]: {
+      moviePromo: movieItemMock,
+      movies: moviesMock,
+    },
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
-          <App
-            onMovieCardClick={() => {}}
-          />
+          <App />
         </Provider>, {
           createNodeMock: () => {
             return {};

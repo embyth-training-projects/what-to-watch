@@ -4,13 +4,18 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 
 import MoviePageHero from "./movie-page-hero";
+
+import NameSpace from "../../store/name-space";
 import {movieItemMock} from "../../helpers/test-data";
+import {Pages} from "../../helpers/const";
 
 const mockStore = configureStore([]);
 
 it(`MoviePageHero should render correctly`, () => {
   const store = mockStore({
-    currentMovie: movieItemMock,
+    [NameSpace.APP]: {
+      currentPage: Pages.MOVIE,
+    },
   });
 
   const tree = renderer

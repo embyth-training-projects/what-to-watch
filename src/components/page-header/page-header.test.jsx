@@ -6,9 +6,11 @@ import {PageHeader} from "./page-header";
 describe(`PageHeader tests`, () => {
   it(`Should render correctly on main page`, () => {
     const tree = renderer
-    .create(<PageHeader
-      isMainPage={true}
-    />)
+    .create(
+        <PageHeader
+          isMainPage={true}
+        />
+    )
     .toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -16,9 +18,11 @@ describe(`PageHeader tests`, () => {
 
   it(`Should render correctly on inner page`, () => {
     const tree = renderer
-    .create(<PageHeader
-      isMainPage={false}
-    />)
+    .create(
+        <PageHeader
+          isMainPage={false}
+        />
+    )
     .toJSON();
 
     expect(tree).toMatchSnapshot();

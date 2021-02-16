@@ -10,16 +10,18 @@ const videoData = {
 
 it(`Should render correctly VideoPlayer`, () => {
   const tree = renderer
-    .create(<ViderPlayer
-      muted
-      isPlaying={false}
-      source={videoData.preview}
-      poster={videoData.poster}
-    />, {
-      createNodeMock: () => {
-        return {};
-      }
-    })
+    .create(
+        <ViderPlayer
+          muted
+          isPlaying={false}
+          source={videoData.preview}
+          poster={videoData.poster}
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

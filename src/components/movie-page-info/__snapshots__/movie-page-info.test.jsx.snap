@@ -109,7 +109,7 @@ exports[`MoviePageInfo should render correctly 1`] = `
               <p
                 className="review__text"
               >
-                Anderson's films are too precious for some, but for those of us willing to lose ourselves in them, they're a delight. "The Grand Budapest Hotel" is no different, except that he has added a hint of gravitas to the mix, improving the recipe.
+                Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.
               </p>
               <footer
                 className="review__details"
@@ -117,20 +117,20 @@ exports[`MoviePageInfo should render correctly 1`] = `
                 <cite
                   className="review__author"
                 >
-                  Bill Goodykoontz
+                  Max Miller
                 </cite>
                 <time
                   className="review__date"
-                  dateTime="2019-05-08T14:13:56.569Z"
+                  dateTime="2020-03-04T14:24:56.569Z"
                 >
-                  May 8, 2019
+                  March 4, 2020
                 </time>
               </footer>
             </blockquote>
             <div
               className="review__rating"
             >
-              8,0
+              4,6
             </div>
           </div>
         </div>
@@ -146,7 +146,7 @@ exports[`MoviePageInfo should render correctly 1`] = `
               <p
                 className="review__text"
               >
-                I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.
+                Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.
               </p>
               <footer
                 className="review__details"
@@ -154,20 +154,20 @@ exports[`MoviePageInfo should render correctly 1`] = `
                 <cite
                   className="review__author"
                 >
-                  Amanda Greever
+                  John Feller
                 </cite>
                 <time
                   className="review__date"
-                  dateTime="2019-06-08T14:13:56.569Z"
+                  dateTime="2020-09-18T11:33:56.569Z"
                 >
-                  June 8, 2019
+                  September 18, 2020
                 </time>
               </footer>
             </blockquote>
             <div
               className="review__rating"
             >
-              8,0
+              6,8
             </div>
           </div>
         </div>

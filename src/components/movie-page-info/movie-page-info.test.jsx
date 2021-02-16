@@ -4,14 +4,17 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 
 import MoviePageInfo from "./movie-page-info";
+
+import NameSpace from "../../store/name-space";
 import {movieItemMock, reviewsMock} from "../../helpers/test-data";
 
 const mockStore = configureStore([]);
 
 it(`MoviePageInfo should render correctly`, () => {
   const store = mockStore({
-    currentMovie: movieItemMock,
-    moviesReviews: reviewsMock,
+    [NameSpace.DATA]: {
+      movieReviews: reviewsMock,
+    },
   });
 
   const tree = renderer

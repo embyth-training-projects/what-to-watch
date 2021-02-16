@@ -7,17 +7,19 @@ import {movieItemMock} from "../../helpers/test-data";
 
 it(`Should render correctly movie card`, () => {
   const tree = renderer
-    .create(<MovieCard
-      movie={movieItemMock}
-      isPlaying={true}
-      onMovieCardClick={() => {}}
-      onMovieCardMouseEnter={() => {}}
-      onMovieCardMouseOut={() => {}}
-    />, {
-      createNodeMock: () => {
-        return {};
-      }
-    })
+    .create(
+        <MovieCard
+          movie={movieItemMock}
+          isPlaying={true}
+          onMovieCardClick={() => {}}
+          onMovieCardMouseEnter={() => {}}
+          onMovieCardMouseOut={() => {}}
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

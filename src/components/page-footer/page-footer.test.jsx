@@ -6,9 +6,11 @@ import {PageFooter} from "./page-footer";
 describe(`PageFooter test`, () => {
   it(`Should render correctly on main page`, () => {
     const tree = renderer
-    .create(<PageFooter
-      isMainPage={true}
-    />)
+    .create(
+        <PageFooter
+          isMainPage={true}
+        />
+    )
     .toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -16,9 +18,11 @@ describe(`PageFooter test`, () => {
 
   it(`Should render correctly on inner page`, () => {
     const tree = renderer
-    .create(<PageFooter
-      isMainPage={false}
-    />)
+    .create(
+        <PageFooter
+          isMainPage={false}
+        />
+    )
     .toJSON();
 
     expect(tree).toMatchSnapshot();
