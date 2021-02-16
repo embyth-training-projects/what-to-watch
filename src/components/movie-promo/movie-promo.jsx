@@ -5,14 +5,14 @@ import {connect} from "react-redux";
 import PageHeader from "../page-header/page-header";
 
 import {ActionCreator} from "../../store/app/app";
-import {getCurrentMovie} from "../../store/app/selectors";
+import {getMoviePromo} from "../../store/data/selectors";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
 
 const MoviePromo = ({currentMovie, onPlayButtonClick}) => (
   <section className="movie-card">
     <div className="movie-card__bg">
-      <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+      <img src={currentMovie.background} alt={currentMovie.title} />
     </div>
 
     <h1 className="visually-hidden">WTW</h1>
@@ -22,7 +22,7 @@ const MoviePromo = ({currentMovie, onPlayButtonClick}) => (
     <div className="movie-card__wrap">
       <div className="movie-card__info">
         <div className="movie-card__poster">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt={`${currentMovie.title} poster`} width="218" height="327" />
+          <img src={currentMovie.poster} alt={`${currentMovie.title} poster`} width="218" height="327" />
         </div>
 
         <div className="movie-card__desc">
@@ -58,7 +58,7 @@ MoviePromo.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentMovie: getCurrentMovie(state),
+  currentMovie: getMoviePromo(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

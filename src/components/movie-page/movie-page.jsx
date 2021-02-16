@@ -20,7 +20,7 @@ const MoviesListWrapped = withShowMore(MoviesList);
 const MoviePage = ({currentMovie}) => (
   <React.Fragment>
 
-    <section className="movie-card movie-card--full">
+    <section className="movie-card movie-card--full" style={{backgroundColor: currentMovie.backgroundColor}}>
       <MoviePageHero currentMovie={currentMovie} />
       <MoviePageInfoWrapped currentMovie={currentMovie} defaultActiveItem={NavTabs.OVERVIEW} />
     </section>

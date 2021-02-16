@@ -1,5 +1,8 @@
 import {extend} from "../../helpers/utils";
 import {emptyMovie} from "../../helpers/const";
+import {createMovie} from "../../adapters";
+
+import {ActionCreator as AppActionCreator} from "../app/app";
 
 export const initialState = {
   moviePromo: emptyMovie,
@@ -37,16 +40,26 @@ export const ActionCreator = {
 };
 
 export const Operations = {
-  loadMoviePromo: () => {
-    // здесь будет запрос к апи на загрузку промо фильма
+  loadMoviePromo: () => (dispatch, getState, api) => {
+    return api.get(`/films/promo`)
+      .then((response) => {
+        const adaptedMovie = createMovie(response.data);
+        dispatch(ActionCreator.loadMoviePromo(adaptedMovie));
+        dispatch(AppActionCreator.setCurrentMovie(adaptedMovie));
+      });
   },
 
-  loadMovies: () => {
-    // здесь будет запрос к апи на загрузку массива фильмов
+  loadMovies: () => (dispatch, getState, api) => {
+    return api.get(`/films`)
+      .then((response) => {
+        const apdatedMovies = response.data.map((movie) => createMovie(movie));
+        dispatch(ActionCreator.loadMovies(apdatedMovies));
+      });
   },
 
-  loadMovieReviews: () => {
-    // здесь будет запрос к апи на загрузку рецензий к фильму
+  loadMovieReviews: (movieId) => (dispatch, getState, api) => {
+    return api.get(`/comments/${movieId}`)
+      .then((response) => dispatch(ActionCreator.loadMovieReviews(response.data)));
   },
 };
 

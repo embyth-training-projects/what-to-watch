@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import PropTypes from "prop-types";
 
 import ReviewItem from "../review-item/review-item";
 
@@ -8,16 +9,16 @@ import {getMovieReviews} from "../../store/data/selectors";
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
 import {getLeftColumnReviews, getRightColumnReviews} from "../../helpers/utils";
 
-const MovieReviews = ({moviesReviews}) => (
+const MovieReviews = ({movieReviews}) => (
   <div className="movie-card__reviews movie-card__row">
     <div className="movie-card__reviews-col">
-      {getLeftColumnReviews(moviesReviews.reviews).map((review) => (
+      {getLeftColumnReviews(movieReviews).map((review) => (
         <ReviewItem key={review.id} review={review} />
       ))}
     </div>
 
     <div className="movie-card__reviews-col">
-      {getRightColumnReviews(moviesReviews.reviews).map((review) => (
+      {getRightColumnReviews(movieReviews).map((review) => (
         <ReviewItem key={review.id} review={review} />
       ))}
     </div>
@@ -25,11 +26,11 @@ const MovieReviews = ({moviesReviews}) => (
 );
 
 MovieReviews.propTypes = {
-  moviesReviews: CustomPropTypes.REVIEW,
+  movieReviews: PropTypes.arrayOf(CustomPropTypes.REVIEW).isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  moviesReviews: getMovieReviews(state),
+  movieReviews: getMovieReviews(state),
 });
 
 export {MovieReviews};

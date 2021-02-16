@@ -76,7 +76,7 @@ const withVideoControls = (Component) => {
       const video = this._videoRef.current;
 
       video.src = currentMovie.videoLink;
-      video.poster = currentMovie.poster;
+      video.poster = currentMovie.background;
 
       video.play();
 

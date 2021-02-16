@@ -1,15 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
 
+import {CustomPropTypes} from "../../helpers/custom-prop-types";
 import {getReviewFormatDate, getFormatRating, convertDateToISO} from "../../helpers/utils";
 
 const ReviewItem = ({review}) => (
   <div className="review">
     <blockquote className="review__quote">
-      <p className="review__text">{review.content}</p>
+      <p className="review__text">{review.comment}</p>
 
       <footer className="review__details">
-        <cite className="review__author">{review.author}</cite>
+        <cite className="review__author">{review.user.name}</cite>
         <time className="review__date" dateTime={convertDateToISO(review.date)}>{getReviewFormatDate(review.date)}</time>
       </footer>
     </blockquote>
@@ -19,13 +19,7 @@ const ReviewItem = ({review}) => (
 );
 
 ReviewItem.propTypes = {
-  review: PropTypes.shape({
-    author: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    date: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-  }),
+  review: CustomPropTypes.REVIEW,
 };
 
 export default ReviewItem;

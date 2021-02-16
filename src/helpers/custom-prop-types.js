@@ -6,6 +6,7 @@ export const CustomPropTypes = {
     genre: PropTypes.string.isRequired,
     date: PropTypes.number.isRequired,
     background: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
@@ -14,20 +15,20 @@ export const CustomPropTypes = {
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     preview: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
     runTime: PropTypes.number.isRequired,
     videoLink: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
   }).isRequired,
 
   REVIEW: PropTypes.shape({
-    movie: PropTypes.string.isRequired,
-    reviews: PropTypes.arrayOf(
-        PropTypes.shape({
-          author: PropTypes.string.isRequired,
-          rating: PropTypes.number.isRequired,
-          date: PropTypes.string.isRequired,
-          content: PropTypes.string.isRequired,
-          id: PropTypes.number.isRequired,
-        }).isRequired
-    ).isRequired,
+    comment: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
 };

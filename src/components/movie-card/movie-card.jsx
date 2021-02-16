@@ -38,7 +38,7 @@ class MovieCard extends PureComponent {
             muted
             isPlaying={isPlaying}
             source={movie.preview}
-            poster={movie.poster}
+            poster={movie.previewImage}
           />
         </div>
         <h3 className="small-movie-card__title">
@@ -62,7 +62,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.goToMoviePage());
     dispatch(ActionCreator.setCurrentMovie(movie));
     dispatch(ActionCreator.setCurrentGenre(movie.genre));
-    dispatch(DataOperations.loadMovieReviews()); // нужно будет передать id фильма
+    dispatch(DataOperations.loadMovieReviews(movie.id));
   }
 });
 

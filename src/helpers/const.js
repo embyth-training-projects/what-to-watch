@@ -20,6 +20,7 @@ export const emptyMovie = {
   genre: ``,
   date: 0,
   background: ``,
+  backgroundColor: ``,
   poster: ``,
   id: 0,
   description: ``,
@@ -27,11 +28,26 @@ export const emptyMovie = {
   votes: 0,
   director: ``,
   starring: [],
-  runTime: 0,
   preview: ``,
+  previewImage: ``,
+  runTime: 0,
   videoLink: ``,
   isFavorite: false,
-  backgroundColor: ``,
+};
+
+export const ApiConfig = {
+  URL: `https://5.react.pages.academy/wtw`,
+  TIMEOUT: 5000,
+  COOKIES: true,
+};
+
+export const ErrorStatusCode = {
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  INTERNAL: 500,
+  SERVICE_UNAVAILABLE: 503,
 };
 
 export const ALL_GENRES = `All genres`;
