@@ -6,7 +6,10 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 
 import withShowMore from "./with-show-more";
-import {movieItemMock, moviesMock} from "../../helpers/test-data";
+
+import NameSpace from "../../store/name-space";
+import {moviesMock} from "../../helpers/test-data";
+import {Pages} from "../../helpers/const";
 
 configure({adapter: new Adapter()});
 const mockStore = configureStore([]);
@@ -33,8 +36,12 @@ describe(`HOC withShowMore end-2-end tests`, () => {
     const onShowMoreButtonClick = jest.fn();
 
     const store = mockStore({
-      currentMovie: movieItemMock,
-      movies: moviesMock,
+      [NameSpace.APP]: {
+        currentPage: Pages.MAIN,
+      },
+      [NameSpace.DATA]: {
+        movies: moviesMock,
+      },
     });
 
     const wrapper = mount(
