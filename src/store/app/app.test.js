@@ -1,6 +1,6 @@
 import {initialState, ActionType, reducer} from "./app";
-import {movieItemMock} from "../helpers/test-data";
-import {ALL_GENRES, Pages, emptyMovie} from "../helpers/const";
+import {movieItemMock} from "../../helpers/test-data";
+import {ALL_GENRES, Pages, emptyMovie} from "../../helpers/const";
 
 describe(`App State Reducer tests`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
