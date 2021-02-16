@@ -15,6 +15,25 @@ export const CardVideoPlayerParams = {
   HEIGHT: `175`,
 };
 
+export const emptyMovie = {
+  title: `Loading...`,
+  genre: ``,
+  date: 0,
+  background: ``,
+  poster: ``,
+  id: 0,
+  description: ``,
+  rating: 0,
+  votes: 0,
+  director: ``,
+  starring: [],
+  runTime: 0,
+  preview: ``,
+  videoLink: ``,
+  isFavorite: false,
+  backgroundColor: ``,
+};
+
 export const ALL_GENRES = `All genres`;
 
 export const MOVIES_SHOWN = 8;

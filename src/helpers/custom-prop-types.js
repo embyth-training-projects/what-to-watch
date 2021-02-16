@@ -8,7 +8,7 @@ export const CustomPropTypes = {
     background: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    description: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     votes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,

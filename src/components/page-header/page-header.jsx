@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
+import {getCurrentPage} from "../../store/app/selectors";
+
 import {Pages} from "../../helpers/const";
 
 const PageHeader = ({isMainPage}) => (
@@ -27,7 +29,7 @@ PageHeader.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  isMainPage: state.currentPage === Pages.MAIN,
+  isMainPage: getCurrentPage(state) === Pages.MAIN,
 });
 
 export {PageHeader};

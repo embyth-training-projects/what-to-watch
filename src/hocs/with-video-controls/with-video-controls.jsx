@@ -2,7 +2,8 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {ActionCreator} from "../../reducer/reducer";
+import {ActionCreator} from "../../store/app/app";
+import {getCurrentMovie} from "../../store/app/selectors";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
 import {getTimeLeft} from "../../helpers/utils";
@@ -138,7 +139,7 @@ const withVideoControls = (Component) => {
   };
 
   const mapStateToProps = (state) => ({
-    currentMovie: state.currentMovie,
+    currentMovie: getCurrentMovie(state),
   });
 
   const mapDispatchToProps = (dispatch) => ({

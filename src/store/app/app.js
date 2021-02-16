@@ -1,39 +1,40 @@
-import {movies} from "../mock/movies";
-import {allMoviesReviews} from "../mock/reviews";
-import {extend} from "../helpers/utils";
-import {Pages, ALL_GENRES} from "../helpers/const";
+import {extend} from "../../helpers/utils";
+import {Pages, ALL_GENRES, emptyMovie} from "../../helpers/const";
 
 export const initialState = {
-  currentMovie: movies[0],
+  currentMovie: emptyMovie,
   currentGenre: ALL_GENRES,
   currentPage: Pages.MAIN,
-  movies,
-  moviesReviews: allMoviesReviews,
   isMoviePlayerActive: false,
 };
 
 export const ActionType = {
-  SET_ACTIVE_GENRE: `SET_ACTIVE_GENRE`,
+  SET_CURRENT_MOVIE: `SET_CURRENT_MOVIE`,
+  SET_CURRENT_GENRE: `SET_CURRENT_GENRE`,
   GO_TO_MOVIE_PAGE: `GO_TO_MOVIE_PAGE`,
   WATCH_MOVIE: `WATCH_MOVIE`,
   STOP_WATCHING_MOVIE: `STOP_WATCHING_MOVIE`,
 };
 
 export const ActionCreator = {
-  setCurrentGenre: (currentGenre) => {
+  setCurrentMovie: (movie) => {
     return {
-      type: ActionType.SET_ACTIVE_GENRE,
-      payload: currentGenre,
+      type: ActionType.SET_CURRENT_MOVIE,
+      payload: movie,
     };
   },
 
-  goToMoviePage: (chosenMovie) => {
+  setCurrentGenre: (genre) => {
+    return {
+      type: ActionType.SET_CURRENT_GENRE,
+      payload: genre,
+    };
+  },
+
+  goToMoviePage: () => {
     return {
       type: ActionType.GO_TO_MOVIE_PAGE,
-      payload: {
-        currentMovie: chosenMovie,
-        currentPage: Pages.MOVIE,
-      },
+      payload: Pages.MOVIE,
     };
   },
 
@@ -54,15 +55,19 @@ export const ActionCreator = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.SET_ACTIVE_GENRE:
+    case ActionType.SET_CURRENT_MOVIE:
+      return extend(state, {
+        currentMovie: action.payload,
+      });
+
+    case ActionType.SET_CURRENT_GENRE:
       return extend(state, {
         currentGenre: action.payload,
       });
 
     case ActionType.GO_TO_MOVIE_PAGE:
       return extend(state, {
-        currentMovie: action.payload.currentMovie,
-        currentPage: action.payload.currentPage,
+        currentPage: action.payload,
       });
 
     case ActionType.WATCH_MOVIE:

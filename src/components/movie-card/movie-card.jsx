@@ -4,7 +4,8 @@ import {connect} from "react-redux";
 
 import VideoPlayer from "../video-player/video-player";
 
-import {ActionCreator} from "../../reducer/reducer";
+import {ActionCreator} from "../../store/app/app";
+import {Operations as DataOperations} from "../../store/data/data";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
 
@@ -58,8 +59,10 @@ MovieCard.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onMovieCardClick(movie) {
+    dispatch(ActionCreator.goToMoviePage());
+    dispatch(ActionCreator.setCurrentMovie(movie));
     dispatch(ActionCreator.setCurrentGenre(movie.genre));
-    dispatch(ActionCreator.goToMoviePage(movie));
+    dispatch(DataOperations.loadMovieReviews()); // нужно будет передать id фильма
   }
 });
 

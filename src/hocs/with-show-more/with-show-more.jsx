@@ -4,9 +4,11 @@ import {connect} from "react-redux";
 
 import ShowMoreButton from "../../components/show-more-button/show-more-button";
 
+import {getCurrentGenre} from "../../store/app/selectors";
+import {getFilteredMoviesLikeThis, getFilteredMoviesByGenre} from "../../store/data/selectors";
+
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
-import {filterMoviesByGenre} from "../../helpers/utils";
-import {MOVIES_LIKE_THIS_SHOWN, MOVIES_SHOWN, Pages} from "../../helpers/const";
+import {MOVIES_SHOWN, Pages} from "../../helpers/const";
 
 const withShowMore = (Component) => {
   class WithShowMore extends PureComponent {
@@ -63,16 +65,14 @@ const withShowMore = (Component) => {
   const mapStateToProps = (state) => {
     if (state.currentPage !== Pages.MAIN) {
       return {
-        currentGenre: state.currentGenre,
-        movies: filterMoviesByGenre(state.movies, state.currentGenre)
-        .filter((movie) => movie.title !== state.currentMovie.title)
-        .slice(0, MOVIES_LIKE_THIS_SHOWN),
+        currentGenre: getCurrentGenre(state),
+        movies: getFilteredMoviesLikeThis(state),
       };
     }
 
     return {
-      currentGenre: state.currentGenre,
-      movies: filterMoviesByGenre(state.movies, state.currentGenre),
+      currentGenre: getCurrentGenre(state),
+      movies: getFilteredMoviesByGenre(state),
     };
   };
 

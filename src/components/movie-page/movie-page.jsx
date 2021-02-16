@@ -9,6 +9,8 @@ import PageFooter from "../page-footer/page-footer";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import withShowMore from "../../hocs/with-show-more/with-show-more";
 
+import {getCurrentMovie} from "../../store/app/selectors";
+
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
 import {NavTabs} from "../../helpers/const";
 
@@ -39,7 +41,7 @@ MoviePage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentMovie: state.currentMovie,
+  currentMovie: getCurrentMovie(state),
 });
 
 export default connect(mapStateToProps)(MoviePage);

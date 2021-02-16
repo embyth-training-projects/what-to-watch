@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/reducer";
 
-import {MAX_SHOWN_GENRES} from "../../helpers/const";
-import {getMoviesGenres} from "../../helpers/utils";
+import {ActionCreator} from "../../store/app/app";
+import {getMoviesGenres} from "../../store/data/selectors";
+import {getCurrentGenre} from "../../store/app/selectors";
 
 const GenresList = ({genres, currentGenre, onGenreClick}) => (
   <ul className="catalog__genres-list">
@@ -31,8 +31,8 @@ GenresList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  genres: getMoviesGenres(state.movies).slice(0, MAX_SHOWN_GENRES),
-  currentGenre: state.currentGenre,
+  genres: getMoviesGenres(state),
+  currentGenre: getCurrentGenre(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

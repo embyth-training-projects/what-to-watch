@@ -1,21 +1,11 @@
 import moment from "moment";
 
-import {ALL_GENRES} from "./const";
-
 export const extend = (state, newStateValue) => {
   return Object.assign({}, state, newStateValue);
 };
 
-export const getMoviesGenres = (movies) => {
-  return [ALL_GENRES, ...new Set(movies.map((movie) => movie.genre))];
-};
-
 export const getMovieReviews = (allReviews, currentMovie) => {
   return allReviews.filter((review) => review.movie === currentMovie.title)[0];
-};
-
-export const getMoreLikeThisMovies = (movies, currentMovie) => {
-  return movies.filter((movie) => movie.genre === currentMovie.genre && movie.title !== currentMovie.title);
 };
 
 export const getLeftColumnReviews = (reviews) => {
@@ -26,14 +16,6 @@ export const getLeftColumnReviews = (reviews) => {
 export const getRightColumnReviews = (reviews) => {
   const sliceIndex = Math.ceil(reviews.length / 2);
   return reviews.slice(sliceIndex, reviews.length);
-};
-
-export const filterMoviesByGenre = (allMovies, currentGenre) => {
-  if (currentGenre === ALL_GENRES) {
-    return allMovies;
-  }
-
-  return allMovies.filter((movie) => movie.genre === currentGenre);
 };
 
 export const getRatingLevel = (rating) => {

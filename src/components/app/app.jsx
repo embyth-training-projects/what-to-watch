@@ -9,6 +9,8 @@ import MoviePlayer from "../movie-player/movie-player";
 
 import withVideoControls from "../../hocs/with-video-controls/with-video-controls";
 
+import {getCurrentPage, getIsMoviePlayerActive} from "../../store/app/selectors";
+
 import {Pages} from "../../helpers/const";
 
 const MoviePlayerWrapped = withVideoControls(MoviePlayer);
@@ -66,8 +68,8 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentPage: state.currentPage,
-  isMoviePlayerActive: state.isMoviePlayerActive,
+  currentPage: getCurrentPage(state),
+  isMoviePlayerActive: getIsMoviePlayerActive(state),
 });
 
 export {App};

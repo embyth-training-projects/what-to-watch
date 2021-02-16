@@ -3,8 +3,10 @@ import {connect} from "react-redux";
 
 import ReviewItem from "../review-item/review-item";
 
+import {getMovieReviews} from "../../store/data/selectors";
+
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
-import {getLeftColumnReviews, getRightColumnReviews, getMovieReviews} from "../../helpers/utils";
+import {getLeftColumnReviews, getRightColumnReviews} from "../../helpers/utils";
 
 const MovieReviews = ({moviesReviews}) => (
   <div className="movie-card__reviews movie-card__row">
@@ -27,7 +29,7 @@ MovieReviews.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  moviesReviews: getMovieReviews(state.moviesReviews, state.currentMovie),
+  moviesReviews: getMovieReviews(state),
 });
 
 export {MovieReviews};

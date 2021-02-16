@@ -4,7 +4,8 @@ import {connect} from "react-redux";
 
 import PageHeader from "../page-header/page-header";
 
-import {ActionCreator} from "../../reducer/reducer";
+import {ActionCreator} from "../../store/app/app";
+import {getCurrentMovie} from "../../store/app/selectors";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
 
@@ -57,7 +58,7 @@ MoviePromo.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentMovie: state.currentMovie,
+  currentMovie: getCurrentMovie(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
