@@ -11,9 +11,13 @@ import {createAPI} from "./api";
 
 import reducer from "./store/reducer";
 import {Operations as DataOperations} from "./store/data/data";
+import {Operations as UserOperation, ActionCreator as UserActionCreator} from "./store/user/user";
+
+import {AuthorizationStatus} from "./helpers/const";
 
 const root = document.querySelector(`#root`);
-const api = createAPI();
+const onUnauthorized = () => store.dispatch(UserActionCreator.requireAuthorization(AuthorizationStatus.NOT_AUTH));
+const api = createAPI(onUnauthorized);
 
 const store = createStore(
     reducer,
@@ -24,6 +28,7 @@ const store = createStore(
 
 store.dispatch(DataOperations.loadMoviePromo());
 store.dispatch(DataOperations.loadMovies());
+store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>

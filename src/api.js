@@ -2,7 +2,7 @@ import axios from "axios";
 
 import {ApiConfig, ErrorStatusCode} from "./helpers/const";
 
-export const createAPI = () => {
+export const createAPI = (onUnauthorized) => {
   const api = axios.create({
     baseURL: ApiConfig.URL,
     timeout: ApiConfig.TIMEOUT,
@@ -15,7 +15,7 @@ export const createAPI = () => {
     const {response} = error;
 
     if (response.status === ErrorStatusCode.UNAUTHORIZED) {
-      // обрабатываем неавторизованного пользователя
+      onUnauthorized();
 
       throw error;
     }

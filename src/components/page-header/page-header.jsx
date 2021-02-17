@@ -25,7 +25,7 @@ const PageHeader = ({isMainPage, isSignInPage, isAuth, onSignInClick}) => {
           </div>
         }
 
-        {!isAuth && !isSignInPage &&
+        {!isAuth &&
           <a
             href="sign-in.html"
             className="user-block__link"

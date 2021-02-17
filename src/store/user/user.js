@@ -18,6 +18,25 @@ export const ActionCreator = {
   }
 };
 
+export const Operations = {
+  checkAuth: () => (dispatch, getState, api) => {
+    return api.get(`/login`)
+      .then(() => {
+        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      });
+  },
+
+  login: (authData) => (dispatch, getState, api) => {
+    return api.post(`/login`, {
+      email: authData.email,
+      password: authData.password,
+    })
+      .then(() => {
+        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      });
+  },
+};
+
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.REQUIRED_AUTHORIZATION:
