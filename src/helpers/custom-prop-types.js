@@ -31,4 +31,11 @@ export const CustomPropTypes = {
       name: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
+
+  USER: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    avatarSrc: PropTypes.string.isRequired,
+  }).isRequired,
 };

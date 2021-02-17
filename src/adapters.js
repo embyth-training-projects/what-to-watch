@@ -17,3 +17,10 @@ export const createMovie = (movie) => ({
   videoLink: movie.video_link,
   isFavorite: movie.is_favorite,
 });
+
+export const createUser = (user) => ({
+  id: user.id,
+  email: user.email,
+  name: user.name,
+  avatarSrc: user.avatar_url,
+});

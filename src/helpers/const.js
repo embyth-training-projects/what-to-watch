@@ -36,6 +36,13 @@ export const emptyMovie = {
   isFavorite: false,
 };
 
+export const emptyUser = {
+  id: 0,
+  email: ``,
+  name: ``,
+  avatarSrc: ``,
+};
+
 export const ApiConfig = {
   URL: `https://5.react.pages.academy/wtw`,
   TIMEOUT: 5000,
