@@ -48,6 +48,17 @@ describe(`Data State Reducer test`, () => {
       movieReviews: reviewsMock,
     });
   });
+
+  it(`Reducer should update isError state on api error`, () => {
+    expect(reducer({
+      isError: false,
+    }, {
+      type: ActionType.CATCH_ERROR,
+      payload: true,
+    })).toEqual({
+      isError: true,
+    });
+  });
 });
 
 describe(`Operations work correctly`, () => {

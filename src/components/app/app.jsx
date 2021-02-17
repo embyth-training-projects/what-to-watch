@@ -6,10 +6,12 @@ import {connect} from "react-redux";
 import MainPage from "../main-page/main-page";
 import MoviePage from "../movie-page/movie-page";
 import MoviePlayer from "../movie-player/movie-player";
+import ErrorScreen from "../error-screen/error-screen";
 
 import withVideoControls from "../../hocs/with-video-controls/with-video-controls";
 
 import {getCurrentPage, getIsMoviePlayerActive} from "../../store/app/selectors";
+import {getIsError} from "../../store/data/selectors";
 
 import {Pages} from "../../helpers/const";
 
@@ -17,7 +19,13 @@ const MoviePlayerWrapped = withVideoControls(MoviePlayer);
 
 class App extends PureComponent {
   _renderApp() {
-    const {currentPage, isMoviePlayerActive} = this.props;
+    const {currentPage, isMoviePlayerActive, isError} = this.props;
+
+    if (isError) {
+      return (
+        <ErrorScreen />
+      );
+    }
 
     if (isMoviePlayerActive) {
       return (
@@ -65,11 +73,13 @@ class App extends PureComponent {
 App.propTypes = {
   currentPage: PropTypes.string.isRequired,
   isMoviePlayerActive: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currentPage: getCurrentPage(state),
   isMoviePlayerActive: getIsMoviePlayerActive(state),
+  isError: getIsError(state),
 });
 
 export {App};

@@ -8,12 +8,14 @@ export const initialState = {
   moviePromo: emptyMovie,
   movies: [],
   movieReviews: [],
+  isError: false,
 };
 
 export const ActionType = {
   LOAD_MOVIE_PROMO: `LOAD_MOVIE_PROMO`,
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_MOVIE_REVIEWS: `LOAD_MOVIE_REVIEWS`,
+  CATCH_ERROR: `CATCH_ERROR`,
 };
 
 export const ActionCreator = {
@@ -37,6 +39,13 @@ export const ActionCreator = {
       payload: reviews,
     };
   },
+
+  catchError: () => {
+    return {
+      type: ActionType.CATCH_ERROR,
+      payload: true,
+    };
+  },
 };
 
 export const Operations = {
@@ -46,6 +55,9 @@ export const Operations = {
         const adaptedMovie = createMovie(response.data);
         dispatch(ActionCreator.loadMoviePromo(adaptedMovie));
         dispatch(AppActionCreator.setCurrentMovie(adaptedMovie));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.catchError());
       });
   },
 
@@ -54,12 +66,18 @@ export const Operations = {
       .then((response) => {
         const apdatedMovies = response.data.map((movie) => createMovie(movie));
         dispatch(ActionCreator.loadMovies(apdatedMovies));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.catchError());
       });
   },
 
   loadMovieReviews: (movieId) => (dispatch, getState, api) => {
     return api.get(`/comments/${movieId}`)
-      .then((response) => dispatch(ActionCreator.loadMovieReviews(response.data)));
+      .then((response) => dispatch(ActionCreator.loadMovieReviews(response.data)))
+      .catch(() => {
+        dispatch(ActionCreator.catchError());
+      });
   },
 };
 
@@ -78,6 +96,11 @@ export const reducer = (state = initialState, action) => {
     case ActionType.LOAD_MOVIE_REVIEWS:
       return extend(state, {
         movieReviews: action.payload,
+      });
+
+    case ActionType.CATCH_ERROR:
+      return extend(state, {
+        isError: action.payload,
       });
 
     default:

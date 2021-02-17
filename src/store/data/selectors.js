@@ -10,6 +10,8 @@ export const getMovies = (state) => state[NameSpace.DATA].movies;
 
 export const getMovieReviews = (state) => state[NameSpace.DATA].movieReviews;
 
+export const getIsError = (state) => state[NameSpace.DATA].isError;
+
 export const getMoviesGenres = createSelector(
     getMovies,
     (movies) => {
