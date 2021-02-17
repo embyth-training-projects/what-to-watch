@@ -7,7 +7,7 @@ import MoviePageHero from "./movie-page-hero";
 
 import NameSpace from "../../store/name-space";
 import {movieItemMock} from "../../helpers/test-data";
-import {Pages} from "../../helpers/const";
+import {Pages, AuthorizationStatus} from "../../helpers/const";
 
 const mockStore = configureStore([]);
 
@@ -15,6 +15,9 @@ it(`MoviePageHero should render correctly`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
       currentPage: Pages.MOVIE,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.AUTH,
     },
   });
 

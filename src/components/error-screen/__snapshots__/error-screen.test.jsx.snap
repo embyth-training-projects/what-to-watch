@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Catalog should render correctly 1`] = `
+exports[`ErrorScreen should render correctly 1`] = `
 <div
   className="user-page"
 >
@@ -34,16 +34,13 @@ exports[`Catalog should render correctly 1`] = `
     <div
       className="user-block"
     >
-      <div
-        className="user-block__avatar"
+      <a
+        className="user-block__link"
+        href="sign-in.html"
+        onClick={[Function]}
       >
-        <img
-          alt="User avatar"
-          height="63"
-          src="img/avatar.jpg"
-          width="63"
-        />
-      </div>
+        Sign in
+      </a>
     </div>
   </header>
   <div

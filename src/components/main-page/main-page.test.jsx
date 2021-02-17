@@ -7,7 +7,7 @@ import MainPage from "./main-page";
 
 import NameSpace from "../../store/name-space";
 import {movieItemMock, moviesMock} from "../../helpers/test-data";
-import {ALL_GENRES, Pages} from "../../helpers/const";
+import {ALL_GENRES, Pages, AuthorizationStatus} from "../../helpers/const";
 
 const mockStore = configureStore([]);
 
@@ -20,6 +20,9 @@ it(`Should MainPage render correctly`, () => {
     [NameSpace.DATA]: {
       moviePromo: movieItemMock,
       movies: moviesMock,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.AUTH,
     },
   });
 

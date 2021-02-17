@@ -7,6 +7,7 @@ import MoviePage from "./movie-page";
 
 import NameSpace from "../../store/name-space";
 import {movieItemMock, moviesMock} from "../../helpers/test-data";
+import {AuthorizationStatus} from "../../helpers/const";
 
 const mockStore = configureStore([]);
 
@@ -17,6 +18,9 @@ it(`Should render correctly Movie Page`, () => {
     },
     [NameSpace.DATA]: {
       movies: moviesMock,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.AUTH,
     },
   });
 

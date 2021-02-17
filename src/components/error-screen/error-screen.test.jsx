@@ -6,17 +6,20 @@ import configureStore from "redux-mock-store";
 import ErrorScreen from "./error-screen";
 
 import NameSpace from "../../store/name-space";
-import {Pages} from "../../helpers/const";
+import {Pages, AuthorizationStatus} from "../../helpers/const";
 
 const mockStore = configureStore([]);
 
-it(`Catalog should render correctly`, () => {
+it(`ErrorScreen should render correctly`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
       currentPage: Pages.MAIN,
     },
     [NameSpace.DATA]: {
       isError: true,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.NOT_AUTH,
     },
   });
 
