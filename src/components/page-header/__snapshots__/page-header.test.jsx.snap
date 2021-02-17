@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PageHeader tests Should render correctly on inner page 1`] = `
+exports[`PageHeader tests Should render correctly on main page 1`] = `
 <header
   className="page-header movie-card__head"
 >
@@ -9,7 +9,7 @@ exports[`PageHeader tests Should render correctly on inner page 1`] = `
   >
     <a
       className="logo__link"
-      href="main.html"
+      href=""
     >
       <span
         className="logo__letter logo__letter--1"
@@ -31,21 +31,18 @@ exports[`PageHeader tests Should render correctly on inner page 1`] = `
   <div
     className="user-block"
   >
-    <div
-      className="user-block__avatar"
+    <a
+      className="user-block__link"
+      href="sign-in.html"
+      onClick={[Function]}
     >
-      <img
-        alt="User avatar"
-        height="63"
-        src="img/avatar.jpg"
-        width="63"
-      />
-    </div>
+      Sign in
+    </a>
   </div>
 </header>
 `;
 
-exports[`PageHeader tests Should render correctly on main page 1`] = `
+exports[`PageHeader tests Should render correctly on main page with user signed in 1`] = `
 <header
   className="page-header movie-card__head"
 >
@@ -87,5 +84,41 @@ exports[`PageHeader tests Should render correctly on main page 1`] = `
       />
     </div>
   </div>
+</header>
+`;
+
+exports[`PageHeader tests Should render correctly on signin page 1`] = `
+<header
+  className="page-header user-page__head"
+>
+  <div
+    className="logo"
+  >
+    <a
+      className="logo__link"
+      href="main.html"
+    >
+      <span
+        className="logo__letter logo__letter--1"
+      >
+        W
+      </span>
+      <span
+        className="logo__letter logo__letter--2"
+      >
+        T
+      </span>
+      <span
+        className="logo__letter logo__letter--3"
+      >
+        W
+      </span>
+    </a>
+  </div>
+  <h1
+    className="page-title user-page__title"
+  >
+    Sign in
+  </h1>
 </header>
 `;

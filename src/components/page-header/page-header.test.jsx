@@ -9,6 +9,9 @@ describe(`PageHeader tests`, () => {
     .create(
         <PageHeader
           isMainPage={true}
+          isSignInPage={false}
+          isAuth={false}
+          onSignInClick={() => {}}
         />
     )
     .toJSON();
@@ -16,11 +19,29 @@ describe(`PageHeader tests`, () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it(`Should render correctly on inner page`, () => {
+  it(`Should render correctly on main page with user signed in`, () => {
+    const tree = renderer
+    .create(
+        <PageHeader
+          isMainPage={true}
+          isSignInPage={false}
+          isAuth={true}
+          onSignInClick={() => {}}
+        />
+    )
+    .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Should render correctly on signin page`, () => {
     const tree = renderer
     .create(
         <PageHeader
           isMainPage={false}
+          isSignInPage={true}
+          isAuth={false}
+          onSignInClick={() => {}}
         />
     )
     .toJSON();
