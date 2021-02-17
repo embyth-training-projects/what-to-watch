@@ -35,9 +35,9 @@ exports[`PageHeader tests Should render correctly on inner page with user signed
       className="user-block__avatar"
     >
       <img
-        alt="User avatar"
+        alt="Fake"
         height="63"
-        src="img/avatar.jpg"
+        src="https://avatar-base.com/1337"
         width="63"
       />
     </div>
@@ -122,9 +122,9 @@ exports[`PageHeader tests Should render correctly on main page with user signed 
       className="user-block__avatar"
     >
       <img
-        alt="User avatar"
+        alt="Fake"
         height="63"
-        src="img/avatar.jpg"
+        src="https://avatar-base.com/1337"
         width="63"
       />
     </div>

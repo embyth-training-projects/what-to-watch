@@ -51,9 +51,9 @@ exports[`MoviePageHero should render correctly 1`] = `
         className="user-block__avatar"
       >
         <img
-          alt="User avatar"
+          alt="Fake"
           height="63"
-          src="img/avatar.jpg"
+          src="https://avatar-base.com/1337"
           width="63"
         />
       </div>

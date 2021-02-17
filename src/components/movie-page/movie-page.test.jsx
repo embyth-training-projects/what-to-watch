@@ -6,7 +6,7 @@ import configureStore from "redux-mock-store";
 import MoviePage from "./movie-page";
 
 import NameSpace from "../../store/name-space";
-import {movieItemMock, moviesMock} from "../../helpers/test-data";
+import {movieItemMock, moviesMock, userMock} from "../../helpers/test-data";
 import {AuthorizationStatus} from "../../helpers/const";
 
 const mockStore = configureStore([]);
@@ -21,6 +21,7 @@ it(`Should render correctly Movie Page`, () => {
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.AUTH,
+      userInfo: userMock,
     },
   });
 

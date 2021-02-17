@@ -3,6 +3,9 @@ import renderer from "react-test-renderer";
 
 import {PageHeader} from "./page-header";
 
+import {userMock} from "../../helpers/test-data";
+import {emptyUser} from "../../helpers/const";
+
 describe(`PageHeader tests`, () => {
   it(`Should render correctly on main page`, () => {
     const tree = renderer
@@ -11,6 +14,7 @@ describe(`PageHeader tests`, () => {
           isMainPage={true}
           isSignInPage={false}
           isAuth={false}
+          userInfo={emptyUser}
           onSignInClick={() => {}}
         />
     )
@@ -26,6 +30,7 @@ describe(`PageHeader tests`, () => {
           isMainPage={true}
           isSignInPage={false}
           isAuth={true}
+          userInfo={userMock}
           onSignInClick={() => {}}
         />
     )
@@ -41,6 +46,7 @@ describe(`PageHeader tests`, () => {
           isMainPage={false}
           isSignInPage={false}
           isAuth={true}
+          userInfo={userMock}
           onSignInClick={() => {}}
         />
     )
@@ -56,6 +62,7 @@ describe(`PageHeader tests`, () => {
           isMainPage={false}
           isSignInPage={true}
           isAuth={false}
+          userInfo={emptyUser}
           onSignInClick={() => {}}
         />
     )

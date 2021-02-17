@@ -142,3 +142,10 @@ export const reviewsMock = [
 ];
 
 export const genres = [`All genres`, `Drama`, `Thriller`, `Comedy`];
+
+export const userMock = {
+  id: 1337,
+  email: `test@mail.com`,
+  name: `Fake`,
+  avatarSrc: `https://avatar-base.com/1337`,
+};

@@ -5,7 +5,9 @@ import {createAPI} from "../../api";
 import {initialState, ActionType, ActionCreator, Operations, reducer} from "./user";
 import {ActionType as AppActionType} from "../app/app";
 
-import {AuthorizationStatus, Pages} from "../../helpers/const";
+import {createUser} from "../../adapters";
+import {AuthorizationStatus, Pages, emptyUser} from "../../helpers/const";
+import {userMock} from "../../helpers/test-data";
 
 const api = createAPI();
 
@@ -73,6 +75,17 @@ describe(`User State Reducer tests`, () => {
       isAuthorizationError: false,
     });
   });
+
+  it(`Reducer should update userInfo`, () => {
+    expect(reducer({
+      userInfo: emptyUser,
+    }, {
+      type: ActionType.SET_USER_DATA,
+      payload: userMock,
+    })).toEqual({
+      userInfo: userMock,
+    });
+  });
 });
 
 describe(`ActionCreators work correctly`, () => {
@@ -101,6 +114,13 @@ describe(`ActionCreators work correctly`, () => {
       payload: false,
     });
   });
+
+  it(`setUserData returns correct action`, () => {
+    expect(ActionCreator.setUserData(userMock)).toEqual({
+      type: ActionType.SET_USER_DATA,
+      payload: userMock,
+    });
+  });
 });
 
 describe(`Operations work correctly`, () => {
@@ -112,14 +132,18 @@ describe(`Operations work correctly`, () => {
 
     apiMock
       .onGet(`/login`)
-      .reply(200, {fake: true});
+      .reply(200, userMock);
 
     return checkUserAuth(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.REQUIRED_AUTHORIZATION,
           payload: AuthorizationStatus.AUTH,
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.SET_USER_DATA,
+          payload: createUser(userMock),
         });
       });
   });
@@ -134,16 +158,20 @@ describe(`Operations work correctly`, () => {
 
     apiMock
       .onPost(`/login`, authData)
-      .reply(200, {fake: true});
+      .reply(200, userMock);
 
     return userLogin(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.REQUIRED_AUTHORIZATION,
           payload: AuthorizationStatus.AUTH,
         });
         expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.SET_USER_DATA,
+          payload: createUser(userMock),
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: AppActionType.GO_TO_MAIN_PAGE,
           payload: Pages.MAIN,
         });
