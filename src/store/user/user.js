@@ -1,12 +1,17 @@
 import {extend} from "../../helpers/utils";
 import {AuthorizationStatus} from "../../helpers/const";
 
+import {ActionCreator as AppActionCreator} from "../app/app";
+
 export const initialState = {
   authorizationStatus: AuthorizationStatus.NOT_AUTH,
+  isAuthorizationError: false,
 };
 
 export const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  SHOW_AUTHORIZATION_ERROR: `SHOW_AUTHORIZATION_ERROR`,
+  CLEAR_AUTHORIZATION_ERROR: `CLEAR_AUTHORIZATION_ERROR`,
 };
 
 export const ActionCreator = {
@@ -15,7 +20,21 @@ export const ActionCreator = {
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: status,
     };
-  }
+  },
+
+  showAuthorizationError: () => {
+    return {
+      type: ActionType.SHOW_AUTHORIZATION_ERROR,
+      payload: true,
+    };
+  },
+
+  clearAuthorizationError: () => {
+    return {
+      type: ActionType.CLEAR_AUTHORIZATION_ERROR,
+      payload: false,
+    };
+  },
 };
 
 export const Operations = {
@@ -23,6 +42,9 @@ export const Operations = {
     return api.get(`/login`)
       .then(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NOT_AUTH));
       });
   },
 
@@ -33,6 +55,10 @@ export const Operations = {
     })
       .then(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(AppActionCreator.goToMainPage());
+      })
+      .catch(() => {
+        dispatch(ActionCreator.showAuthorizationError());
       });
   },
 };
@@ -42,6 +68,16 @@ export const reducer = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTHORIZATION:
       return extend(state, {
         authorizationStatus: action.payload,
+      });
+
+    case ActionType.SHOW_AUTHORIZATION_ERROR:
+      return extend(state, {
+        isAuthorizationError: action.payload,
+      });
+
+    case ActionType.CLEAR_AUTHORIZATION_ERROR:
+      return extend(state, {
+        isAuthorizationError: action.payload,
       });
 
     default:

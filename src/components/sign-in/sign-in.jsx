@@ -6,6 +6,8 @@ import PageHeader from "../page-header/page-header";
 import PageFooter from "../page-footer/page-footer";
 
 import {Operations as UserOperations} from "../../store/user/user";
+import {ActionCreator as UserActionCreator} from "../../store/user/user";
+import {getIsAuthorizationError} from "../../store/user/selectors";
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -30,14 +32,24 @@ class SignIn extends PureComponent {
   }
 
   render() {
+    const {isAuthorizationError, onFormChange} = this.props;
+
+    const errorMessage = isAuthorizationError &&
+      <React.Fragment>
+        <div className="sign-in__message">
+          <p>Please enter a valid email address</p>
+        </div>
+      </React.Fragment>;
+
     return (
       <div className="user-page">
         <PageHeader />
 
         <div className="sign-in user-page__content">
-          <form action="#" className="sign-in__form" onSubmit={this._handleLoginSubmit}>
+          {errorMessage}
+          <form action="#" className="sign-in__form" onSubmit={this._handleLoginSubmit} onChange={onFormChange}>
             <div className="sign-in__fields">
-              <div className="sign-in__field">
+              <div className={`sign-in__field ${isAuthorizationError ? `sign-in__field--error` : ``}`}>
                 <input
                   className="sign-in__input"
                   type="email"
@@ -75,13 +87,23 @@ class SignIn extends PureComponent {
 }
 
 SignIn.propTypes = {
+  isAuthorizationError: PropTypes.bool.isRequired,
   onLoginSubmit: PropTypes.func.isRequired,
+  onFormChange: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  isAuthorizationError: getIsAuthorizationError(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onLoginSubmit(authData) {
     dispatch(UserOperations.login(authData));
   },
+
+  onFormChange() {
+    dispatch(UserActionCreator.clearAuthorizationError());
+  },
 });
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
