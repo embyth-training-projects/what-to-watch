@@ -6,12 +6,14 @@ import {connect} from "react-redux";
 import MainPage from "../main-page/main-page";
 import MoviePage from "../movie-page/movie-page";
 import MoviePlayer from "../movie-player/movie-player";
+import SignIn from "../sign-in/sign-in";
 import ErrorScreen from "../error-screen/error-screen";
 
 import withVideoControls from "../../hocs/with-video-controls/with-video-controls";
 
 import {getCurrentPage, getIsMoviePlayerActive} from "../../store/app/selectors";
 import {getIsError} from "../../store/data/selectors";
+import {getAuthorizationStatus} from "../../store/user/selectors";
 
 import {Pages} from "../../helpers/const";
 
@@ -44,6 +46,11 @@ class App extends PureComponent {
           <MoviePage />
         );
 
+      case Pages.SIGN_IN:
+        return (
+          <SignIn />
+        );
+
       default:
         return (
           <MainPage />
@@ -64,6 +71,9 @@ class App extends PureComponent {
           <Route exact path="/watch">
             <MoviePlayerWrapped />
           </Route>
+          <Route exact path="/auth">
+            <SignIn />
+          </Route>
         </Switch>
       </Router>
     );
@@ -74,12 +84,14 @@ App.propTypes = {
   currentPage: PropTypes.string.isRequired,
   isMoviePlayerActive: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currentPage: getCurrentPage(state),
   isMoviePlayerActive: getIsMoviePlayerActive(state),
   isError: getIsError(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 export {App};

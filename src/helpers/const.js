@@ -8,6 +8,7 @@ export const Pages = {
   MAIN: `main`,
   MOVIE: `movie`,
   VIDEO: `video`,
+  SIGN_IN: `sign-in`,
 };
 
 export const CardVideoPlayerParams = {
@@ -48,6 +49,11 @@ export const ErrorStatusCode = {
   NOT_FOUND: 404,
   INTERNAL: 500,
   SERVICE_UNAVAILABLE: 503,
+};
+
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NOT_AUTH: `NOT_AUTH`,
 };
 
 export const ALL_GENRES = `All genres`;
