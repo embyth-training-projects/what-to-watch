@@ -9,6 +9,7 @@ export const Pages = {
   MOVIE: `movie`,
   VIDEO: `video`,
   SIGN_IN: `sign-in`,
+  ADD_REVIEW: `add-review`,
 };
 
 export const CardVideoPlayerParams = {
@@ -61,6 +62,23 @@ export const ErrorStatusCode = {
 export const AuthorizationStatus = {
   AUTH: `AUTH`,
   NOT_AUTH: `NOT_AUTH`,
+};
+
+export const RequestStatus = {
+  NOT_SENT: `NOT_SENT`,
+  SENDING: `SENDING`,
+  SUCCESS: `SUCCESS`,
+  ERROR: `ERROR`,
+};
+
+export const Review = {
+  MIN_LENGTH: 50,
+  MAX_LENGTH: 400,
+  RATINGS: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  BUTTON_LABEL: {
+    POST: `Post`,
+    SENDING: `Sending...`,
+  },
 };
 
 export const ALL_GENRES = `All genres`;

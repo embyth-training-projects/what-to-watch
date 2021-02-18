@@ -14,6 +14,7 @@ export const ActionType = {
   GO_TO_MAIN_PAGE: `GO_TO_MAIN_PAGE`,
   GO_TO_MOVIE_PAGE: `GO_TO_MOVIE_PAGE`,
   GO_TO_SIGN_IN_PAGE: `GO_TO_SIGN_IN_PAGE`,
+  ADD_REVIEW: `ADD_REVIEW`,
   WATCH_MOVIE: `WATCH_MOVIE`,
   STOP_WATCHING_MOVIE: `STOP_WATCHING_MOVIE`,
 };
@@ -51,6 +52,13 @@ export const ActionCreator = {
     return {
       type: ActionType.GO_TO_SIGN_IN_PAGE,
       payload: Pages.SIGN_IN,
+    };
+  },
+
+  addReview: () => {
+    return {
+      type: ActionType.ADD_REVIEW,
+      payload: Pages.ADD_REVIEW,
     };
   },
 
@@ -92,6 +100,11 @@ export const reducer = (state = initialState, action) => {
       });
 
     case ActionType.GO_TO_SIGN_IN_PAGE:
+      return extend(state, {
+        currentPage: action.payload,
+      });
+
+    case ActionType.ADD_REVIEW:
       return extend(state, {
         currentPage: action.payload,
       });

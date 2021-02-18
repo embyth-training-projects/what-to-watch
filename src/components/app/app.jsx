@@ -7,23 +7,26 @@ import MainPage from "../main-page/main-page";
 import MoviePage from "../movie-page/movie-page";
 import MoviePlayer from "../movie-player/movie-player";
 import SignIn from "../sign-in/sign-in";
+import AddReview from "../add-review/add-review";
 import ErrorScreen from "../error-screen/error-screen";
 
 import withVideoControls from "../../hocs/with-video-controls/with-video-controls";
+import withReview from "../../hocs/with-review/with-review";
 
 import {getCurrentPage, getIsMoviePlayerActive} from "../../store/app/selectors";
-import {getIsError} from "../../store/data/selectors";
+import {getIsLoadError} from "../../store/data/selectors";
 import {getAuthorizationStatus} from "../../store/user/selectors";
 
 import {Pages} from "../../helpers/const";
 
 const MoviePlayerWrapped = withVideoControls(MoviePlayer);
+const AddReviewWrapped = withReview(AddReview);
 
 class App extends PureComponent {
   _renderApp() {
-    const {currentPage, isMoviePlayerActive, isError} = this.props;
+    const {currentPage, isMoviePlayerActive, isLoadError} = this.props;
 
-    if (isError) {
+    if (isLoadError) {
       return (
         <ErrorScreen />
       );
@@ -51,6 +54,11 @@ class App extends PureComponent {
           <SignIn />
         );
 
+      case Pages.ADD_REVIEW:
+        return (
+          <AddReviewWrapped />
+        );
+
       default:
         return (
           <MainPage />
@@ -74,6 +82,9 @@ class App extends PureComponent {
           <Route exact path="/auth">
             <SignIn />
           </Route>
+          <Route exact path="/review">
+            <AddReviewWrapped />
+          </Route>
         </Switch>
       </Router>
     );
@@ -83,14 +94,14 @@ class App extends PureComponent {
 App.propTypes = {
   currentPage: PropTypes.string.isRequired,
   isMoviePlayerActive: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired,
+  isLoadError: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currentPage: getCurrentPage(state),
   isMoviePlayerActive: getIsMoviePlayerActive(state),
-  isError: getIsError(state),
+  isLoadError: getIsLoadError(state),
   authorizationStatus: getAuthorizationStatus(state),
 });
 

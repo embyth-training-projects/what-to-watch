@@ -2,44 +2,43 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {getCurrentPage} from "../../store/app/selectors";
+import {getCurrentMovie, getCurrentPage} from "../../store/app/selectors";
 import {ActionCreator} from "../../store/app/app";
 import {getAuthorizationStatus, getUserInfo} from "../../store/user/selectors";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
 import {Pages, AuthorizationStatus} from "../../helpers/const";
 
-const PageHeader = ({isMainPage, isSignInPage, isAuth, userInfo, onSignInClick}) => {
+const PageHeader = ({isMainPage, isSignInPage, isAuth, isPageWithBreadcrumbs, userInfo, currentMovie, onSignInClick}) => {
   const signInPageTitle = (
-    <React.Fragment>
-      <h1 className="page-title user-page__title">Sign in</h1>
-    </React.Fragment>
+    <h1 className="page-title user-page__title">Sign in</h1>
   );
 
   const userBlockElement = (
-    <React.Fragment>
-      <div className="user-block">
+    <div className="user-block">
+      {isAuth &&
+        <div className="user-block__avatar">
+          <img src={userInfo.avatarSrc} alt={userInfo.name} width="63" height="63" />
+        </div>
+      }
 
-        {isAuth &&
-          <div className="user-block__avatar">
-            <img src={userInfo.avatarSrc} alt={userInfo.name} width="63" height="63" />
-          </div>
-        }
+      {!isAuth &&
+        <a href="sign-in.html" className="user-block__link" onClick={onSignInClick}>Sign in</a>
+      }
+    </div>
+  );
 
-        {!isAuth &&
-          <a
-            href="sign-in.html"
-            className="user-block__link"
-            onClick={(evt) => {
-              evt.preventDefault();
-              onSignInClick();
-            }}>
-              Sign in
-          </a>
-        }
-
-      </div>
-    </React.Fragment>
+  const breadcrumbs = (
+    <nav className="breadcrumbs">
+      <ul className="breadcrumbs__list">
+        <li className="breadcrumbs__item">
+          <a href="movie-page.html" className="breadcrumbs__link">{currentMovie.title}</a>
+        </li>
+        <li className="breadcrumbs__item">
+          <a className="breadcrumbs__link">Add review</a>
+        </li>
+      </ul>
+    </nav>
   );
 
   return (
@@ -52,6 +51,7 @@ const PageHeader = ({isMainPage, isSignInPage, isAuth, userInfo, onSignInClick})
         </a>
       </div>
 
+      {isPageWithBreadcrumbs && breadcrumbs}
       {isSignInPage ? signInPageTitle : userBlockElement}
 
     </header>
@@ -61,20 +61,25 @@ const PageHeader = ({isMainPage, isSignInPage, isAuth, userInfo, onSignInClick})
 PageHeader.propTypes = {
   isMainPage: PropTypes.bool.isRequired,
   isSignInPage: PropTypes.bool.isRequired,
+  isPageWithBreadcrumbs: PropTypes.bool.isRequired,
   isAuth: PropTypes.bool.isRequired,
   onSignInClick: PropTypes.func.isRequired,
   userInfo: CustomPropTypes.USER,
+  currentMovie: CustomPropTypes.MOVIE,
 };
 
 const mapStateToProps = (state) => ({
   isMainPage: getCurrentPage(state) === Pages.MAIN,
   isSignInPage: getCurrentPage(state) === Pages.SIGN_IN,
+  isPageWithBreadcrumbs: getCurrentPage(state) === Pages.ADD_REVIEW,
   isAuth: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
   userInfo: getUserInfo(state),
+  currentMovie: getCurrentMovie(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSignInClick() {
+  onSignInClick(evt) {
+    evt.preventDefault();
     dispatch(ActionCreator.goToSignInPage());
   },
 });
