@@ -1,5 +1,74 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`PageHeader tests Should render correctly on add review page 1`] = `
+<header
+  className="page-header movie-card__head"
+>
+  <div
+    className="logo"
+  >
+    <a
+      className="logo__link"
+      href="main.html"
+    >
+      <span
+        className="logo__letter logo__letter--1"
+      >
+        W
+      </span>
+      <span
+        className="logo__letter logo__letter--2"
+      >
+        T
+      </span>
+      <span
+        className="logo__letter logo__letter--3"
+      >
+        W
+      </span>
+    </a>
+  </div>
+  <nav
+    className="breadcrumbs"
+  >
+    <ul
+      className="breadcrumbs__list"
+    >
+      <li
+        className="breadcrumbs__item"
+      >
+        <a
+          className="breadcrumbs__link"
+          href="movie-page.html"
+        >
+          The Grand Budapest Hotel
+        </a>
+      </li>
+      <li
+        className="breadcrumbs__item"
+      >
+        <a
+          className="breadcrumbs__link"
+        >
+          Add review
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div
+    className="user-block"
+  >
+    <a
+      className="user-block__link"
+      href="sign-in.html"
+      onClick={[Function]}
+    >
+      Sign in
+    </a>
+  </div>
+</header>
+`;
+
 exports[`PageHeader tests Should render correctly on inner page with user signed in 1`] = `
 <header
   className="page-header movie-card__head"

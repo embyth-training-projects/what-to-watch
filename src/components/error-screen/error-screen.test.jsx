@@ -6,6 +6,7 @@ import configureStore from "redux-mock-store";
 import ErrorScreen from "./error-screen";
 
 import NameSpace from "../../store/name-space";
+import {movieItemMock} from "../../helpers/test-data";
 import {Pages, AuthorizationStatus} from "../../helpers/const";
 
 const mockStore = configureStore([]);
@@ -14,9 +15,10 @@ it(`ErrorScreen should render correctly`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
       currentPage: Pages.MAIN,
+      currentMovie: movieItemMock,
     },
     [NameSpace.DATA]: {
-      isError: true,
+      isLoadError: true,
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.NOT_AUTH,

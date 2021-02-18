@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 
 import {PageHeader} from "./page-header";
 
-import {userMock} from "../../helpers/test-data";
+import {userMock, movieItemMock} from "../../helpers/test-data";
 import {emptyUser} from "../../helpers/const";
 
 describe(`PageHeader tests`, () => {
@@ -16,6 +16,8 @@ describe(`PageHeader tests`, () => {
           isAuth={false}
           userInfo={emptyUser}
           onSignInClick={() => {}}
+          isPageWithBreadcrumbs={false}
+          currentMovie={movieItemMock}
         />
     )
     .toJSON();
@@ -32,6 +34,8 @@ describe(`PageHeader tests`, () => {
           isAuth={true}
           userInfo={userMock}
           onSignInClick={() => {}}
+          isPageWithBreadcrumbs={false}
+          currentMovie={movieItemMock}
         />
     )
     .toJSON();
@@ -48,6 +52,8 @@ describe(`PageHeader tests`, () => {
           isAuth={true}
           userInfo={userMock}
           onSignInClick={() => {}}
+          isPageWithBreadcrumbs={false}
+          currentMovie={movieItemMock}
         />
     )
     .toJSON();
@@ -64,6 +70,26 @@ describe(`PageHeader tests`, () => {
           isAuth={false}
           userInfo={emptyUser}
           onSignInClick={() => {}}
+          isPageWithBreadcrumbs={false}
+          currentMovie={movieItemMock}
+        />
+    )
+    .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Should render correctly on add review page`, () => {
+    const tree = renderer
+    .create(
+        <PageHeader
+          isMainPage={false}
+          isSignInPage={false}
+          isAuth={false}
+          userInfo={userMock}
+          onSignInClick={() => {}}
+          isPageWithBreadcrumbs={true}
+          currentMovie={movieItemMock}
         />
     )
     .toJSON();

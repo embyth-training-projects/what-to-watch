@@ -62,6 +62,17 @@ describe(`App State Reducer tests`, () => {
     });
   });
 
+  it(`Reducer should return add-review as current page`, () => {
+    expect(reducer({
+      currentPage: Pages.MOVIE,
+    }, {
+      type: ActionType.ADD_REVIEW,
+      payload: Pages.ADD_REVIEW,
+    })).toEqual({
+      currentPage: Pages.ADD_REVIEW,
+    });
+  });
+
   it(`Reducer should return true value of isMoviePlayerActive state`, () => {
     expect(reducer({
       isMoviePlayerActive: false,
@@ -118,6 +129,13 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.goToSignInPage()).toEqual({
       type: ActionType.GO_TO_SIGN_IN_PAGE,
       payload: Pages.SIGN_IN,
+    });
+  });
+
+  it(`addReview returns correct action`, () => {
+    expect(ActionCreator.addReview()).toEqual({
+      type: ActionType.ADD_REVIEW,
+      payload: Pages.ADD_REVIEW,
     });
   });
 

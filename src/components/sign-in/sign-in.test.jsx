@@ -6,6 +6,7 @@ import configureStore from "redux-mock-store";
 import SignIn from "./sign-in";
 
 import NameSpace from "../../store/name-space";
+import {movieItemMock} from "../../helpers/test-data";
 import {Pages} from "../../helpers/const";
 
 const mockStore = configureStore([]);
@@ -14,6 +15,7 @@ describe(`SignIn tests`, () => {
   it(`SignIn should render correctly without Error Message`, () => {
     const store = mockStore({
       [NameSpace.APP]: {
+        currentMovie: movieItemMock,
         currentPage: Pages.SIGN_IN,
       },
       [NameSpace.USER]: {
@@ -40,6 +42,7 @@ describe(`SignIn tests`, () => {
     const store = mockStore({
       [NameSpace.APP]: {
         currentPage: Pages.SIGN_IN,
+        currentMovie: movieItemMock,
       },
       [NameSpace.USER]: {
         isAuthorizationError: true,

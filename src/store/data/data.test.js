@@ -7,7 +7,7 @@ import {initialState, ActionType, Operations, reducer} from "./data";
 import {ActionType as AppActionType} from "../app/app";
 
 import {moviesMock, movieItemMock, reviewsMock} from "../../helpers/test-data";
-import {emptyMovie} from "../../helpers/const";
+import {emptyMovie, RequestStatus, Pages} from "../../helpers/const";
 
 const api = createAPI();
 
@@ -49,14 +49,52 @@ describe(`Data State Reducer test`, () => {
     });
   });
 
-  it(`Reducer should update isError state on api error`, () => {
+  it(`Reducer should update isLoadError state on api load error`, () => {
     expect(reducer({
-      isError: false,
+      isLoadError: false,
     }, {
-      type: ActionType.CATCH_ERROR,
+      type: ActionType.CATCH_LOAD_ERROR,
       payload: true,
     })).toEqual({
-      isError: true,
+      isLoadError: true,
+    });
+  });
+
+  it(`Reducer should set right review request status`, () => {
+    expect(reducer({
+      reviewRequestStatus: RequestStatus.NOT_SENT,
+    }, {
+      type: ActionType.SET_REVIEW_REQUEST_STATUS,
+      payload: RequestStatus.SENDING,
+    })).toEqual({
+      reviewRequestStatus: RequestStatus.SENDING,
+    });
+
+    expect(reducer({
+      reviewRequestStatus: RequestStatus.SENDING,
+    }, {
+      type: ActionType.SET_REVIEW_REQUEST_STATUS,
+      payload: RequestStatus.SUCCESS,
+    })).toEqual({
+      reviewRequestStatus: RequestStatus.SUCCESS,
+    });
+
+    expect(reducer({
+      reviewRequestStatus: RequestStatus.SENDING,
+    }, {
+      type: ActionType.SET_REVIEW_REQUEST_STATUS,
+      payload: RequestStatus.ERROR,
+    })).toEqual({
+      reviewRequestStatus: RequestStatus.ERROR,
+    });
+
+    expect(reducer({
+      reviewRequestStatus: RequestStatus.ERROR,
+    }, {
+      type: ActionType.SET_REVIEW_REQUEST_STATUS,
+      payload: RequestStatus.NOT_SENT,
+    })).toEqual({
+      reviewRequestStatus: RequestStatus.NOT_SENT,
     });
   });
 });
@@ -118,6 +156,36 @@ describe(`Operations work correctly`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_MOVIE_REVIEWS,
           payload: reviewsMock,
+        });
+      });
+  });
+
+  it(`Should make a correct API post request to /comments/1`, () => {
+    const reviewData = {
+      rating: 10,
+      comment: `fake`,
+    };
+    const sendReview = Operations.sendReview(1, reviewData);
+    const dispatch = jest.fn();
+
+    apiMock
+      .onPost(`/comments/1`, reviewData)
+      .reply(200, [reviewData]);
+
+    return sendReview(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(4);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_REVIEW_REQUEST_STATUS,
+          payload: RequestStatus.SENDING,
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.SET_REVIEW_REQUEST_STATUS,
+          payload: RequestStatus.SUCCESS,
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(4, {
+          type: AppActionType.GO_TO_MOVIE_PAGE,
+          payload: Pages.MOVIE,
         });
       });
   });

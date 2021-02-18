@@ -3,30 +3,19 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 
-import App from "./app";
+import AddReview from "./add-review";
 
 import NameSpace from "../../store/name-space";
-
-import {movieItemMock, moviesMock, userMock} from "../../helpers/test-data";
-import {Pages, AuthorizationStatus} from "../../helpers/const";
+import {movieItemMock, userMock} from "../../helpers/test-data";
 
 const mockStore = configureStore([]);
 
-it(`Should App render correctly`, () => {
+it(`AddReview should render correctly`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
-      currentPage: Pages.MAIN,
       currentMovie: movieItemMock,
-      currentGenre: `All genres`,
-      isMoviePlayerActive: false,
-    },
-    [NameSpace.DATA]: {
-      moviePromo: movieItemMock,
-      movies: moviesMock,
-      isLoadError: false,
     },
     [NameSpace.USER]: {
-      authorizationStatus: AuthorizationStatus.AUTH,
       userInfo: userMock,
     },
   });
@@ -34,7 +23,16 @@ it(`Should App render correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <App />
+          <AddReview
+            currentMovie={movieItemMock}
+            onFormSubmit={() => {}}
+            onFormChange={() => {}}
+            onReviewChange={() => {}}
+            onRatingChange={() => {}}
+            isSubmitDisabled={true}
+            isReviewSending={false}
+            isSendingError={false}
+          />
         </Provider>, {
           createNodeMock: () => {
             return {};

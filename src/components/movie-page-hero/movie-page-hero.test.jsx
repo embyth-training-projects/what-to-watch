@@ -14,6 +14,7 @@ const mockStore = configureStore([]);
 it(`MoviePageHero should render correctly`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
+      currentMovie: movieItemMock,
       currentPage: Pages.MOVIE,
     },
     [NameSpace.USER]: {

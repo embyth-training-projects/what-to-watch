@@ -14,6 +14,7 @@ const mockStore = configureStore([]);
 it(`Should MainPage render correctly`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
+      currentMovie: movieItemMock,
       currentPage: Pages.MAIN,
       currentGenre: ALL_GENRES,
     },
