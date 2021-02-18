@@ -81,6 +81,15 @@ export const Review = {
   },
 };
 
+export const AppRoute = {
+  ROOT: `/`,
+  SIGN_IN: `/login`,
+  MY_LIST: `/mylist`,
+  MOVIE: `/films`,
+  ADD_REVIEW: `/review`,
+  PLAYER: `/player`,
+};
+
 export const ALL_GENRES = `All genres`;
 
 export const MOVIES_SHOWN = 8;
