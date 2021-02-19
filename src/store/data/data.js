@@ -134,7 +134,6 @@ export const Operations = {
       .then(() => {
         dispatch(ActionCreator.setReviewRequestStatus(RequestStatus.SUCCESS));
         dispatch(Operations.loadMovieReviews(movieId));
-        dispatch(AppActionCreator.goToMoviePage());
       })
       .catch(() => {
         dispatch(ActionCreator.setReviewRequestStatus(RequestStatus.ERROR));

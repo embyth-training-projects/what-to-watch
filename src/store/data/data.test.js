@@ -7,7 +7,7 @@ import {initialState, ActionType, Operations, reducer} from "./data";
 import {ActionType as AppActionType} from "../app/app";
 
 import {moviesMock, movieItemMock, reviewsMock} from "../../helpers/test-data";
-import {emptyMovie, RequestStatus, Pages} from "../../helpers/const";
+import {emptyMovie, RequestStatus} from "../../helpers/const";
 
 const api = createAPI();
 
@@ -49,6 +49,17 @@ describe(`Data State Reducer test`, () => {
     });
   });
 
+  it(`Reducer should update favoriteMovies by load`, () => {
+    expect(reducer({
+      favoriteMovies: [],
+    }, {
+      type: ActionType.LOAD_FAVORITE_MOVIES,
+      payload: moviesMock,
+    })).toEqual({
+      favoriteMovies: moviesMock,
+    });
+  });
+
   it(`Reducer should update isLoadError state on api load error`, () => {
     expect(reducer({
       isLoadError: false,
@@ -57,6 +68,17 @@ describe(`Data State Reducer test`, () => {
       payload: true,
     })).toEqual({
       isLoadError: true,
+    });
+  });
+
+  it(`Reducer should update isLoading state`, () => {
+    expect(reducer({
+      isLoading: true,
+    }, {
+      type: ActionType.FINISH_LOADING,
+      payload: false,
+    })).toEqual({
+      isLoading: false,
     });
   });
 
@@ -97,6 +119,44 @@ describe(`Data State Reducer test`, () => {
       reviewRequestStatus: RequestStatus.NOT_SENT,
     });
   });
+
+  it(`Reducer should set right favorite movies request status`, () => {
+    expect(reducer({
+      favoriteRequestStatus: RequestStatus.NOT_SENT,
+    }, {
+      type: ActionType.SET_FAVORITE_REQUEST_STATUS,
+      payload: RequestStatus.SENDING,
+    })).toEqual({
+      favoriteRequestStatus: RequestStatus.SENDING,
+    });
+
+    expect(reducer({
+      favoriteRequestStatus: RequestStatus.SENDING,
+    }, {
+      type: ActionType.SET_FAVORITE_REQUEST_STATUS,
+      payload: RequestStatus.SUCCESS,
+    })).toEqual({
+      favoriteRequestStatus: RequestStatus.SUCCESS,
+    });
+
+    expect(reducer({
+      favoriteRequestStatus: RequestStatus.SENDING,
+    }, {
+      type: ActionType.SET_FAVORITE_REQUEST_STATUS,
+      payload: RequestStatus.ERROR,
+    })).toEqual({
+      favoriteRequestStatus: RequestStatus.ERROR,
+    });
+
+    expect(reducer({
+      favoriteRequestStatus: RequestStatus.ERROR,
+    }, {
+      type: ActionType.SET_FAVORITE_REQUEST_STATUS,
+      payload: RequestStatus.NOT_SENT,
+    })).toEqual({
+      favoriteRequestStatus: RequestStatus.NOT_SENT,
+    });
+  });
 });
 
 describe(`Operations work correctly`, () => {
@@ -134,10 +194,14 @@ describe(`Operations work correctly`, () => {
 
     return moviesLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_MOVIES,
           payload: [createMovie(movieItemMock)],
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.FINISH_LOADING,
+          payload: false,
         });
       });
   });
@@ -160,6 +224,68 @@ describe(`Operations work correctly`, () => {
       });
   });
 
+  it(`Should make a correct API call to /favorite`, () => {
+    const favoriteMoviesLoader = Operations.loadFavoriteMovies();
+    const dispatch = jest.fn();
+
+    apiMock
+      .onGet(`/favorite`)
+      .reply(200, [movieItemMock]);
+
+    return favoriteMoviesLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_FAVORITE_MOVIES,
+          payload: [createMovie(movieItemMock)],
+        });
+      });
+  });
+
+  it(`Should make a correct API post request to /favorite/id/ADD`, () => {
+    const sendReview = Operations.changeIsMovieFavorite(1, true);
+    const dispatch = jest.fn();
+
+    apiMock
+      .onPost(`/favorite/1/1`)
+      .reply(200, [movieItemMock]);
+
+    return sendReview(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(4);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_FAVORITE_REQUEST_STATUS,
+          payload: RequestStatus.SENDING,
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.SET_FAVORITE_REQUEST_STATUS,
+          payload: RequestStatus.SUCCESS,
+        });
+      });
+  });
+
+  it(`Should make a correct API post request to /favorite/id/REMOVE`, () => {
+    const sendReview = Operations.changeIsMovieFavorite(1, false);
+    const dispatch = jest.fn();
+
+    apiMock
+      .onPost(`/favorite/1/0`)
+      .reply(200, [movieItemMock]);
+
+    return sendReview(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(4);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_FAVORITE_REQUEST_STATUS,
+          payload: RequestStatus.SENDING,
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.SET_FAVORITE_REQUEST_STATUS,
+          payload: RequestStatus.SUCCESS,
+        });
+      });
+  });
+
   it(`Should make a correct API post request to /comments/1`, () => {
     const reviewData = {
       rating: 10,
@@ -174,7 +300,7 @@ describe(`Operations work correctly`, () => {
 
     return sendReview(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(4);
+        expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.SET_REVIEW_REQUEST_STATUS,
           payload: RequestStatus.SENDING,
@@ -182,10 +308,6 @@ describe(`Operations work correctly`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.SET_REVIEW_REQUEST_STATUS,
           payload: RequestStatus.SUCCESS,
-        });
-        expect(dispatch).toHaveBeenNthCalledWith(4, {
-          type: AppActionType.GO_TO_MOVIE_PAGE,
-          payload: Pages.MOVIE,
         });
       });
   });
