@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 
 import PageHeader from "../page-header/page-header";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
-import {Review} from "../../helpers/const";
+import {AppRoute, Pages, Review} from "../../helpers/const";
 
 const AddReview = ({currentMovie, onFormSubmit, onFormChange, onReviewChange, onRatingChange, isSubmitDisabled, isReviewSending, isSendingError}) => (
   <section className="movie-card movie-card--full">
@@ -15,7 +16,18 @@ const AddReview = ({currentMovie, onFormSubmit, onFormChange, onReviewChange, on
 
       <h1 className="visually-hidden">WTW</h1>
 
-      <PageHeader />
+      <PageHeader currentPage={Pages.ADD_REVIEW}>
+        <nav className="breadcrumbs">
+          <ul className="breadcrumbs__list">
+            <li className="breadcrumbs__item">
+              <Link to={`${AppRoute.MOVIE}/${currentMovie.id}`} className="breadcrumbs__link">{currentMovie.title}</Link>
+            </li>
+            <li className="breadcrumbs__item">
+              <a className="breadcrumbs__link">Add review</a>
+            </li>
+          </ul>
+        </nav>
+      </PageHeader>
 
       <div className="movie-card__poster movie-card__poster--small">
         <img src={currentMovie.poster} alt={`${currentMovie.title} poster`} width="218" height="327" />

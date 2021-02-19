@@ -2,10 +2,11 @@ import React from "react";
 
 import PageHeader from "../page-header/page-header";
 import PageFooter from "../page-footer/page-footer";
+import {Pages} from "../../helpers/const";
 
 const ErrorScreen = () => (
   <div className="user-page">
-    <PageHeader />
+    <PageHeader currentPage={Pages.ERROR} />
 
     <div className="sign-in user-page__content">
       <h1 className="page-title">Sorry, something went wrong! :(</h1>

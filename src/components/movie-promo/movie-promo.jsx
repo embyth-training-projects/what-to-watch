@@ -7,7 +7,7 @@ import PageHeader from "../page-header/page-header";
 import {getMoviePromo} from "../../store/data/selectors";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
-import {AppRoute} from "../../helpers/const";
+import {AppRoute, Pages} from "../../helpers/const";
 
 const MoviePromo = ({moviePromo}) => (
   <section className="movie-card">
@@ -17,7 +17,7 @@ const MoviePromo = ({moviePromo}) => (
 
     <h1 className="visually-hidden">WTW</h1>
 
-    <PageHeader />
+    <PageHeader currentPage={Pages.MAIN} />
 
     <div className="movie-card__wrap">
       <div className="movie-card__info">

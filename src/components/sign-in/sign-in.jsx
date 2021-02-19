@@ -8,6 +8,7 @@ import PageFooter from "../page-footer/page-footer";
 import {Operations as UserOperations} from "../../store/user/user";
 import {ActionCreator as UserActionCreator} from "../../store/user/user";
 import {getIsAuthorizationError} from "../../store/user/selectors";
+import {Pages} from "../../helpers/const";
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -43,7 +44,7 @@ class SignIn extends PureComponent {
 
     return (
       <div className="user-page">
-        <PageHeader />
+        <PageHeader currentPage={Pages.SIGN_IN} />
 
         <div className="sign-in user-page__content">
           {errorMessage}

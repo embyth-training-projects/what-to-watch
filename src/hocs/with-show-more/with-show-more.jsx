@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 
 import ShowMoreButton from "../../components/show-more-button/show-more-button";
 
-import {getCurrentGenre, getCurrentPage} from "../../store/app/selectors";
 import {getFilteredMoviesLikeThis, getFilteredMoviesByGenre} from "../../store/data/selectors";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
@@ -62,19 +61,9 @@ const withShowMore = (Component) => {
     movies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
   };
 
-  const mapStateToProps = (state) => {
-    if (getCurrentPage(state) !== Pages.MAIN) {
-      return {
-        currentGenre: getCurrentGenre(state),
-        movies: getFilteredMoviesLikeThis(state),
-      };
-    }
-
-    return {
-      currentGenre: getCurrentGenre(state),
-      movies: getFilteredMoviesByGenre(state),
-    };
-  };
+  const mapStateToProps = (state, ownProps) => ({
+    movies: ownProps.currentPage === Pages.MAIN ? getFilteredMoviesByGenre(state) : getFilteredMoviesLikeThis(state)
+  });
 
   return connect(mapStateToProps)(WithShowMore);
 };

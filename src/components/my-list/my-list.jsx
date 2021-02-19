@@ -1,35 +1,55 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {getMovies} from "../../store/data/selectors";
+import {getFavoriteMovies} from "../../store/data/selectors";
+import {Operations as DataOperations} from "../../store/data/data";
 
 import MoviesList from "../movies-list/movies-list";
 import PageHeader from "../page-header/page-header";
 import PageFooter from "../page-footer/page-footer";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
+import {Pages} from "../../helpers/const";
 
-const MyList = ({movies}) => (
-  <div className="user-page">
-    <PageHeader />
+class MyList extends PureComponent {
+  componentDidMount() {
+    const {loadFavoriteMovies} = this.props;
+    loadFavoriteMovies();
+  }
 
-    <section className="catalog">
-      <h2 className="catalog__title visually-hidden">Catalog</h2>
+  render() {
+    const {movies} = this.props;
 
-      <MoviesList movies={movies} render={() => {}} />
-    </section>
+    return (
+      <div className="user-page">
+        <PageHeader currentPage={Pages.MY_LIST} />
 
-    <PageFooter />
-  </div>
-);
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
+
+          <MoviesList movies={movies} render={() => {}} />
+        </section>
+
+        <PageFooter />
+      </div>
+    );
+  }
+}
 
 MyList.propTypes = {
   movies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
+  loadFavoriteMovies: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  movies: getMovies(state),
+  movies: getFavoriteMovies(state),
 });
 
-export default connect(mapStateToProps)(MyList);
+const mapDispatchToProps = (dispatch) => ({
+  loadFavoriteMovies() {
+    dispatch(DataOperations.loadFavoriteMovies());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyList);

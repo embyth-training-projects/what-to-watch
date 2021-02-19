@@ -10,6 +10,8 @@ export const Pages = {
   VIDEO: `video`,
   SIGN_IN: `sign-in`,
   ADD_REVIEW: `add-review`,
+  MY_LIST: `my-list`,
+  ERROR: `error`,
 };
 
 export const CardVideoPlayerParams = {
@@ -88,6 +90,11 @@ export const AppRoute = {
   MOVIE: `/films`,
   ADD_REVIEW: `/review`,
   PLAYER: `/player`,
+};
+
+export const Favorites = {
+  ADD: 1,
+  REMOVE: 0,
 };
 
 export const ALL_GENRES = `All genres`;

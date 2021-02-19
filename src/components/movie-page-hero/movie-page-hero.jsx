@@ -5,13 +5,12 @@ import {Link} from "react-router-dom";
 
 import PageHeader from "../page-header/page-header";
 
-import {ActionCreator} from "../../store/app/app";
 import {getAuthorizationStatus} from "../../store/user/selectors";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
-import {AuthorizationStatus, AppRoute} from "../../helpers/const";
+import {AuthorizationStatus, AppRoute, Pages} from "../../helpers/const";
 
-const MoviePageHero = ({currentMovie, isSignIn, onAddReviewClick}) => (
+const MoviePageHero = ({currentMovie, isSignIn}) => (
   <div className="movie-card__hero">
     <div className="movie-card__bg">
       <img src={currentMovie.background} alt={currentMovie.title} />
@@ -19,7 +18,7 @@ const MoviePageHero = ({currentMovie, isSignIn, onAddReviewClick}) => (
 
     <h1 className="visually-hidden">WTW</h1>
 
-    <PageHeader />
+    <PageHeader currentPage={Pages.MOVIE} />
 
     <div className="movie-card__wrap">
       <div className="movie-card__desc">
@@ -43,7 +42,7 @@ const MoviePageHero = ({currentMovie, isSignIn, onAddReviewClick}) => (
             <span>My list</span>
           </button>
           {isSignIn &&
-            <Link to={`${AppRoute.MOVIE}/${currentMovie.id}${AppRoute.ADD_REVIEW}`} className="btn movie-card__button" onClick={onAddReviewClick}>Add review</Link>
+            <Link to={`${AppRoute.MOVIE}/${currentMovie.id}${AppRoute.ADD_REVIEW}`} className="btn movie-card__button">Add review</Link>
           }
         </div>
       </div>
@@ -54,17 +53,10 @@ const MoviePageHero = ({currentMovie, isSignIn, onAddReviewClick}) => (
 MoviePageHero.propTypes = {
   currentMovie: CustomPropTypes.MOVIE,
   isSignIn: PropTypes.bool.isRequired,
-  onAddReviewClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isSignIn: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onAddReviewClick() {
-    dispatch(ActionCreator.addReview());
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(MoviePageHero);
+export default connect(mapStateToProps)(MoviePageHero);

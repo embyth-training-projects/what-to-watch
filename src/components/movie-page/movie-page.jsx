@@ -15,13 +15,17 @@ import {getCurrentMovieById} from "../../store/app/selectors";
 import {Operations as DataOperations} from "../../store/data/data";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
-import {emptyMovie, NavTabs} from "../../helpers/const";
-import {getIsLoading} from "../../store/data/selectors";
+import {NavTabs, Pages} from "../../helpers/const";
 
 const MoviePageInfoWrapped = withActiveItem(MoviePageInfo);
 const MoviesListWrapped = withShowMore(MoviesList);
 
 class MoviePage extends PureComponent {
+  componentDidMount() {
+    const {currentMovie, loadMovieInfo} = this.props;
+    loadMovieInfo(currentMovie);
+  }
+
   componentDidUpdate() {
     const {currentMovie, loadMovieInfo} = this.props;
     loadMovieInfo(currentMovie);
@@ -41,7 +45,7 @@ class MoviePage extends PureComponent {
         <div className="page-content">
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
-            <MoviesListWrapped />
+            <MoviesListWrapped currentMovie={Pages.MOVIE} />
           </section>
           <PageFooter />
         </div>
@@ -57,7 +61,7 @@ MoviePage.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  currentMovie: getIsLoading(state) ? emptyMovie : getCurrentMovieById(state, ownProps),
+  currentMovie: getCurrentMovieById(state, ownProps),
 });
 
 const mapDispatchToProps = (dispatch) => ({
