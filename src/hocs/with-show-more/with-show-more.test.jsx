@@ -6,8 +6,8 @@ import configureStore from "redux-mock-store";
 import withShowMore from "./with-show-more";
 
 import NameSpace from "../../store/name-space";
-import {moviesMock} from "../../helpers/test-data";
-import {Pages} from "../../helpers/const";
+import {moviesMock, movieItemMock} from "../../helpers/test-data";
+import {ALL_GENRES, Pages} from "../../helpers/const";
 
 const mockStore = configureStore([]);
 
@@ -20,7 +20,8 @@ it(`withShowMore is rendered correctly`, () => {
 
   const store = mockStore({
     [NameSpace.APP]: {
-      currentPage: Pages.MAIN,
+      currentGenre: ALL_GENRES,
+      currentMovie: movieItemMock,
     },
     [NameSpace.DATA]: {
       movies: moviesMock,
@@ -30,7 +31,9 @@ it(`withShowMore is rendered correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <MockComponentWrapped />
+          <MockComponentWrapped
+            currentPage={Pages.MAIN}
+          />
         </Provider>, {
           createNodeMock() {
             return {};

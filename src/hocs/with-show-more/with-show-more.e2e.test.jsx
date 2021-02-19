@@ -9,7 +9,7 @@ import withShowMore from "./with-show-more";
 
 import NameSpace from "../../store/name-space";
 import {moviesMock} from "../../helpers/test-data";
-import {Pages} from "../../helpers/const";
+import {ALL_GENRES, Pages} from "../../helpers/const";
 
 configure({adapter: new Adapter()});
 const mockStore = configureStore([]);
@@ -37,7 +37,7 @@ describe(`HOC withShowMore end-2-end tests`, () => {
 
     const store = mockStore({
       [NameSpace.APP]: {
-        currentPage: Pages.MAIN,
+        currentGenre: ALL_GENRES,
       },
       [NameSpace.DATA]: {
         movies: moviesMock,
@@ -47,6 +47,7 @@ describe(`HOC withShowMore end-2-end tests`, () => {
     const wrapper = mount(
         <Provider store={store}>
           <MockComponentWrapped
+            currentPage={Pages.MAIN}
             onShowMoreButtonClick={onShowMoreButtonClick}
           />
         </Provider>, {
