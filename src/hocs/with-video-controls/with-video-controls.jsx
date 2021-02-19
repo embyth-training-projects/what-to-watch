@@ -1,9 +1,8 @@
 import React, {PureComponent, createRef} from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import history from "../../history";
 
-import {ActionCreator} from "../../store/app/app";
-import {getCurrentMovie} from "../../store/app/selectors";
+import {getCurrentMovieById} from "../../store/app/selectors";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
 import {getTimeLeft} from "../../helpers/utils";
@@ -26,6 +25,7 @@ const withVideoControls = (Component) => {
       this._renderPlayPauseButton = this._renderPlayPauseButton.bind(this);
       this._handlePlayPauseChange = this._handlePlayPauseChange.bind(this);
       this._handleFullScreenButtonClick = this._handleFullScreenButtonClick.bind(this);
+      this._handleExitButtonClick = this._handleExitButtonClick.bind(this);
     }
 
     _renderVideoPlayer() {
@@ -71,6 +71,11 @@ const withVideoControls = (Component) => {
       this._videoRef.current.requestFullscreen();
     }
 
+    _handleExitButtonClick(evt) {
+      evt.preventDefault();
+      history.goBack();
+    }
+
     componentDidMount() {
       const {currentMovie} = this.props;
       const video = this._videoRef.current;
@@ -110,7 +115,7 @@ const withVideoControls = (Component) => {
     }
 
     render() {
-      const {currentMovie, onExitButtonClick} = this.props;
+      const {currentMovie} = this.props;
       const {videoDuration, currentVideoTime} = this.state;
       const videoPlaybackStatus = {
         timeLeft: getTimeLeft(videoDuration, currentVideoTime),
@@ -122,12 +127,12 @@ const withVideoControls = (Component) => {
       return (
         <Component
           {...this.props}
+          currentMovie={currentMovie}
+          videoPlaybackStatus={videoPlaybackStatus}
+          onExitButtonClick={this._handleExitButtonClick}
+          onFullScreenButtonClick={this._handleFullScreenButtonClick}
           renderVideoPlayer={this._renderVideoPlayer}
           renderPlayPauseButton={this._renderPlayPauseButton}
-          currentMovie={currentMovie}
-          onExitButtonClick={onExitButtonClick}
-          onFullScreenButtonClick={this._handleFullScreenButtonClick}
-          videoPlaybackStatus={videoPlaybackStatus}
         />
       );
     }
@@ -135,20 +140,13 @@ const withVideoControls = (Component) => {
 
   WithVideoControls.propTypes = {
     currentMovie: CustomPropTypes.MOVIE,
-    onExitButtonClick: PropTypes.func.isRequired,
   };
 
-  const mapStateToProps = (state) => ({
-    currentMovie: getCurrentMovie(state),
+  const mapStateToProps = (state, ownProps) => ({
+    currentMovie: getCurrentMovieById(state, ownProps),
   });
 
-  const mapDispatchToProps = (dispatch) => ({
-    onExitButtonClick() {
-      dispatch(ActionCreator.stopWatchingMovie());
-    },
-  });
-
-  return connect(mapStateToProps, mapDispatchToProps)(WithVideoControls);
+  return connect(mapStateToProps)(WithVideoControls);
 };
 
 export default withVideoControls;

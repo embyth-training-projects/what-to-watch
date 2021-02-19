@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {getCurrentMovie} from "../../store/app/selectors";
+import {getCurrentMovieById} from "../../store/app/selectors";
 import {getReviewRequestStatus} from "../../store/data/selectors";
 import {Operations as DataOperations, ActionCreator} from "../../store/data/data";
 
@@ -83,8 +83,8 @@ const withReview = (Component) => {
     clearSendingError: PropTypes.func.isRequired,
   };
 
-  const mapStateToProps = (state) => ({
-    currentMovie: getCurrentMovie(state),
+  const mapStateToProps = (state, ownProps) => ({
+    currentMovie: getCurrentMovieById(state, ownProps),
     isReviewSending: getReviewRequestStatus(state) === RequestStatus.SENDING,
     isSendingError: getReviewRequestStatus(state) === RequestStatus.ERROR,
   });

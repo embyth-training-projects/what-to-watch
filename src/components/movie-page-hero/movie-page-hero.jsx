@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 import PageHeader from "../page-header/page-header";
 
@@ -8,9 +9,9 @@ import {ActionCreator} from "../../store/app/app";
 import {getAuthorizationStatus} from "../../store/user/selectors";
 
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
-import {AuthorizationStatus} from "../../helpers/const";
+import {AuthorizationStatus, AppRoute} from "../../helpers/const";
 
-const MoviePageHero = ({currentMovie, isSignIn, onPlayButtonClick, onAddReviewClick}) => (
+const MoviePageHero = ({currentMovie, isSignIn, onAddReviewClick}) => (
   <div className="movie-card__hero">
     <div className="movie-card__bg">
       <img src={currentMovie.background} alt={currentMovie.title} />
@@ -29,12 +30,12 @@ const MoviePageHero = ({currentMovie, isSignIn, onPlayButtonClick, onAddReviewCl
         </p>
 
         <div className="movie-card__buttons">
-          <button className="btn btn--play movie-card__button" type="button" onClick={onPlayButtonClick}>
+          <Link to={`${AppRoute.PLAYER}/${currentMovie.id}`} className="btn btn--play movie-card__button">
             <svg viewBox="0 0 19 19" width="19" height="19">
               <use xlinkHref="#play-s"></use>
             </svg>
             <span>Play</span>
-          </button>
+          </Link>
           <button className="btn btn--list movie-card__button" type="button">
             <svg viewBox="0 0 19 20" width="19" height="20">
               <use xlinkHref="#add"></use>
@@ -42,7 +43,7 @@ const MoviePageHero = ({currentMovie, isSignIn, onPlayButtonClick, onAddReviewCl
             <span>My list</span>
           </button>
           {isSignIn &&
-            <a href="add-review.html" className="btn movie-card__button" onClick={onAddReviewClick}>Add review</a>
+            <Link to={`${AppRoute.MOVIE}/${currentMovie.id}${AppRoute.ADD_REVIEW}`} className="btn movie-card__button" onClick={onAddReviewClick}>Add review</Link>
           }
         </div>
       </div>
@@ -53,7 +54,6 @@ const MoviePageHero = ({currentMovie, isSignIn, onPlayButtonClick, onAddReviewCl
 MoviePageHero.propTypes = {
   currentMovie: CustomPropTypes.MOVIE,
   isSignIn: PropTypes.bool.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
   onAddReviewClick: PropTypes.func.isRequired,
 };
 
@@ -62,12 +62,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onPlayButtonClick() {
-    dispatch(ActionCreator.watchMovie());
-  },
-
-  onAddReviewClick(evt) {
-    evt.preventDefault();
+  onAddReviewClick() {
     dispatch(ActionCreator.addReview());
   },
 });

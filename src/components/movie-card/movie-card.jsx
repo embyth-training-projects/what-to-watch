@@ -1,13 +1,12 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
+import {Link} from "react-router-dom";
+import history from "../../history";
 
 import VideoPlayer from "../video-player/video-player";
 
-import {ActionCreator} from "../../store/app/app";
-import {Operations as DataOperations} from "../../store/data/data";
-
 import {CustomPropTypes} from "../../helpers/custom-prop-types";
+import {AppRoute} from "../../helpers/const";
 
 class MovieCard extends PureComponent {
   constructor(props) {
@@ -17,10 +16,10 @@ class MovieCard extends PureComponent {
   }
 
   _handleMovieCardClick(evt) {
-    const {movie, onMovieCardClick} = this.props;
+    const {movie} = this.props;
 
     evt.preventDefault();
-    onMovieCardClick(movie);
+    history.push(`${AppRoute.MOVIE}/${movie.id}`);
   }
 
   render() {
@@ -42,7 +41,7 @@ class MovieCard extends PureComponent {
           />
         </div>
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
+          <Link className="small-movie-card__link" to={`${AppRoute.MOVIE}/${movie.id}`}>{movie.title}</Link>
         </h3>
       </article>
     );
@@ -52,19 +51,8 @@ class MovieCard extends PureComponent {
 MovieCard.propTypes = {
   movie: CustomPropTypes.MOVIE,
   isPlaying: PropTypes.bool.isRequired,
-  onMovieCardClick: PropTypes.func.isRequired,
   onMovieCardMouseEnter: PropTypes.func.isRequired,
   onMovieCardMouseOut: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onMovieCardClick(movie) {
-    dispatch(ActionCreator.goToMoviePage());
-    dispatch(ActionCreator.setCurrentMovie(movie));
-    dispatch(ActionCreator.setCurrentGenre(movie.genre));
-    dispatch(DataOperations.loadMovieReviews(movie.id));
-  }
-});
-
-export {MovieCard};
-export default connect(null, mapDispatchToProps)(MovieCard);
+export default MovieCard;
