@@ -9,6 +9,7 @@ export const initialState = {
   movies: [],
   movieReviews: [],
   isLoadError: false,
+  isLoading: true,
   reviewRequestStatus: RequestStatus.NOT_SENT,
 };
 
@@ -18,6 +19,7 @@ export const ActionType = {
   LOAD_MOVIE_REVIEWS: `LOAD_MOVIE_REVIEWS`,
   CATCH_LOAD_ERROR: `CATCH_LOAD_ERROR`,
   SET_REVIEW_REQUEST_STATUS: `SET_REVIEW_REQUEST_STATUS`,
+  FINISH_LOADING: `FINISH_LOADING`,
 };
 
 export const ActionCreator = {
@@ -55,6 +57,13 @@ export const ActionCreator = {
       payload: status,
     };
   },
+
+  finishLoading: () => {
+    return {
+      type: ActionType.FINISH_LOADING,
+      payload: false,
+    };
+  },
 };
 
 export const Operations = {
@@ -75,6 +84,7 @@ export const Operations = {
       .then((response) => {
         const apdatedMovies = response.data.map((movie) => createMovie(movie));
         dispatch(ActionCreator.loadMovies(apdatedMovies));
+        dispatch(ActionCreator.finishLoading());
       })
       .catch(() => {
         dispatch(ActionCreator.catchLoadError());
@@ -131,6 +141,11 @@ export const reducer = (state = initialState, action) => {
     case ActionType.SET_REVIEW_REQUEST_STATUS:
       return extend(state, {
         reviewRequestStatus: action.payload,
+      });
+
+    case ActionType.FINISH_LOADING:
+      return extend(state, {
+        isLoading: action.payload,
       });
 
     default:

@@ -1,8 +1,8 @@
 import {extend} from "../../helpers/utils";
-import {Pages, ALL_GENRES, emptyMovie} from "../../helpers/const";
+import {Pages, ALL_GENRES} from "../../helpers/const";
 
 export const initialState = {
-  currentMovie: emptyMovie,
+  currentMovie: {},
   currentGenre: ALL_GENRES,
   currentPage: Pages.MAIN,
   isMoviePlayerActive: false,
@@ -11,7 +11,6 @@ export const initialState = {
 export const ActionType = {
   SET_CURRENT_MOVIE: `SET_CURRENT_MOVIE`,
   SET_CURRENT_GENRE: `SET_CURRENT_GENRE`,
-  GO_TO_MAIN_PAGE: `GO_TO_MAIN_PAGE`,
   GO_TO_MOVIE_PAGE: `GO_TO_MOVIE_PAGE`,
   GO_TO_SIGN_IN_PAGE: `GO_TO_SIGN_IN_PAGE`,
   ADD_REVIEW: `ADD_REVIEW`,
@@ -34,24 +33,10 @@ export const ActionCreator = {
     };
   },
 
-  goToMainPage: () => {
-    return {
-      type: ActionType.GO_TO_MAIN_PAGE,
-      payload: Pages.MAIN,
-    };
-  },
-
   goToMoviePage: () => {
     return {
       type: ActionType.GO_TO_MOVIE_PAGE,
       payload: Pages.MOVIE,
-    };
-  },
-
-  goToSignInPage: () => {
-    return {
-      type: ActionType.GO_TO_SIGN_IN_PAGE,
-      payload: Pages.SIGN_IN,
     };
   },
 
@@ -87,11 +72,6 @@ export const reducer = (state = initialState, action) => {
     case ActionType.SET_CURRENT_GENRE:
       return extend(state, {
         currentGenre: action.payload,
-      });
-
-    case ActionType.GO_TO_MAIN_PAGE:
-      return extend(state, {
-        currentPage: action.payload,
       });
 
     case ActionType.GO_TO_MOVIE_PAGE:

@@ -12,6 +12,8 @@ export const getMovieReviews = (state) => state[NameSpace.DATA].movieReviews;
 
 export const getIsLoadError = (state) => state[NameSpace.DATA].isLoadError;
 
+export const getIsLoading = (state) => state[NameSpace.DATA].isLoading;
+
 export const getReviewRequestStatus = (state) => state[NameSpace.DATA].reviewRequestStatus;
 
 export const getMoviesGenres = createSelector(

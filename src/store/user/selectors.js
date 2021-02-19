@@ -5,3 +5,5 @@ export const getAuthorizationStatus = (state) => state[NameSpace.USER].authoriza
 export const getIsAuthorizationError = (state) => state[NameSpace.USER].isAuthorizationError;
 
 export const getUserInfo = (state) => state[NameSpace.USER].userInfo;
+
+export const getIsAuthorizationProcessFinished = (state) => state[NameSpace.USER].isAuthorizationProcessFinished;

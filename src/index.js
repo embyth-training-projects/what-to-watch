@@ -16,7 +16,7 @@ import {Operations as UserOperation, ActionCreator as UserActionCreator} from ".
 import {AuthorizationStatus} from "./helpers/const";
 
 const root = document.querySelector(`#root`);
-const onUnauthorized = () => store.dispatch(UserActionCreator.requireAuthorization(AuthorizationStatus.NOT_AUTH));
+const onUnauthorized = () => store.dispatch(UserActionCreator.setAuthorizationStatus(AuthorizationStatus.NOT_AUTH));
 const api = createAPI(onUnauthorized);
 
 const store = createStore(
