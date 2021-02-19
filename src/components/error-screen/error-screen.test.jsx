@@ -1,20 +1,21 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
+import {Router} from "react-router-dom";
 import configureStore from "redux-mock-store";
+import history from "../../history";
 
 import ErrorScreen from "./error-screen";
 
 import NameSpace from "../../store/name-space";
 import {movieItemMock} from "../../helpers/test-data";
-import {Pages, AuthorizationStatus} from "../../helpers/const";
+import {AuthorizationStatus} from "../../helpers/const";
 
 const mockStore = configureStore([]);
 
 it(`ErrorScreen should render correctly`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
-      currentPage: Pages.MAIN,
       currentMovie: movieItemMock,
     },
     [NameSpace.DATA]: {
@@ -27,9 +28,11 @@ it(`ErrorScreen should render correctly`, () => {
 
   const tree = renderer
     .create(
-        <Provider store={store}>
-          <ErrorScreen />
-        </Provider>, {
+        <Router history={history}>
+          <Provider store={store}>
+            <ErrorScreen />
+          </Provider>
+        </Router>, {
           createNodeMock: () => {
             return {};
           }

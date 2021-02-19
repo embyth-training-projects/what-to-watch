@@ -9,7 +9,8 @@ exports[`PageFooter test Should render correctly on inner page 1`] = `
   >
     <a
       className="logo__link logo__link--light"
-      href="main.html"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="logo__letter logo__letter--1"
@@ -32,7 +33,9 @@ exports[`PageFooter test Should render correctly on inner page 1`] = `
     className="copyright"
   >
     <p>
-      © 2020 What to watch Ltd.
+      © 
+      2021
+       What to watch Ltd.
     </p>
   </div>
 </footer>
@@ -47,7 +50,8 @@ exports[`PageFooter test Should render correctly on main page 1`] = `
   >
     <a
       className="logo__link logo__link--light"
-      href=""
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="logo__letter logo__letter--1"
@@ -70,7 +74,9 @@ exports[`PageFooter test Should render correctly on main page 1`] = `
     className="copyright"
   >
     <p>
-      © 2020 What to watch Ltd.
+      © 
+      2021
+       What to watch Ltd.
     </p>
   </div>
 </footer>

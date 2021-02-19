@@ -9,77 +9,9 @@ exports[`PageHeader tests Should render correctly on add review page 1`] = `
   >
     <a
       className="logo__link"
-      href="main.html"
-    >
-      <span
-        className="logo__letter logo__letter--1"
-      >
-        W
-      </span>
-      <span
-        className="logo__letter logo__letter--2"
-      >
-        T
-      </span>
-      <span
-        className="logo__letter logo__letter--3"
-      >
-        W
-      </span>
-    </a>
-  </div>
-  <nav
-    className="breadcrumbs"
-  >
-    <ul
-      className="breadcrumbs__list"
-    >
-      <li
-        className="breadcrumbs__item"
-      >
-        <a
-          className="breadcrumbs__link"
-          href="movie-page.html"
-        >
-          The Grand Budapest Hotel
-        </a>
-      </li>
-      <li
-        className="breadcrumbs__item"
-      >
-        <a
-          className="breadcrumbs__link"
-        >
-          Add review
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <div
-    className="user-block"
-  >
-    <a
-      className="user-block__link"
-      href="sign-in.html"
+      href="/"
       onClick={[Function]}
     >
-      Sign in
-    </a>
-  </div>
-</header>
-`;
-
-exports[`PageHeader tests Should render correctly on inner page with user signed in 1`] = `
-<header
-  className="page-header movie-card__head"
->
-  <div
-    className="logo"
-  >
-    <a
-      className="logo__link"
-      href="main.html"
-    >
       <span
         className="logo__letter logo__letter--1"
       >
@@ -97,19 +29,27 @@ exports[`PageHeader tests Should render correctly on inner page with user signed
       </span>
     </a>
   </div>
+  <div>
+    Breadcrumbs
+  </div>
   <div
     className="user-block"
   >
-    <div
-      className="user-block__avatar"
+    <a
+      href="/mylist"
+      onClick={[Function]}
     >
-      <img
-        alt="Fake"
-        height="63"
-        src="https://avatar-base.com/1337"
-        width="63"
-      />
-    </div>
+      <div
+        className="user-block__avatar"
+      >
+        <img
+          alt="Fake"
+          height="63"
+          src="https://avatar-base.com/1337"
+          width="63"
+        />
+      </div>
+    </a>
   </div>
 </header>
 `;
@@ -123,7 +63,8 @@ exports[`PageHeader tests Should render correctly on main page 1`] = `
   >
     <a
       className="logo__link"
-      href=""
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="logo__letter logo__letter--1"
@@ -147,7 +88,7 @@ exports[`PageHeader tests Should render correctly on main page 1`] = `
   >
     <a
       className="user-block__link"
-      href="sign-in.html"
+      href="/login"
       onClick={[Function]}
     >
       Sign in
@@ -158,6 +99,43 @@ exports[`PageHeader tests Should render correctly on main page 1`] = `
 
 exports[`PageHeader tests Should render correctly on main page with user signed in 1`] = `
 <header
+  className="page-header user-page__head"
+>
+  <div
+    className="logo"
+  >
+    <a
+      className="logo__link"
+      href="/"
+      onClick={[Function]}
+    >
+      <span
+        className="logo__letter logo__letter--1"
+      >
+        W
+      </span>
+      <span
+        className="logo__letter logo__letter--2"
+      >
+        T
+      </span>
+      <span
+        className="logo__letter logo__letter--3"
+      >
+        W
+      </span>
+    </a>
+  </div>
+  <h1
+    className="page-title user-page__title"
+  >
+    Sign in
+  </h1>
+</header>
+`;
+
+exports[`PageHeader tests Should render correctly on movie page 1`] = `
+<header
   className="page-header movie-card__head"
 >
   <div
@@ -165,7 +143,8 @@ exports[`PageHeader tests Should render correctly on main page with user signed 
   >
     <a
       className="logo__link"
-      href=""
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="logo__letter logo__letter--1"
@@ -187,16 +166,77 @@ exports[`PageHeader tests Should render correctly on main page with user signed 
   <div
     className="user-block"
   >
-    <div
-      className="user-block__avatar"
+    <a
+      href="/mylist"
+      onClick={[Function]}
     >
-      <img
-        alt="Fake"
-        height="63"
-        src="https://avatar-base.com/1337"
-        width="63"
-      />
-    </div>
+      <div
+        className="user-block__avatar"
+      >
+        <img
+          alt="Fake"
+          height="63"
+          src="https://avatar-base.com/1337"
+          width="63"
+        />
+      </div>
+    </a>
+  </div>
+</header>
+`;
+
+exports[`PageHeader tests Should render correctly on my list page 1`] = `
+<header
+  className="page-header user-page__head"
+>
+  <div
+    className="logo"
+  >
+    <a
+      className="logo__link"
+      href="/"
+      onClick={[Function]}
+    >
+      <span
+        className="logo__letter logo__letter--1"
+      >
+        W
+      </span>
+      <span
+        className="logo__letter logo__letter--2"
+      >
+        T
+      </span>
+      <span
+        className="logo__letter logo__letter--3"
+      >
+        W
+      </span>
+    </a>
+  </div>
+  <h1
+    className="page-title user-page__title"
+  >
+    My list
+  </h1>
+  <div
+    className="user-block"
+  >
+    <a
+      href="/mylist"
+      onClick={[Function]}
+    >
+      <div
+        className="user-block__avatar"
+      >
+        <img
+          alt="Fake"
+          height="63"
+          src="https://avatar-base.com/1337"
+          width="63"
+        />
+      </div>
+    </a>
   </div>
 </header>
 `;
@@ -210,7 +250,8 @@ exports[`PageHeader tests Should render correctly on signin page 1`] = `
   >
     <a
       className="logo__link"
-      href="main.html"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="logo__letter logo__letter--1"

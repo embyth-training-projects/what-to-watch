@@ -2,12 +2,13 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {Router} from "react-router-dom";
+import history from "../../history";
 
 import SignIn from "./sign-in";
 
 import NameSpace from "../../store/name-space";
 import {movieItemMock} from "../../helpers/test-data";
-import {Pages} from "../../helpers/const";
 
 const mockStore = configureStore([]);
 
@@ -16,7 +17,6 @@ describe(`SignIn tests`, () => {
     const store = mockStore({
       [NameSpace.APP]: {
         currentMovie: movieItemMock,
-        currentPage: Pages.SIGN_IN,
       },
       [NameSpace.USER]: {
         isAuthorizationError: false,
@@ -25,9 +25,11 @@ describe(`SignIn tests`, () => {
 
     const tree = renderer
     .create(
-        <Provider store={store}>
-          <SignIn />
-        </Provider>, {
+        <Router history={history}>
+          <Provider store={store}>
+            <SignIn />
+          </Provider>
+        </Router>, {
           createNodeMock: () => {
             return {};
           }
@@ -41,7 +43,6 @@ describe(`SignIn tests`, () => {
   it(`SignIn should render correctly with Error Message`, () => {
     const store = mockStore({
       [NameSpace.APP]: {
-        currentPage: Pages.SIGN_IN,
         currentMovie: movieItemMock,
       },
       [NameSpace.USER]: {
@@ -51,9 +52,11 @@ describe(`SignIn tests`, () => {
 
     const tree = renderer
     .create(
-        <Provider store={store}>
-          <SignIn />
-        </Provider>, {
+        <Router history={history}>
+          <Provider store={store}>
+            <SignIn />
+          </Provider>
+        </Router>, {
           createNodeMock: () => {
             return {};
           }

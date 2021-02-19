@@ -12,7 +12,8 @@ exports[`ErrorScreen should render correctly 1`] = `
     >
       <a
         className="logo__link"
-        href=""
+        href="/"
+        onClick={[Function]}
       >
         <span
           className="logo__letter logo__letter--1"
@@ -36,7 +37,7 @@ exports[`ErrorScreen should render correctly 1`] = `
     >
       <a
         className="user-block__link"
-        href="sign-in.html"
+        href="/login"
         onClick={[Function]}
       >
         Sign in
@@ -63,7 +64,8 @@ exports[`ErrorScreen should render correctly 1`] = `
     >
       <a
         className="logo__link logo__link--light"
-        href=""
+        href="/"
+        onClick={[Function]}
       >
         <span
           className="logo__letter logo__letter--1"
@@ -86,7 +88,9 @@ exports[`ErrorScreen should render correctly 1`] = `
       className="copyright"
     >
       <p>
-        © 2020 What to watch Ltd.
+        © 
+        2021
+         What to watch Ltd.
       </p>
     </div>
   </footer>

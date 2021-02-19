@@ -2,6 +2,8 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {Router} from "react-router-dom";
+import history from "../../history";
 
 import MoviePage from "./movie-page";
 
@@ -11,7 +13,7 @@ import {AuthorizationStatus} from "../../helpers/const";
 
 const mockStore = configureStore([]);
 
-it(`Should render correctly Movie Page`, () => {
+it(`MoviePage should render correctly`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
       currentMovie: movieItemMock,
@@ -25,11 +27,18 @@ it(`Should render correctly Movie Page`, () => {
     },
   });
 
+  store.dispatch = jest.fn();
+
   const tree = renderer
     .create(
-        <Provider store={store}>
-          <MoviePage />
-        </Provider>, {
+        <Router history={history}>
+          <Provider store={store}>
+            <MoviePage
+              loadMovieInfo={() => {}}
+              routeProps={{match: {params: {id: 189234}, isExact: true, path: ``, url: ``}}}
+            />
+          </Provider>
+        </Router>, {
           createNodeMock: () => {
             return {};
           }

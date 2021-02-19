@@ -1,7 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
+import {Router} from "react-router-dom";
 import configureStore from "redux-mock-store";
+import history from "../../history";
 
 import Catalog from "./catalog";
 
@@ -25,9 +27,11 @@ it(`Catalog should render correctly`, () => {
 
   const tree = renderer
     .create(
-        <Provider store={store}>
-          <Catalog />
-        </Provider>, {
+        <Router history={history}>
+          <Provider store={store}>
+            <Catalog />
+          </Provider>
+        </Router>, {
           createNodeMock: () => {
             return {};
           }

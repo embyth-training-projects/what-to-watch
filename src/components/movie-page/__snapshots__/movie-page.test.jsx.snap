@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should render correctly Movie Page 1`] = `
+exports[`MoviePage should render correctly 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
@@ -17,8 +17,8 @@ Array [
         className="movie-card__bg"
       >
         <img
-          alt="The Grand Budapest Hotel"
-          src="img/bg-the-grand-budapest-hotel.jpg"
+          alt="Fantastic Beasts: The Crimes of Grindelwald"
+          src="https://placeimg.com/1300/512/nature"
         />
       </div>
       <h1
@@ -34,7 +34,8 @@ Array [
         >
           <a
             className="logo__link"
-            href="main.html"
+            href="/"
+            onClick={[Function]}
           >
             <span
               className="logo__letter logo__letter--1"
@@ -56,16 +57,21 @@ Array [
         <div
           className="user-block"
         >
-          <div
-            className="user-block__avatar"
+          <a
+            href="/mylist"
+            onClick={[Function]}
           >
-            <img
-              alt="Fake"
-              height="63"
-              src="https://avatar-base.com/1337"
-              width="63"
-            />
-          </div>
+            <div
+              className="user-block__avatar"
+            >
+              <img
+                alt="Fake"
+                height="63"
+                src="https://avatar-base.com/1337"
+                width="63"
+              />
+            </div>
+          </a>
         </div>
       </header>
       <div
@@ -77,7 +83,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            The Grand Budapest Hotel
+            Fantastic Beasts: The Crimes of Grindelwald
           </h2>
           <p
             className="movie-card__meta"
@@ -85,21 +91,21 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Drama
+              Kids & Family
             </span>
             <span
               className="movie-card__year"
             >
-              2014
+              2018
             </span>
           </p>
           <div
             className="movie-card__buttons"
           >
-            <button
+            <a
               className="btn btn--play movie-card__button"
+              href="/player/189234"
               onClick={[Function]}
-              type="button"
             >
               <svg
                 height="19"
@@ -113,9 +119,10 @@ Array [
               <span>
                 Play
               </span>
-            </button>
+            </a>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -133,7 +140,7 @@ Array [
             </button>
             <a
               className="btn movie-card__button"
-              href="add-review.html"
+              href="/films/189234/review"
               onClick={[Function]}
             >
               Add review
@@ -152,9 +159,9 @@ Array [
           className="movie-card__poster movie-card__poster--big"
         >
           <img
-            alt="The Grand Budapest Hotel"
+            alt="Fantastic Beasts: The Crimes of Grindelwald"
             height="327"
-            src="img/the-grand-budapest-hotel-poster.jpg"
+            src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
             width="218"
           />
         </div>
@@ -208,7 +215,7 @@ Array [
             <div
               className="movie-rating__score"
             >
-              8,9
+              6,6
             </div>
             <p
               className="movie-rating__meta"
@@ -216,12 +223,12 @@ Array [
               <span
                 className="movie-rating__level"
               >
-                Very good
+                Good
               </span>
               <span
                 className="movie-rating__count"
               >
-                240
+                500
                  ratings
               </span>
             </p>
@@ -230,14 +237,14 @@ Array [
             className="movie-card__text"
           >
             <p>
-              In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege
+              The second installment of the "Fantastic Beasts" series featuring the adventures of Magizoologist Newt Scamander.
             </p>
             <p
               className="movie-card__director"
             >
               <strong>
                 Director: 
-                Wes Andreson
+                David Yates
               </strong>
             </p>
             <p
@@ -245,7 +252,7 @@ Array [
             >
               <strong>
                 Starring: 
-                Bill Murray, Edward Norton, Jude Law, Willem Dafoe, Saoirse Ronan, Tony Revoloru, Tilda Swinton, Tom Wilkinson, Owen Wilkinson, Adrien Brody, Ralph Fiennes, Jeff Goldblum
+                Johnny Depp, Eddie Redmayne, Katherine Waterston, Dan Fogler
                  and other
               </strong>
             </p>
@@ -277,7 +284,8 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
-          href="main.html"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -300,7 +308,9 @@ Array [
         className="copyright"
       >
         <p>
-          © 2020 What to watch Ltd.
+          © 
+          2021
+           What to watch Ltd.
         </p>
       </div>
     </footer>

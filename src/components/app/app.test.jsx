@@ -8,24 +8,24 @@ import App from "./app";
 import NameSpace from "../../store/name-space";
 
 import {movieItemMock, moviesMock, userMock} from "../../helpers/test-data";
-import {Pages, AuthorizationStatus} from "../../helpers/const";
+import {AuthorizationStatus} from "../../helpers/const";
 
 const mockStore = configureStore([]);
 
 it(`Should App render correctly`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
-      currentPage: Pages.MAIN,
       currentMovie: movieItemMock,
       currentGenre: `All genres`,
-      isMoviePlayerActive: false,
     },
     [NameSpace.DATA]: {
       moviePromo: movieItemMock,
       movies: moviesMock,
       isLoadError: false,
+      isLoading: false,
     },
     [NameSpace.USER]: {
+      isAuthorizationProcessFinished: true,
       authorizationStatus: AuthorizationStatus.AUTH,
       userInfo: userMock,
     },

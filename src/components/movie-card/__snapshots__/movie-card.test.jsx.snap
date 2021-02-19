@@ -3,29 +3,29 @@
 exports[`Should render correctly movie card 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
-  onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseOut={[Function]}
 >
-  <div
-    className="small-movie-card__image"
+  <a
+    className="small-movie-card__link"
+    href="/films/190123"
+    onClick={[Function]}
   >
-    <video
-      height="175"
-      width="280"
+    <div
+      className="small-movie-card__image"
     >
-      Sorry, your browser doesn't support embedded videos.
-    </video>
-  </div>
-  <h3
-    className="small-movie-card__title"
-  >
-    <a
-      className="small-movie-card__link"
-      href="movie-page.html"
+      <video
+        height="175"
+        width="280"
+      >
+        Sorry, your browser doesn't support embedded videos.
+      </video>
+    </div>
+    <h3
+      className="small-movie-card__title"
     >
       The Grand Budapest Hotel
-    </a>
-  </h3>
+    </h3>
+  </a>
 </article>
 `;

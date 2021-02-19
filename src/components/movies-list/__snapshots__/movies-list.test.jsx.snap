@@ -6,111 +6,111 @@ exports[`Should render correctly movies list 1`] = `
 >
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseOut={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      className="small-movie-card__link"
+      href="/films/189234"
+      onClick={[Function]}
     >
-      <video
-        height="175"
-        width="280"
+      <div
+        className="small-movie-card__image"
       >
-        Sorry, your browser doesn't support embedded videos.
-      </video>
-    </div>
-    <h3
-      className="small-movie-card__title"
-    >
-      <a
-        className="small-movie-card__link"
-        href="movie-page.html"
+        <video
+          height="175"
+          width="280"
+        >
+          Sorry, your browser doesn't support embedded videos.
+        </video>
+      </div>
+      <h3
+        className="small-movie-card__title"
       >
         Fantastic Beasts: The Crimes of Grindelwald
-      </a>
-    </h3>
+      </h3>
+    </a>
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseOut={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      className="small-movie-card__link"
+      href="/films/178345"
+      onClick={[Function]}
     >
-      <video
-        height="175"
-        width="280"
+      <div
+        className="small-movie-card__image"
       >
-        Sorry, your browser doesn't support embedded videos.
-      </video>
-    </div>
-    <h3
-      className="small-movie-card__title"
-    >
-      <a
-        className="small-movie-card__link"
-        href="movie-page.html"
+        <video
+          height="175"
+          width="280"
+        >
+          Sorry, your browser doesn't support embedded videos.
+        </video>
+      </div>
+      <h3
+        className="small-movie-card__title"
       >
         Bohemian Rhapsody
-      </a>
-    </h3>
+      </h3>
+    </a>
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseOut={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      className="small-movie-card__link"
+      href="/films/167456"
+      onClick={[Function]}
     >
-      <video
-        height="175"
-        width="280"
+      <div
+        className="small-movie-card__image"
       >
-        Sorry, your browser doesn't support embedded videos.
-      </video>
-    </div>
-    <h3
-      className="small-movie-card__title"
-    >
-      <a
-        className="small-movie-card__link"
-        href="movie-page.html"
+        <video
+          height="175"
+          width="280"
+        >
+          Sorry, your browser doesn't support embedded videos.
+        </video>
+      </div>
+      <h3
+        className="small-movie-card__title"
       >
         Aviator
-      </a>
-    </h3>
+      </h3>
+    </a>
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseOut={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      className="small-movie-card__link"
+      href="/films/156567"
+      onClick={[Function]}
     >
-      <video
-        height="175"
-        width="280"
+      <div
+        className="small-movie-card__image"
       >
-        Sorry, your browser doesn't support embedded videos.
-      </video>
-    </div>
-    <h3
-      className="small-movie-card__title"
-    >
-      <a
-        className="small-movie-card__link"
-        href="movie-page.html"
+        <video
+          height="175"
+          width="280"
+        >
+          Sorry, your browser doesn't support embedded videos.
+        </video>
+      </div>
+      <h3
+        className="small-movie-card__title"
       >
         Shutter Island
-      </a>
-    </h3>
+      </h3>
+    </a>
   </article>
 </div>
 `;

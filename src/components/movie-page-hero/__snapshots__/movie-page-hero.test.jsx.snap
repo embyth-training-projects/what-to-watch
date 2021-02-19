@@ -25,7 +25,8 @@ exports[`MoviePageHero should render correctly 1`] = `
     >
       <a
         className="logo__link"
-        href="main.html"
+        href="/"
+        onClick={[Function]}
       >
         <span
           className="logo__letter logo__letter--1"
@@ -47,16 +48,21 @@ exports[`MoviePageHero should render correctly 1`] = `
     <div
       className="user-block"
     >
-      <div
-        className="user-block__avatar"
+      <a
+        href="/mylist"
+        onClick={[Function]}
       >
-        <img
-          alt="Fake"
-          height="63"
-          src="https://avatar-base.com/1337"
-          width="63"
-        />
-      </div>
+        <div
+          className="user-block__avatar"
+        >
+          <img
+            alt="Fake"
+            height="63"
+            src="https://avatar-base.com/1337"
+            width="63"
+          />
+        </div>
+      </a>
     </div>
   </header>
   <div
@@ -87,10 +93,10 @@ exports[`MoviePageHero should render correctly 1`] = `
       <div
         className="movie-card__buttons"
       >
-        <button
+        <a
           className="btn btn--play movie-card__button"
+          href="/player/190123"
           onClick={[Function]}
-          type="button"
         >
           <svg
             height="19"
@@ -104,9 +110,10 @@ exports[`MoviePageHero should render correctly 1`] = `
           <span>
             Play
           </span>
-        </button>
+        </a>
         <button
           className="btn btn--list movie-card__button"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -124,7 +131,7 @@ exports[`MoviePageHero should render correctly 1`] = `
         </button>
         <a
           className="btn movie-card__button"
-          href="add-review.html"
+          href="/films/190123/review"
           onClick={[Function]}
         >
           Add review

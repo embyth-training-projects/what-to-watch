@@ -33,7 +33,8 @@ exports[`AddReview should render correctly 1`] = `
       >
         <a
           className="logo__link"
-          href="main.html"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -52,12 +53,40 @@ exports[`AddReview should render correctly 1`] = `
           </span>
         </a>
       </div>
+      <nav
+        className="breadcrumbs"
+      >
+        <ul
+          className="breadcrumbs__list"
+        >
+          <li
+            className="breadcrumbs__item"
+          >
+            <a
+              className="breadcrumbs__link"
+              href="/films/190123"
+              onClick={[Function]}
+            >
+              The Grand Budapest Hotel
+            </a>
+          </li>
+          <li
+            className="breadcrumbs__item"
+          >
+            <a
+              className="breadcrumbs__link"
+            >
+              Add review
+            </a>
+          </li>
+        </ul>
+      </nav>
       <div
         className="user-block"
       >
         <a
           className="user-block__link"
-          href="sign-in.html"
+          href="/login"
           onClick={[Function]}
         >
           Sign in
