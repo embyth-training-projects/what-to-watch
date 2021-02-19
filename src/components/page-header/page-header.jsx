@@ -46,7 +46,7 @@ const PageHeader = ({currentPage, isAuth, userInfo, children}) => {
 
       {isReviewPage && children}
       {isHeaderWithTitle && pageTitleElement}
-      {isAuth && userBlockElement}
+      {!isSignInPage && userBlockElement}
 
     </header>
   );

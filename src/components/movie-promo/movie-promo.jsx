@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
 import PageHeader from "../page-header/page-header";
+import MyListButton from "../my-list-button/my-list-button";
 
 import {getMoviePromo} from "../../store/data/selectors";
 
@@ -39,12 +40,7 @@ const MoviePromo = ({moviePromo}) => (
               </svg>
               <span>Play</span>
             </Link>
-            <button className="btn btn--list movie-card__button" type="button">
-              <svg viewBox="0 0 19 20" width="19" height="20">
-                <use xlinkHref="#add"></use>
-              </svg>
-              <span>My list</span>
-            </button>
+            <MyListButton movie={moviePromo} />
           </div>
         </div>
       </div>
