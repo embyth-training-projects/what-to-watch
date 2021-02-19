@@ -10,6 +10,7 @@ import {getAuthorizationStatus, getIsAuthorizationProcessFinished} from "../../s
 import withVideoControls from "../../hocs/with-video-controls/with-video-controls";
 import withReview from "../../hocs/with-review/with-review";
 
+import Loader from "../loader/loader";
 import MainPage from "../main-page/main-page";
 import MoviePage from "../movie-page/movie-page";
 import MoviePlayer from "../movie-player/movie-player";
@@ -27,7 +28,7 @@ const AddReviewWrapped = withReview(AddReview);
 const App = ({isLoadError, isLoading, isAuthorizationProcessFinished, authorizationStatus}) => (
   <React.Fragment>
     {isLoading && !isAuthorizationProcessFinished
-      ? `Loading...`
+      ? <Loader />
       : <Router history={history}>
         <Switch>
           <Route exact path={AppRoute.ROOT}
