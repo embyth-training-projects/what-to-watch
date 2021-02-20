@@ -1,4 +1,32 @@
-export const movieItemMock = {
+import {MovieInterface, ReviewInterface, ServerMovie, UserInterface, ServerUser} from "./types";
+
+export const noop = () => {
+  // Mock function for test props
+};
+
+export const genres: Array<string> = [`All genres`, `Drama`, `Thriller`, `Comedy`];
+
+export const serverMovie: ServerMovie = {
+  [`name`]: `Snatch`,
+  [`genre`]: `Crime`,
+  [`released`]: 2000,
+  [`background_color`]: `#FFFFFF`,
+  [`background_image`]: `https://placeimg.com/1300/512/nature`,
+  [`preview_image`]: `img/snatch.jpg`,
+  [`poster_image`]: `img/snatch.jpg`,
+  [`id`]: 123890,
+  [`description`]: `Unscrupulous boxing promoters, violent bookmakers, a Russian gangster, incompetent amateur robbers and supposedly Jewish jewelers fight to track down a priceless stolen diamond.`,
+  [`rating`]: 8.3,
+  [`scores_count`]: 1500,
+  [`director`]: `Guy Ritchie`,
+  [`starring`]: [`Jason Statham`, `Brad Pitt`, `Benicio Del Toro`],
+  [`run_time`]: 164,
+  [`preview_video_link`]: `https://upload.wikimedia.org/wikipedia/commons/d/d0/Un_Hiver_%C3%A0_Paris_-_Vimeo.webm`,
+  [`video_link`]: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+  [`is_favorite`]: false,
+};
+
+export const movieItemMock: MovieInterface = {
   title: `The Grand Budapest Hotel`,
   genre: `Drama`,
   date: 2014,
@@ -18,7 +46,7 @@ export const movieItemMock = {
   isFavorite: false,
 };
 
-export const moviesMock = [
+export const moviesMock: Array<MovieInterface> = [
   {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     genre: `Kids & Family`,
@@ -97,7 +125,7 @@ export const moviesMock = [
   },
 ];
 
-export const reviewItemMock = {
+export const reviewItemMock: ReviewInterface = {
   user: {
     id: 0,
     name: `Kate Muir`,
@@ -108,7 +136,7 @@ export const reviewItemMock = {
   id: 345234523,
 };
 
-export const reviewsMock = [
+export const reviewsMock: Array<ReviewInterface> = [
   {
     user: {
       id: 0,
@@ -141,9 +169,14 @@ export const reviewsMock = [
   },
 ];
 
-export const genres = [`All genres`, `Drama`, `Thriller`, `Comedy`];
+export const serverUser: ServerUser = {
+  id: 1337,
+  email: `test@mail.com`,
+  name: `Fake`,
+  [`avatar_url`]: `https://avatar-base.com/1337`,
+};
 
-export const userMock = {
+export const userMock: UserInterface = {
   id: 1337,
   email: `test@mail.com`,
   name: `Fake`,

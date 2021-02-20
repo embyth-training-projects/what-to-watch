@@ -1,4 +1,6 @@
-export const createMovie = (movie) => ({
+import {ServerMovie, ServerUser, MovieInterface, UserInterface} from "./helpers/types";
+
+export const createMovie = (movie: ServerMovie): MovieInterface => ({
   title: movie.name,
   genre: movie.genre,
   date: movie.released,
@@ -18,7 +20,7 @@ export const createMovie = (movie) => ({
   isFavorite: movie.is_favorite,
 });
 
-export const createUser = (user) => ({
+export const createUser = (user: ServerUser): UserInterface => ({
   id: user.id,
   email: user.email,
   name: user.name,
