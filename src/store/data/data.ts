@@ -1,10 +1,29 @@
-import {extend} from "../../helpers/utils";
-import {RequestStatus, Favorites} from "../../helpers/const";
-import {createMovie} from "../../adapters";
-
+import history from "../../history";
 import {ActionCreator as AppActionCreator} from "../app/app";
 
-export const initialState = {
+import {extend} from "../../helpers/utils";
+import {RequestStatus, Favorites} from "../../helpers/const";
+import {MovieInterface, ReviewInterface} from "../../helpers/types";
+
+import {createMovie} from "../../adapters";
+
+interface DataActionInterface {
+  type?: string;
+  payload?: MovieInterface | Array<MovieInterface> | Array<ReviewInterface> | boolean | string;
+}
+
+interface InitialStateInterface {
+  moviePromo?: MovieInterface | {};
+  movies?: Array<MovieInterface> | [];
+  movieReviews?: Array<ReviewInterface> | [];
+  favoriteMovies?: Array<MovieInterface> | [];
+  isLoadError?: boolean;
+  isLoading?: boolean;
+  reviewRequestStatus?: string;
+  favoriteRequestStatus?: string;
+}
+
+export const initialState: InitialStateInterface = {
   moviePromo: {},
   movies: [],
   movieReviews: [],
@@ -27,22 +46,22 @@ export const ActionType = {
 };
 
 export const ActionCreator = {
-  loadMoviePromo: (movie) => ({
+  loadMoviePromo: (movie: MovieInterface) => ({
     type: ActionType.LOAD_MOVIE_PROMO,
     payload: movie,
   }),
 
-  loadMovies: (movies) => ({
+  loadMovies: (movies: Array<MovieInterface>) => ({
     type: ActionType.LOAD_MOVIES,
     payload: movies,
   }),
 
-  loadMovieReviews: (reviews) => ({
+  loadMovieReviews: (reviews: Array<ReviewInterface>) => ({
     type: ActionType.LOAD_MOVIE_REVIEWS,
     payload: reviews,
   }),
 
-  loadFavoriteMovies: (movies) => ({
+  loadFavoriteMovies: (movies: Array<MovieInterface>) => ({
     type: ActionType.LOAD_FAVORITE_MOVIES,
     payload: movies,
   }),
@@ -52,12 +71,12 @@ export const ActionCreator = {
     payload: true,
   }),
 
-  setReviewRequestStatus: (status) => ({
+  setReviewRequestStatus: (status: string) => ({
     type: ActionType.SET_REVIEW_REQUEST_STATUS,
     payload: status,
   }),
 
-  setFavoriteRequestStatus: (status) => ({
+  setFavoriteRequestStatus: (status: string) => ({
     type: ActionType.SET_FAVORITE_REQUEST_STATUS,
     payload: status,
   }),
@@ -134,6 +153,7 @@ export const Operations = {
       .then(() => {
         dispatch(ActionCreator.setReviewRequestStatus(RequestStatus.SUCCESS));
         dispatch(Operations.loadMovieReviews(movieId));
+        history.goBack();
       })
       .catch(() => {
         dispatch(ActionCreator.setReviewRequestStatus(RequestStatus.ERROR));
@@ -141,46 +161,46 @@ export const Operations = {
   },
 };
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action: DataActionInterface) => {
   switch (action.type) {
     case ActionType.LOAD_MOVIE_PROMO:
       return extend(state, {
-        moviePromo: action.payload,
+        moviePromo: action.payload as MovieInterface,
       });
 
     case ActionType.LOAD_MOVIES:
       return extend(state, {
-        movies: action.payload,
+        movies: action.payload as Array<MovieInterface>,
       });
 
     case ActionType.LOAD_MOVIE_REVIEWS:
       return extend(state, {
-        movieReviews: action.payload,
+        movieReviews: action.payload as Array<ReviewInterface>,
       });
 
     case ActionType.LOAD_FAVORITE_MOVIES:
       return extend(state, {
-        favoriteMovies: action.payload,
+        favoriteMovies: action.payload as Array<MovieInterface>,
       });
 
     case ActionType.CATCH_LOAD_ERROR:
       return extend(state, {
-        isLoadError: action.payload,
+        isLoadError: action.payload as boolean,
       });
 
     case ActionType.SET_REVIEW_REQUEST_STATUS:
       return extend(state, {
-        reviewRequestStatus: action.payload,
+        reviewRequestStatus: action.payload as string,
       });
 
     case ActionType.SET_FAVORITE_REQUEST_STATUS:
       return extend(state, {
-        favoriteRequestStatus: action.payload,
+        favoriteRequestStatus: action.payload as string,
       });
 
     case ActionType.FINISH_LOADING:
       return extend(state, {
-        isLoading: action.payload,
+        isLoading: action.payload as boolean,
       });
 
     default:

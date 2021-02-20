@@ -6,10 +6,10 @@ import {createMovie} from "../../adapters";
 import {initialState, ActionType, Operations, reducer} from "./data";
 import {ActionType as AppActionType} from "../app/app";
 
-import {moviesMock, movieItemMock, reviewsMock} from "../../helpers/test-data";
-import {emptyMovie, RequestStatus} from "../../helpers/const";
+import {moviesMock, movieItemMock, reviewsMock, noop, serverMovie} from "../../helpers/test-data";
+import {RequestStatus} from "../../helpers/const";
 
-const api = createAPI();
+const api = createAPI(noop);
 
 describe(`Data State Reducer test`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
@@ -18,7 +18,7 @@ describe(`Data State Reducer test`, () => {
 
   it(`Reducer should update moviePromo by load`, () => {
     expect(reducer({
-      moviePromo: emptyMovie,
+      moviePromo: {},
     }, {
       type: ActionType.LOAD_MOVIE_PROMO,
       payload: movieItemMock,
@@ -168,18 +168,18 @@ describe(`Operations work correctly`, () => {
 
     apiMock
       .onGet(`/films/promo`)
-      .reply(200, movieItemMock);
+      .reply(200, serverMovie);
 
-    return moviePromoLoader(dispatch, () => {}, api)
+    return moviePromoLoader(dispatch, noop, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_MOVIE_PROMO,
-          payload: createMovie(movieItemMock),
+          payload: createMovie(serverMovie),
         });
         expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: AppActionType.SET_CURRENT_MOVIE,
-          payload: createMovie(movieItemMock),
+          payload: createMovie(serverMovie),
         });
       });
   });
@@ -190,14 +190,14 @@ describe(`Operations work correctly`, () => {
 
     apiMock
       .onGet(`/films`)
-      .reply(200, [movieItemMock]);
+      .reply(200, [serverMovie]);
 
-    return moviesLoader(dispatch, () => {}, api)
+    return moviesLoader(dispatch, noop, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_MOVIES,
-          payload: [createMovie(movieItemMock)],
+          payload: [createMovie(serverMovie)],
         });
         expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.FINISH_LOADING,
@@ -214,7 +214,7 @@ describe(`Operations work correctly`, () => {
       .onGet(`/comments/2`)
       .reply(200, reviewsMock);
 
-    return commentsLoader(dispatch, () => {}, api)
+    return commentsLoader(dispatch, noop, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
@@ -230,14 +230,14 @@ describe(`Operations work correctly`, () => {
 
     apiMock
       .onGet(`/favorite`)
-      .reply(200, [movieItemMock]);
+      .reply(200, [serverMovie]);
 
-    return favoriteMoviesLoader(dispatch, () => {}, api)
+    return favoriteMoviesLoader(dispatch, noop, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_FAVORITE_MOVIES,
-          payload: [createMovie(movieItemMock)],
+          payload: [createMovie(serverMovie)],
         });
       });
   });
@@ -250,7 +250,7 @@ describe(`Operations work correctly`, () => {
       .onPost(`/favorite/1/1`)
       .reply(200, [movieItemMock]);
 
-    return sendReview(dispatch, () => {}, api)
+    return sendReview(dispatch, noop, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(4);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
@@ -272,7 +272,7 @@ describe(`Operations work correctly`, () => {
       .onPost(`/favorite/1/0`)
       .reply(200, [movieItemMock]);
 
-    return sendReview(dispatch, () => {}, api)
+    return sendReview(dispatch, noop, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(4);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
@@ -298,7 +298,7 @@ describe(`Operations work correctly`, () => {
       .onPost(`/comments/1`, reviewData)
       .reply(200, [reviewData]);
 
-    return sendReview(dispatch, () => {}, api)
+    return sendReview(dispatch, noop, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {

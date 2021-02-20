@@ -1,6 +1,6 @@
 import {initialState, ActionType, reducer, ActionCreator} from "./app";
 import {movieItemMock} from "../../helpers/test-data";
-import {ALL_GENRES, emptyMovie} from "../../helpers/const";
+import {ALL_GENRES} from "../../helpers/const";
 
 describe(`App State Reducer tests`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
@@ -20,7 +20,7 @@ describe(`App State Reducer tests`, () => {
 
   it(`Reducer should return right current movie`, () => {
     expect(reducer({
-      currentMovie: emptyMovie,
+      currentMovie: {},
     }, {
       type: ActionType.SET_CURRENT_MOVIE,
       payload: movieItemMock,

@@ -1,10 +1,28 @@
 import {createUser} from "../../adapters";
 
 import {extend} from "../../helpers/utils";
-import {AuthorizationStatus, emptyUser} from "../../helpers/const";
+import {UserInterface} from "../../helpers/types";
+import {AuthorizationStatus} from "../../helpers/const";
 
-export const initialState = {
-  userInfo: emptyUser,
+interface UserActionInterface {
+  type?: string;
+  payload?: UserInterface | string | boolean;
+}
+
+interface InitialStateIterface {
+  userInfo?: UserInterface;
+  authorizationStatus?: string;
+  isAuthorizationError?: boolean;
+  isAuthorizationProcessFinished?: boolean;
+}
+
+export const initialState: InitialStateIterface = {
+  userInfo: {
+    id: 0,
+    email: ``,
+    name: ``,
+    avatarSrc: ``,
+  },
   authorizationStatus: AuthorizationStatus.NOT_AUTH,
   isAuthorizationError: false,
   isAuthorizationProcessFinished: false,
@@ -19,7 +37,7 @@ export const ActionType = {
 };
 
 export const ActionCreator = {
-  setAuthorizationStatus: (status) => {
+  setAuthorizationStatus: (status: string) => {
     return {
       type: ActionType.SET_AUTHORIZATION_STATUS,
       payload: status,
@@ -47,7 +65,7 @@ export const ActionCreator = {
     };
   },
 
-  setUserData: (userData) => {
+  setUserData: (userData: UserInterface) => {
     return {
       type: ActionType.SET_USER_DATA,
       payload: userData,
@@ -85,31 +103,31 @@ export const Operations = {
   },
 };
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action: UserActionInterface) => {
   switch (action.type) {
     case ActionType.SET_AUTHORIZATION_STATUS:
       return extend(state, {
-        authorizationStatus: action.payload,
+        authorizationStatus: action.payload as string,
       });
 
     case ActionType.SHOW_AUTHORIZATION_ERROR:
       return extend(state, {
-        isAuthorizationError: action.payload,
+        isAuthorizationError: action.payload as boolean,
       });
 
     case ActionType.FINISH_AUTHORIZATION_PROCESS:
       return extend(state, {
-        isAuthorizationProcessFinished: action.payload,
+        isAuthorizationProcessFinished: action.payload as boolean,
       });
 
     case ActionType.CLEAR_AUTHORIZATION_ERROR:
       return extend(state, {
-        isAuthorizationError: action.payload,
+        isAuthorizationError: action.payload as boolean,
       });
 
     case ActionType.SET_USER_DATA:
       return extend(state, {
-        userInfo: action.payload,
+        userInfo: action.payload as UserInterface,
       });
 
     default:

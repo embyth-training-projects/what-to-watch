@@ -5,10 +5,10 @@ import {createAPI} from "../../api";
 import {initialState, ActionType, ActionCreator, Operations, reducer} from "./user";
 
 import {createUser} from "../../adapters";
-import {AuthorizationStatus, emptyUser} from "../../helpers/const";
-import {userMock} from "../../helpers/test-data";
+import {AuthorizationStatus} from "../../helpers/const";
+import {noop, userMock, serverUser} from "../../helpers/test-data";
 
-const api = createAPI();
+const api = createAPI(noop);
 
 describe(`User State Reducer tests`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
@@ -86,7 +86,12 @@ describe(`User State Reducer tests`, () => {
 
   it(`Reducer should update userInfo`, () => {
     expect(reducer({
-      userInfo: emptyUser,
+      userInfo: {
+        id: 0,
+        email: ``,
+        name: ``,
+        avatarSrc: ``,
+      },
     }, {
       type: ActionType.SET_USER_DATA,
       payload: userMock,
@@ -147,9 +152,9 @@ describe(`Operations work correctly`, () => {
 
     apiMock
       .onGet(`/login`)
-      .reply(200, userMock);
+      .reply(200, serverUser);
 
-    return checkUserAuth(dispatch, () => {}, api)
+    return checkUserAuth(dispatch, () => noop, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
@@ -158,7 +163,7 @@ describe(`Operations work correctly`, () => {
         });
         expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.SET_USER_DATA,
-          payload: createUser(userMock),
+          payload: createUser(serverUser),
         });
         expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: ActionType.FINISH_AUTHORIZATION_PROCESS,
@@ -177,9 +182,9 @@ describe(`Operations work correctly`, () => {
 
     apiMock
       .onPost(`/login`, authData)
-      .reply(200, userMock);
+      .reply(200, serverUser);
 
-    return userLogin(dispatch, () => {}, api)
+    return userLogin(dispatch, noop, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
@@ -188,7 +193,7 @@ describe(`Operations work correctly`, () => {
         });
         expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.SET_USER_DATA,
-          payload: createUser(userMock),
+          payload: createUser(serverUser),
         });
       });
   });
