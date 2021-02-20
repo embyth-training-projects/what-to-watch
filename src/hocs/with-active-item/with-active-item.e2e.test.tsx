@@ -1,14 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {configure, shallow, mount} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import * as Adapter from "enzyme-adapter-react-16";
 
 import withActiveItem from "./with-active-item";
 import {movieItemMock} from "../../helpers/test-data";
 
 configure({adapter: new Adapter()});
 
-const MockComponent = (props) => {
+interface MockComponentProps {
+  onItemClick(): void;
+}
+
+const MockComponent = (props: MockComponentProps) => {
   const {onItemClick} = props;
 
   return (
@@ -16,10 +19,6 @@ const MockComponent = (props) => {
       <a onClick={onItemClick}></a>
     </div>
   );
-};
-
-MockComponent.propTypes = {
-  onItemClick: PropTypes.func.isRequired,
 };
 
 describe(`HOC withActiveItem end-2-end tests`, () => {

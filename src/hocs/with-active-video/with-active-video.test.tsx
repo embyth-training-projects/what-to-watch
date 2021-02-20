@@ -1,5 +1,5 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
 
 import withActiveVideo from "./with-active-video";
 import {movieItemMock} from "../../helpers/test-data";

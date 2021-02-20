@@ -1,20 +1,31 @@
-import React, {PureComponent, createRef} from "react";
+import * as React from "react";
 import {connect} from "react-redux";
 import history from "../../history";
 
 import {getCurrentMovieById} from "../../store/app/selectors";
 
-import {CustomPropTypes} from "../../helpers/custom-prop-types";
+import {MovieInterface} from "../../helpers/types";
 import {getTimeLeft} from "../../helpers/utils";
+import {VIDEO_PLAYER_ERROR_MESSAGE} from "../../helpers/const";
 
-const ERROR_MESSAGE = `Sorry, your browser doesn't support embedded videos.`;
+interface WithVideoControlsProps {
+    currentMovie: MovieInterface;
+}
+
+interface WithVideoControlsState {
+  isPlaying: boolean;
+  videoDuration: number;
+  currentVideoTime: number;
+}
 
 const withVideoControls = (Component) => {
-  class WithVideoControls extends PureComponent {
+  class WithVideoControls extends React.PureComponent<WithVideoControlsProps, WithVideoControlsState> {
+    private _videoRef: React.RefObject<HTMLVideoElement>;
+
     constructor(props) {
       super(props);
 
-      this._videoRef = createRef();
+      this._videoRef = React.createRef();
       this.state = {
         isPlaying: true,
         videoDuration: 0,
@@ -28,18 +39,18 @@ const withVideoControls = (Component) => {
       this._handleExitButtonClick = this._handleExitButtonClick.bind(this);
     }
 
-    _renderVideoPlayer() {
+    private _renderVideoPlayer() {
       return (
         <video
           className="player__video"
           ref={this._videoRef}
         >
-          {ERROR_MESSAGE}
+          {VIDEO_PLAYER_ERROR_MESSAGE}
         </video>
       );
     }
 
-    _renderPlayPauseButton() {
+    private _renderPlayPauseButton() {
       const {isPlaying} = this.state;
 
       return (
@@ -58,7 +69,7 @@ const withVideoControls = (Component) => {
       );
     }
 
-    _handlePlayPauseChange() {
+    private _handlePlayPauseChange() {
       const {isPlaying} = this.state;
 
       this.setState({
@@ -66,12 +77,12 @@ const withVideoControls = (Component) => {
       });
     }
 
-    _handleFullScreenButtonClick(evt) {
+    private _handleFullScreenButtonClick(evt) {
       evt.preventDefault();
       this._videoRef.current.requestFullscreen();
     }
 
-    _handleExitButtonClick(evt) {
+    private _handleExitButtonClick(evt) {
       evt.preventDefault();
       history.goBack();
     }
@@ -137,10 +148,6 @@ const withVideoControls = (Component) => {
       );
     }
   }
-
-  WithVideoControls.propTypes = {
-    currentMovie: CustomPropTypes.MOVIE,
-  };
 
   const mapStateToProps = (state, ownProps) => ({
     currentMovie: getCurrentMovieById(state, ownProps),

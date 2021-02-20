@@ -1,13 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {configure, mount} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import * as Adapter from "enzyme-adapter-react-16";
 
 import withActiveVideo from "./with-active-video";
 
 configure({adapter: new Adapter()});
 
-const MockComponent = (props) => {
+interface MockComponentProps {
+  onMovieCardMouseEnter(): void;
+  onMovieCardMouseOut(): void;
+}
+
+const MockComponent = (props: MockComponentProps) => {
   const {onMovieCardMouseEnter, onMovieCardMouseOut} = props;
 
   return (
@@ -16,11 +20,6 @@ const MockComponent = (props) => {
       onMouseOut={onMovieCardMouseOut}
     />
   );
-};
-
-MockComponent.propTypes = {
-  onMovieCardMouseEnter: PropTypes.func.isRequired,
-  onMovieCardMouseOut: PropTypes.func.isRequired,
 };
 
 describe(`HOC withActiveVideo end-2-end tests`, () => {

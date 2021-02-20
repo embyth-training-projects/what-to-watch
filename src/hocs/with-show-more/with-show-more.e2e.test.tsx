@@ -1,7 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {configure, mount} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import * as Adapter from "enzyme-adapter-react-16";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 
@@ -14,7 +13,11 @@ import {ALL_GENRES, Pages} from "../../helpers/const";
 configure({adapter: new Adapter()});
 const mockStore = configureStore([]);
 
-const MockComponent = (props) => {
+interface MockComponentProps {
+  onShowMoreButtonClick(): void;
+}
+
+const MockComponent = (props: MockComponentProps) => {
   const {onShowMoreButtonClick} = props;
 
   return (
@@ -24,10 +27,6 @@ const MockComponent = (props) => {
       />
     </div>
   );
-};
-
-MockComponent.propTypes = {
-  onShowMoreButtonClick: PropTypes.func.isRequired,
 };
 
 describe(`HOC withShowMore end-2-end tests`, () => {

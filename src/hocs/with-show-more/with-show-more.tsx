@@ -1,16 +1,23 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {connect} from "react-redux";
 
 import ShowMoreButton from "../../components/show-more-button/show-more-button";
 
 import {getFilteredMoviesLikeThis, getFilteredMoviesByGenre} from "../../store/data/selectors";
 
-import {CustomPropTypes} from "../../helpers/custom-prop-types";
+import {MovieInterface} from "../../helpers/types";
 import {MOVIES_SHOWN, Pages} from "../../helpers/const";
 
+interface WithShowMoreProps {
+  movies: Array<MovieInterface>;
+}
+
+interface WithShowMoreState {
+  moviesShown: Array<MovieInterface>;
+}
+
 const withShowMore = (Component) => {
-  class WithShowMore extends PureComponent {
+  class WithShowMore extends React.PureComponent<WithShowMoreProps, WithShowMoreState> {
     constructor(props) {
       super(props);
 
@@ -22,7 +29,7 @@ const withShowMore = (Component) => {
       this._renderShowMoreButton = this._renderShowMoreButton.bind(this);
     }
 
-    _handleShowMoreButtonClick() {
+    private _handleShowMoreButtonClick() {
       this.setState((prevState) => ({
         moviesShown: [
           ...prevState.moviesShown,
@@ -34,16 +41,16 @@ const withShowMore = (Component) => {
       }));
     }
 
+    private _renderShowMoreButton() {
+      return (this.props.movies.length > this.state.moviesShown.length && <ShowMoreButton onShowMoreButtonClick={this._handleShowMoreButtonClick} />);
+    }
+
     componentDidUpdate(prevProps) {
       if (prevProps !== this.props) {
         this.setState({
           moviesShown: this.props.movies.slice(0, MOVIES_SHOWN),
         });
       }
-    }
-
-    _renderShowMoreButton() {
-      return (this.props.movies.length > this.state.moviesShown.length && <ShowMoreButton onShowMoreButtonClick={this._handleShowMoreButtonClick} />);
     }
 
     render() {
@@ -56,10 +63,6 @@ const withShowMore = (Component) => {
       );
     }
   }
-
-  WithShowMore.propTypes = {
-    movies: PropTypes.arrayOf(CustomPropTypes.MOVIE).isRequired,
-  };
 
   const mapStateToProps = (state, ownProps) => ({
     movies: ownProps.currentPage === Pages.MAIN ? getFilteredMoviesByGenre(state) : getFilteredMoviesLikeThis(state)

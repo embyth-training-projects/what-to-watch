@@ -1,7 +1,21 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
+import {Subtract} from "utility-types";
+
+interface InjectingProps {
+  isPlaying: boolean;
+  onMovieCardMouseEnter(): void;
+  onMovieCardMouseOut(): void;
+}
+
+interface WithActiveVideoState {
+  isPlaying: boolean;
+}
 
 const withActiveVideo = (Component) => {
-  class WithActiveVideo extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithActiveVideo extends React.PureComponent<T, WithActiveVideoState> {
     constructor(props) {
       super(props);
 
@@ -13,13 +27,13 @@ const withActiveVideo = (Component) => {
       this._handleMovieCardMouseOut = this._handleMovieCardMouseOut.bind(this);
     }
 
-    _handleMovieCardMouseEnter() {
+    private _handleMovieCardMouseEnter() {
       this.setState({
         isPlaying: true,
       });
     }
 
-    _handleMovieCardMouseOut() {
+    private _handleMovieCardMouseOut() {
       this.setState({
         isPlaying: false,
       });

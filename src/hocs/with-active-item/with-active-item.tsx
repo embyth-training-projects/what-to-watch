@@ -1,8 +1,20 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {Subtract} from "utility-types";
+
+interface InjectingProps {
+  defaultActiveItem: string;
+  onItemClick(): void;
+}
+
+interface WithActiveItemState {
+  currentActiveItem: string;
+}
 
 const withActiveItem = (Component) => {
-  class WithActiveItem extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithActiveItem extends React.PureComponent<T, WithActiveItemState> {
     constructor(props) {
       super(props);
 
@@ -13,7 +25,7 @@ const withActiveItem = (Component) => {
       this._handleItemClick = this._handleItemClick.bind(this);
     }
 
-    _handleItemClick(activeItem) {
+    private _handleItemClick(activeItem) {
       this.setState({
         currentActiveItem: activeItem,
       });
@@ -37,10 +49,6 @@ const withActiveItem = (Component) => {
       );
     }
   }
-
-  WithActiveItem.propTypes = {
-    defaultActiveItem: PropTypes.string.isRequired,
-  };
 
   return WithActiveItem;
 };

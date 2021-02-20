@@ -1,5 +1,4 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {connect} from "react-redux";
 
 import {getCurrentMovieById} from "../../store/app/selectors";
@@ -7,10 +6,27 @@ import {getReviewRequestStatus} from "../../store/data/selectors";
 import {Operations as DataOperations, ActionCreator} from "../../store/data/data";
 
 import {Review, RequestStatus} from "../../helpers/const";
-import {CustomPropTypes} from "../../helpers/custom-prop-types";
+import {MovieInterface} from "../../helpers/types";
+
+interface WithReviewProps {
+  currentMovie: MovieInterface;
+  isReviewSending: boolean;
+  isSendingError: boolean;
+  onReviewSubmit(movieId: number, review: {
+    rating: number;
+    comment: string;
+  }): void;
+  clearSendingError(): void;
+}
+
+interface WithReviewState {
+  rating: number;
+  comment: string;
+  isSubmitDisabled: boolean;
+}
 
 const withReview = (Component) => {
-  class WithReview extends PureComponent {
+  class WithReview extends React.PureComponent<WithReviewProps, WithReviewState> {
     constructor(props) {
       super(props);
 
@@ -26,7 +42,7 @@ const withReview = (Component) => {
       this._handleRatingChange = this._handleRatingChange.bind(this);
     }
 
-    _handleFormSubmit(evt) {
+    private _handleFormSubmit(evt) {
       const {currentMovie, onReviewSubmit} = this.props;
 
       const review = {
@@ -38,11 +54,11 @@ const withReview = (Component) => {
       onReviewSubmit(currentMovie.id, review);
     }
 
-    _handleFormChange() {
+    private _handleFormChange() {
       this.props.clearSendingError();
     }
 
-    _handleReviewChange(evt) {
+    private _handleReviewChange(evt) {
       const {isReviewSending} = this.props;
       const target = evt.target;
 
@@ -52,7 +68,7 @@ const withReview = (Component) => {
       });
     }
 
-    _handleRatingChange(evt) {
+    private _handleRatingChange(evt) {
       this.setState({
         rating: +evt.target.value,
       });
@@ -74,14 +90,6 @@ const withReview = (Component) => {
       );
     }
   }
-
-  WithReview.propTypes = {
-    currentMovie: CustomPropTypes.MOVIE,
-    isReviewSending: PropTypes.bool.isRequired,
-    isSendingError: PropTypes.bool.isRequired,
-    onReviewSubmit: PropTypes.func.isRequired,
-    clearSendingError: PropTypes.func.isRequired,
-  };
 
   const mapStateToProps = (state, ownProps) => ({
     currentMovie: getCurrentMovieById(state, ownProps),
