@@ -67,7 +67,7 @@ interface ApiConfigInterface {
 }
 
 export const ApiConfig: ApiConfigInterface = {
-  URL: `https://5.react.pages.academy/wtw`,
+  URL: `https://6.react.pages.academy/wtw`,
   TIMEOUT: 5000,
   COOKIES: true,
 };
